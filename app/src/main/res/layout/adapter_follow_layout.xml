@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_56"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvindex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:text="1"
+            android:textColor="@color/text_595959"
+            android:textSize="14dp" />
+
+        <com.bibi.customview.CircleImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:src="@mipmap/icon_default_header" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="11"
+                android:text=""
+                android:textColor="@color/text_balck_161616"
+                android:textSize="14dp" />
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="000/积分"-->
+                <!--android:textColor="@color/primaryTextGray"-->
+                <!--android:textSize="14dp" />-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="821.0000"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvFollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:background="@drawable/circle_conner_rect_primay"
+            android:paddingBottom="@dimen/dimen_6"
+            android:paddingEnd="@dimen/dimen_18"
+            android:paddingStart="@dimen/dimen_18"
+            android:paddingTop="@dimen/dimen_6"
+            android:text="@string/follows"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13dp" />
+    </LinearLayout>
+</LinearLayout>

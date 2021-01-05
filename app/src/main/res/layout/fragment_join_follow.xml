@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#37343C"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <RelativeLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/transparency"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:scaleType="center"
+            android:src="@drawable/icon_back_white"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="牛人申请"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dimen_18">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_147"
+            android:layout_height="@dimen/dimen_47"
+            android:src="@drawable/img_join_follow_back_text"/>
+
+        <ImageView
+            android:layout_width="@dimen/dimen_176"
+            android:layout_height="@dimen/dimen_126"
+            android:layout_marginStart="-12dp"
+            android:src="@drawable/img_join_follow_back"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:paddingStart="@dimen/dimen_16"
+        android:paddingEnd="@dimen/dimen_16"
+        android:paddingTop="@dimen/dimen_24"
+        android:paddingBottom="@dimen/dimen_24"
+        android:background="@drawable/circle_corner_rect_white_back"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_110"
+            android:layout_height="@dimen/dimen_24"
+            android:src="@drawable/img_join_follow_text_1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="@string/follow_step_1"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:text="@string/follow_step_content_1"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="@dimen/dimen_110"
+            android:layout_height="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_40"
+            android:src="@drawable/img_join_follow_text_2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="@string/follow_step_2"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:text="@string/follow_step_content_2"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    
+    <TextView
+        android:id="@+id/tvAdmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/dimen_24"
+        android:layout_marginEnd="@dimen/dimen_24"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:background="@drawable/shape_gradient_primary_right"
+        android:text="@string/follow_admit"
+        android:textSize="14sp"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

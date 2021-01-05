@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/dimen_16"
+            android:paddingEnd="@dimen/dimen_16"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_12"
+                android:text="以太坊（RTC）"
+                android:textSize="16dp"
+                android:textColor="?attr/color_kline"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="发行时间"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvPublishTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="总供应量"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvTotalSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="流通总量"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvCirculatingSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="众筹价格"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvIcoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="白皮书"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvWhitepaperUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="官网"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingBottom="@dimen/dimen_12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="区块查询"
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+
+                <TextView
+                    android:id="@+id/tvlockExplore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/primaryTextGray"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:background="@color/primaryTextGray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:layout_marginBottom="@dimen/dimen_12"
+                android:text="简介"
+                android:textSize="16dp"
+                android:textColor="?attr/color_kline"/>
+
+            <TextView
+                android:id="@+id/tvCoinInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="12dp"
+                android:textColor="@color/primaryTextGray"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+    <!--nameCn 中文名-->
+    <!--circulatingSupply 流通量-->
+    <!--totalSupply 总供应量-->
+    <!--publishTime 发行时间-->
+    <!--icoPrice 众筹价格-->
+    <!--whitepaperUrl  白皮书地址-->
+    <!--website 官网-->
+    <!--blockExplore 区块查询-->
+    <!--coinInfo  币种详情-->
+    <!--nameEn  英文名-->

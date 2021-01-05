@@ -1,0 +1,221 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--日间模式-->
+    <style name="AppThemeDay" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--颜色-->
+        <item name="primary_back_dark">@color/primaryGrayBackDark</item>
+        <item name="title_layout_bg">@color/white</item>
+        <item name="primary_text">@color/primaryText</item>
+        <item name="primary_text_gray">@color/primaryTextGray</item>
+        <item name="color_333333">@color/color_333333</item>
+        <item name="color_666666">@color/color_666666</item>
+        <item name="color_999999">@color/color_999999</item>
+        <item name="text_595959">@color/text_595959</item>
+        <item name="text_balck_161616">@color/text_balck_161616</item>
+        <item name="color_dddddd">@color/color_dddddd</item>
+        <item name="color_3b4964">@color/color_3b4964</item>
+        <item name="color_f4ead3">@color/color_f4ead3</item>
+        <item name="color_text_white">@color/white</item>
+        <item name="color_kline">@color/primaryText</item>
+        <item name="blue_main">@color/blue_main</item>
+        <item name="black">@color/black</item>
+        <item name="color_eeeeee">@color/color_eeeeee</item>
+        <item name="line_gray">@color/line_gray</item>
+        <item name="line_select">@color/primaryTextGray</item>
+
+        <!--图标-->
+        <item name="icon_messages">@drawable/icon_messages</item>
+        <item name="icon_recommend">@drawable/icon_recommend</item>
+        <item name="icon_defi">@drawable/icon_defi</item>
+        <item name="icon_management">@drawable/icon_management</item>
+        <item name="icon_customer">@drawable/icon_customer</item>
+        <item name="img_notice">@drawable/img_notice</item>
+        <item name="icon_notice_end">@drawable/icon_notice_end</item>
+        <item name="icon_tab_market_no">@drawable/icon_tab_market_no</item>
+        <item name="icon_tab_home_no">@drawable/icon_tab_home_no</item>
+        <item name="icon_tab_contract_no">@drawable/icon_tab_contract_no</item>
+        <item name="icon_search_gray">@mipmap/icon_search_gray</item>
+        <item name="trade_kline_bg">@drawable/trade_kline_bg</item>
+        <item name="icon_side_open">@drawable/icon_side_open</item>
+        <item name="trade_trend_default_red_green">@drawable/trade_trend_default_red_green</item>
+        <item name="icon_back">@drawable/icon_back</item>
+        <item name="icon_back_black">@drawable/icon_back_black</item>
+    </style>
+
+    <!--夜间模式-->
+    <style name="AppThemeNight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--颜色-->
+        <item name="primary_back_dark">@color/primaryGrayBackDarkNight</item>
+        <item name="title_layout_bg">@color/whiteNight</item>
+        <item name="primary_text">@color/primaryTextNight</item>
+        <item name="primary_text_gray">@color/primaryTextNight</item>
+        <item name="color_333333">@color/primaryTextNight</item>
+        <item name="color_666666">@color/primaryTextNight</item>
+        <item name="color_999999">@color/primaryTextNight</item>
+        <item name="text_595959">@color/primaryTextNight</item>
+        <item name="text_balck_161616">@color/primaryTextNight</item>
+        <item name="color_dddddd">@color/color_3b4964</item>
+        <item name="color_3b4964">@color/primaryTextNight</item>
+        <item name="color_f4ead3">@color/primaryGrayBackDarkNight</item>
+        <item name="color_text_white">@color/primaryTextNight</item>
+        <item name="color_kline">@color/white</item>
+        <item name="blue_main">@color/whiteNight</item>
+        <item name="black">@color/white</item>
+        <item name="color_eeeeee">@color/primaryGrayBackDarkNight</item>
+        <item name="line_gray">@color/primaryTextNight</item>
+        <item name="line_select">@color/line_select</item>
+
+        <!--图标-->
+        <item name="icon_messages">@drawable/icon_messages_night</item>
+        <item name="icon_recommend">@drawable/icon_recommend_night</item>
+        <item name="icon_defi">@drawable/icon_defi_night</item>
+        <item name="icon_management">@drawable/icon_management_night</item>
+        <item name="icon_customer">@drawable/icon_customer_night</item>
+        <item name="img_notice">@drawable/img_notice_night</item>
+        <item name="icon_notice_end">@drawable/icon_notice_end_night</item>
+        <item name="icon_tab_market_no">@drawable/icon_tab_market_night</item>
+        <item name="icon_tab_home_no">@drawable/icon_tab_home_no_night</item>
+        <item name="icon_tab_contract_no">@drawable/icon_tab_contract_no_night</item>
+        <item name="icon_search_gray">@mipmap/icon_search_gray_night</item>
+        <item name="trade_kline_bg">@drawable/trade_kline_bg_night</item>
+        <item name="icon_side_open">@drawable/icon_side_open_night</item>
+        <item name="trade_trend_default_red_green">@drawable/trade_trend_default_red_green_night</item>
+        <item name="icon_back">@drawable/icon_back_gray</item>
+        <item name="icon_back_black">@drawable/icon_back_gray</item>
+
+    </style>
+
+    <style name="custom_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:dialogMessage">@color/primaryText</item>
+        <item name="buttonBarPositiveButtonStyle">@style/buttonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/buttonStyle</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <style name="custom_dialog_transparent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="buttonBarPositiveButtonStyle">@style/buttonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/buttonStyle</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <declare-styleable name="CircleButtonView">
+        <attr name="minTime" format="integer"/>
+        <attr name="maxTime" format="integer"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="progressWidth" format="dimension"/>
+    </declare-styleable>
+
+    <!--按钮样式-->
+    <style name="buttonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="k_tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--自定义Dialog样式-->
+    <style name="dialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowSoftInputMode">stateVisible|adjustPan</item>
+    </style>
+    <declare-styleable name="DropdownLayout">
+        <attr name="dropSpeed" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="MovieRecorderView">
+        <attr name="video_width" format="integer"/>
+        <attr name="video_height" format="integer"/>
+        <attr name="is_open_camera" format="boolean"/>
+        <attr name="record_max_time" format="integer"/>
+    </declare-styleable>
+
+
+    <style name="dialog_a" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <!--启动页加速-->
+    <style name="launchTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/image_launcher</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--底部弹出Dialog动画-->
+    <style name="bottomDialog" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="detail_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+    </style>
+    <style name="detail_tv_one">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#777d83</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="detail_tv_two">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|end</item>
+        <item name="android:textColor">#21263c</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">#ffffff</item> <!--  菜单字体颜色-->
+        <item name="android:textSize">18sp</item> <!-- 菜单字体大小-->
+    </style>
+
+</resources>

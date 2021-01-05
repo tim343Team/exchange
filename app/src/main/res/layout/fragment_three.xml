@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="?attr/title_layout_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/ibOpen"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/icon_side_open"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/tb_transaction"
+            android:layout_width="@dimen/dimen_184"
+            android:layout_height="@dimen/dimen_32"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_title_exchange"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_trade_title"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:gravity="center"
+                android:text="@string/contract"
+                android:textColor="@color/selector_radiobutton_text" />
+
+            <TextView
+                android:id="@+id/tv_title_fiat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_trade_title"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:gravity="center"
+                android:text="@string/exchange"
+                android:textColor="@color/selector_radiobutton_text" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivKline"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/trade_kline_bg"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_eeeeee"
+        android:visibility="visible"/>
+
+    <FrameLayout
+        android:id="@+id/fl_container_trade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

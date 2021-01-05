@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/title_layout_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingRight="28dp"
+    android:paddingLeft="28dp">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/coin_name"
+        android:textColor="?attr/color_333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/current_price_cny"
+        android:textColor="?attr/color_333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item_home_chg"
+        android:layout_width="75dp"
+        android:layout_height="29dp"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:text="@string/change"
+        android:textColor="?attr/color_333333"
+        android:textSize="12sp" />
+
+</LinearLayout>

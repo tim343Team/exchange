@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_8"
+    android:background="?attr/title_layout_bg"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:id="@+id/llRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/mobile_or_email"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="身份"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvTab3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="直推数量"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvTab4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/registration_time"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="18200413571"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/RecommendationLevel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="普通用户"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvRegistrationTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2012-10-09"
+                android:textColor="?attr/primary_text"
+                android:textSize="13sp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginEnd="@dimen/dimen_12"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:background="@color/line_gray" />
+
+    <LinearLayout
+        android:id="@+id/llMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_8"
+        android:paddingBottom="@dimen/dimen_12"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_marginEnd="@dimen/dimen_48"
+            android:layout_marginStart="@dimen/dimen_48"
+            android:background="@color/line_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_marginEnd="@dimen/dimen_72"
+            android:layout_marginStart="@dimen/dimen_72"
+            android:layout_marginTop="@dimen/dimen_6"
+            android:background="@color/line_gray" />
+
+    </LinearLayout>
+
+</LinearLayout>

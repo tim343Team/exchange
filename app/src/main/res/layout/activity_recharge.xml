@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f4ead3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <!--标题-->
+        <LinearLayout
+            android:id="@+id/llTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:background="@color/color_f4ead3"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="center"
+                android:src="@drawable/icon_back"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/view_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/chargeMoneyAddress"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/ibRegist"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:gravity="center"
+                android:text="@string/deposit_record"
+                android:textColor="#fff"
+                android:textSize="14dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dimen_32"
+                    android:layout_marginStart="@dimen/dimen_32"
+                    android:layout_marginTop="@dimen/dimen_46"
+                    android:background="@drawable/circle_corner_rect_white_back"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_choose_coin"-->
+                    <!--android:background="@color/background_gray"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvAddressText"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:textColor="@color/primaryText"-->
+                    <!--android:textSize="18dp" />-->
+
+                    <!--<TextView-->
+                    <!--android:text="@string/choose_coin"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <!--<ImageView-->
+                    <!--android:src="@mipmap/icon_into"-->
+                    <!--android:layout_width="15dp"-->
+                    <!--android:layout_height="15dp" />-->
+
+                    <!--</LinearLayout>-->
+
+                    <ImageView
+                        android:id="@+id/ivAddress"
+                        android:layout_width="@dimen/dimen_120"
+                        android:layout_height="@dimen/dimen_120"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp" />
+
+                    <LinearLayout
+                        android:id="@+id/llAlbum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/savePhoto"
+                            android:textColor="@color/blue_main"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvAddressText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/primaryText"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:layout_marginTop="@dimen/dimen_10"
+                        android:background="@color/grey_f6f6f6"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/primaryTextGray"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/llCopy"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:layout_marginBottom="@dimen/dimen_16"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        android:background="@drawable/shape_gradient_primary_right"
+                        android:gravity="center"
+                        android:text="@string/copy_link"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:id="@+id/llAddressTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvAddressTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_40"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:gravity="center"
+                            android:text="123"
+                            android:textColor="@color/primaryText"
+                            android:textSize="14dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="需认真填写该地址标签，若遗漏标签，将导致资金丢失"
+                            android:textColor="@color/typeRed"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/llCopyTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_40"
+                            android:layout_marginBottom="@dimen/dimen_16"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_20"
+                            android:background="@drawable/shape_gradient_primary_right"
+                            android:gravity="center"
+                            android:text="@string/copy_tag"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingMultiplier="1.4"
+                    android:text="@string/chargeTip"
+                    android:textColor="#777"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

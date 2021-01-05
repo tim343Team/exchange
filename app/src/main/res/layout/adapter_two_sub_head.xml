@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/title_layout_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp">
+
+    <LinearLayout
+        android:id="@+id/llSymbol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coin_name"
+            android:textColor="@color/color_8c9ea9"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/ivSymbol"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icon_rank" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llClose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_price"
+            android:textColor="@color/color_8c9ea9"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icon_rank" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llChange"
+        android:layout_width="75dp"
+        android:layout_height="29dp"
+        android:layout_gravity="end"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:textColor="@color/color_8c9ea9"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/ivChange"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icon_rank" />
+
+    </LinearLayout>
+
+</LinearLayout>

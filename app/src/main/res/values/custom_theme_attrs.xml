@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="primary_back_dark" format="color|reference" />
+    <attr name="title_layout_bg" format="color|reference" />
+    <attr name="main_color" format="color|reference" />
+    <attr name="primary_text" format="color|reference" />
+    <attr name="primary_text_gray" format="color|reference" />
+    <attr name="color_333333" format="color|reference" />
+    <attr name="color_666666" format="color|reference" />
+    <attr name="color_999999" format="color|reference" />
+    <attr name="color_dddddd" format="color|reference" />
+    <attr name="color_f4ead3" format="color|reference" />
+    <attr name="text_595959" format="color|reference" />
+    <attr name="text_balck_161616" format="color|reference" />
+    <attr name="color_3b4964" format="color|reference" />
+    <attr name="color_text_white" format="color|reference" />
+    <attr name="color_kline" format="color|reference" />
+    <attr name="blue_main" format="color|reference" />
+    <attr name="black" format="color|reference" />
+    <attr name="color_eeeeee" format="color|reference" />
+    <attr name="line_gray" format="color|reference" />
+    <attr name="line_select" format="color|reference" />
+
+    <!--导航栏-->
+    <attr name="icon_tab_market_no" format="reference" />
+    <attr name="icon_tab_home_no" format="reference" />
+    <attr name="icon_tab_contract_no" format="reference" />
+
+    <!--首页-->
+    <attr name="icon_messages" format="reference" />
+    <attr name="icon_recommend" format="reference" />
+    <attr name="icon_defi" format="reference" />
+    <attr name="icon_management" format="reference" />
+    <attr name="icon_customer" format="reference" />
+    <attr name="img_notice" format="reference" />
+    <attr name="icon_notice_end" format="reference" />
+
+    <!--行情-->
+    <attr name="icon_search_gray" format="reference" />
+
+    <!--币币交易-->
+    <attr name="icon_side_open" format="reference" />
+    <attr name="trade_kline_bg" format="reference" />
+    <attr name="trade_trend_default_red_green" format="reference" />
+
+    <!--K线图-->
+    <attr name="icon_back" format="reference" />
+    <attr name="icon_back_black" format="reference" />
+
+</resources>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/color_f4ead3"
+    android:orientation="vertical"
+    tools:context="com.bibi.ui.buy_or_sell.C2CBuyOrSellActivity">
+
+    <!--标题-->
+    <RelativeLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:scaleType="center"
+            android:src="?attr/icon_back"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="合约明细"
+            android:textColor="?attr/color_text_white"
+            android:textSize="17dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTerm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_12"
+            android:paddingTop="@dimen/dimen_12"
+            android:text="投资期限"
+            android:textColor="?attr/color_text_white"
+            android:textSize="@dimen/dimen_14" />
+
+        <TextView
+            android:id="@+id/tvPositions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_12"
+            android:paddingTop="@dimen/dimen_12"
+            android:text="@string/positions"
+            android:textColor="?attr/color_text_white"
+            android:textSize="@dimen/dimen_14" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_12"
+            android:paddingTop="@dimen/dimen_12"
+            android:text="@string/contract_time"
+            android:textColor="?attr/color_text_white"
+            android:textSize="@dimen/dimen_14"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_12"
+            android:paddingTop="@dimen/dimen_12"
+            android:text="@string/trans_time"
+            android:textColor="?attr/color_text_white"
+            android:textSize="@dimen/dimen_14" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

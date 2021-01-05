@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/primary_back_dark"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <LinearLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_44"
+        android:background="?attr/title_layout_bg"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:scaleType="center"
+            android:src="?attr/icon_back"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/llChongBi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tvDeposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/deposit_record"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <View
+                    android:id="@+id/vDeposit"
+                    android:layout_width="@dimen/dimen_20"
+                    android:layout_height="2dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorPrimary"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/llTiBi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tvRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/withdraw_record"
+                    android:textSize="14sp"
+                    android:textColor="@color/primaryTextGray"/>
+
+                <View
+                    android:id="@+id/vRecord"
+                    android:layout_width="@dimen/dimen_20"
+                    android:layout_height="2dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorPrimary"
+                    android:visibility="invisible"/>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/llDeal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tvDeal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/deal_record"
+                    android:textSize="14sp"
+                    android:textColor="@color/primaryTextGray"/>
+
+                <View
+                    android:id="@+id/vDeal"
+                    android:layout_width="@dimen/dimen_20"
+                    android:layout_height="2dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorPrimary"
+                    android:visibility="invisible"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/iv_menu_fiat_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:visibility="invisible">
+
+            <ImageView
+                android:src="@drawable/trade_head_right_pop_normal"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp1"
+                android:background="@drawable/trade_head_right_pop_normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.bibi.customview.NoScrollViewPager
+        android:id="@+id/vp_report"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/primary_back_dark"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+package com.bibi.ui.seller;
+
+import com.bibi.base.Contract;
+import com.bibi.entity.DepositInfo;
+
+import java.util.List;
+
+
+public class SellerApplyCommitContract {
+
+    interface View extends Contract.BaseView<Presenter> {
+
+        void getDepositListSuccess(List<DepositInfo> obj);
+
+        void getDepositListFail(int code, String message);
+
+        void commitSellerApplySuccess(String message);
+
+        void commitSellerApplyFail(int code, String message);
+
+        void uploadBase64PicSuccess(String path, int type);
+
+        void uploadBase64PicFail(int code, String toastMessage);
+
+    }
+
+    interface Presenter extends Contract.BasePresenter {
+
+        void commitSellerApply(String token, String coinId, String json);
+
+        void getDepositList(String token);
+
+        void uploadBase64Pic(String token, String base64Data, final int type);
+    }
+}

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_2c2c2c"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <RelativeLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_65"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/color_2c2c2c"
+        android:orientation="horizontal">
+
+        <com.bibi.customview.CircleImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:background="@mipmap/icon_default_header"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/icon_back"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/ivSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="@string/chargeMoneyTip2_detail"
+            android:textSize="@dimen/dimen_14"
+            android:textColor="@color/white"
+            android:drawableStart="@drawable/icon_record"
+            android:drawablePadding="@dimen/dimen_6"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llTitle"
+        android:paddingStart="@dimen/dimen_16"
+        android:paddingEnd="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_38"
+        android:background="@color/color_2c2c2c"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16">
+
+                <TextView
+                    android:id="@+id/tabContract"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/account_fiat"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tabOptions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/exchange_asset"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"/>
+
+
+                <TextView
+                    android:id="@+id/tabFiat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/account_fiat"
+                    android:textColor="@color/primaryTextGray"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivSee"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/icon_eye_open" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="0.00000000"
+            android:textColor="@color/colorPrimary"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvCnyAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="≈0.00"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llHeader"
+        android:paddingStart="@dimen/dimen_18"
+        android:paddingEnd="@dimen/dimen_18"
+        />
+
+
+</RelativeLayout>

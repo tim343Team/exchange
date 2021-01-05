@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_2c2c2c"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <RelativeLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_65"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/color_2c2c2c"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:scaleType="center"
+            android:src="@drawable/icon_back"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/ivSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dp5"
+            android:textSize="@dimen/dimen_14"
+            android:textColor="@color/white"
+            android:drawableStart="@drawable/icon_record"
+            android:drawablePadding="@dimen/dimen_6"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llTitle"
+        android:paddingStart="@dimen/dimen_16"
+        android:paddingEnd="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_38"
+        android:background="@color/color_2c2c2c"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tabContract"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+
+            <ImageView
+                android:id="@+id/ivSee"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/icon_eye_open" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="0.00000000"
+            android:textColor="@color/colorPrimary"
+            android:textSize="26dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCnyAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="≈0.00"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_asset_transfer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginEnd="@dimen/dimen_32"
+        android:layout_marginStart="@dimen/dimen_32"
+        android:layout_below="@+id/llHeader"
+        android:background="@drawable/circle_corner_rect_yellow_back"
+        android:gravity="center"
+        android:text="@string/transfer_asset"
+        android:textColor="@color/white"
+        android:textSize="14dp" />
+
+
+</RelativeLayout>

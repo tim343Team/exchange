@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/circle_corner_white_back"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#0000"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_47"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="账户选择"
+                android:textColor="@color/typeGray"
+                android:textSize="@dimen/dimen_17" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:id="@+id/tvContract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:gravity="center"
+            android:text="@string/account_contract"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/dimen_17" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:id="@+id/tvOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:gravity="center"
+            android:text="@string/account_fiat"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/dimen_17" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:id="@+id/tvCancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:gravity="center"
+            android:text="@string/cancle"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/dimen_17" />
+
+    </LinearLayout>
+</LinearLayout>

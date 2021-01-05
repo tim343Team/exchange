@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="@dimen/dimen_16"
+    android:layout_marginStart="@dimen/dimen_16"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_top_conner_white_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/dialog_order_detail_title"
+                    android:textColor="@color/primaryText"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_0_5"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:background="@color/line_gray" />
+
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:background="@drawable/shape_dash_rect"
+                android:gravity="center_vertical"
+                android:hint="@string/text_ad_money_hint"
+                android:paddingStart="@dimen/dimen_8"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/primaryTextGray"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:id="@+id/layout_yonghu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen_2"
+                android:paddingTop="@dimen/dimen_2">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:button="@drawable/check_xu"
+                    android:checked="false"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/payment_has_been"
+                    android:textColor="@color/primaryTextGray"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_above="@+id/tvCancle"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_gradient_primary_right"
+            android:gravity="center"
+            android:text="@string/dialog_sure"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvCancle"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/dialog_cancel"
+            android:textColor="@color/text_balck_161616"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

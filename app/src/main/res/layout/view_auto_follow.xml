@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/tab1"
+    android:visibility="visible">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follow_notice"
+        android:textColor="@color/black"
+        android:textSize="13dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:text="@string/follow_property"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/typeRecy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginEnd="@dimen/dimen_12"
+        android:layout_marginTop="@dimen/dimen_12"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/follow_amount"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+            <EditText
+                android:id="@+id/mOneTCP"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:layout_weight="1"
+                android:background="@drawable/shape_dash_rect"
+                android:digits="1234567890."
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/text_number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/text_c5c5c5"
+                android:textSize="14dp" />
+
+            <RelativeLayout
+                android:id="@+id/mOneSub"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_6"
+                android:background="@drawable/shape_dash_rect"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30dp" >
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/icon_minus"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mOneAdd"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_dash_rect"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_20"
+                    android:layout_height="@dimen/dimen_20"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/icon_plus"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/leverage"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:id="@+id/mRadioGroupMargin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/mTabMarginOne"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="@dimen/dimen_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_buy_background"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:textColor="@color/radiobutton_two_color"
+                    android:textSize="16dp"
+                    android:visibility="visible"/>
+
+                <RadioButton
+                    android:id="@+id/mTabMarginTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="@dimen/dimen_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_buy_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="@color/radiobutton_two_color"
+                    android:textSize="16dp"
+                    android:visibility="visible"/>
+
+                <RadioButton
+                    android:id="@+id/mTabMarginThree"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_buy_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="@color/radiobutton_two_color"
+                    android:textSize="16dp"
+                    android:visibility="visible"/>
+
+            </RadioGroup>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/capital_password"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <EditText
+                android:id="@+id/mPassword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:layout_weight="1"
+                android:background="@drawable/shape_dash_rect"
+                android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/text_ad_money_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingEnd="56dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/text_c5c5c5"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBuy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dimen_24"
+        android:background="@drawable/shape_gradient_primary_right"
+        android:text="@string/follow_admit_auto"
+        android:textSize="14dp"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

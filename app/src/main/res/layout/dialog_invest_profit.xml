@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dimen_36"
+    android:layout_marginStart="@dimen/dimen_36"
+    android:background="#00ffffff">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_180"
+        android:background="@drawable/circle_conner_rect_white_line"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen_16"
+        android:paddingEnd="@dimen/dimen_16"
+        android:paddingStart="@dimen/dimen_16">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/profit_result"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/tvCancle"
+                android:layout_width="@dimen/dimen_20"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:background="@drawable/icon_cancle"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:gravity="center"
+                android:text="@string/profit_result_note"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btFinish"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_32"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="@string/enter_deal"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

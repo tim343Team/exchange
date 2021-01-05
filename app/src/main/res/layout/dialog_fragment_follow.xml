@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dimen_16"
+    android:layout_marginStart="@dimen/dimen_16"
+    android:background="@drawable/circle_conner_rect_primay"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_16">
+
+        <LinearLayout
+            android:id="@+id/lltab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/lltab1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvtab1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17dp" />
+
+                <View
+                    android:id="@+id/vtab1"
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_2"
+                    android:layout_marginTop="@dimen/dimen_6"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lltab2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvtab2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto"
+                    android:textColor="@color/text_595959"
+                    android:textSize="17dp" />
+
+                <View
+                    android:id="@+id/vtab2"
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_2"
+                    android:layout_marginTop="@dimen/dimen_6"
+                    android:background="@color/colorPrimary"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imBack"
+                android:layout_width="@dimen/dimen_16"
+                android:layout_height="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_3"
+                android:layout_marginStart="@dimen/dimen_112"
+                android:layout_marginTop="@dimen/dimen_2"
+                android:background="@drawable/icon_finish" />
+
+        </LinearLayout>
+
+
+        <include layout="@layout/view_auto_follow" />
+
+        <include layout="@layout/view_shoudong_follow" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
