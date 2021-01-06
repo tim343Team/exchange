@@ -265,17 +265,17 @@ public class OneFragment extends BaseTransFragment implements com.bibi.ui.main.M
                 vTab3.setVisibility(View.GONE);
                 vpPager.setCurrentItem(0);
                 break;
-            case R.id.llTab2:
+            /*case R.id.llTab2:
                 vTab1.setVisibility(View.GONE);
                 vTab2.setVisibility(View.VISIBLE);
                 vTab3.setVisibility(View.GONE);
                 vpPager.setCurrentItem(1);
-                break;
+                break;*/
             case R.id.llTab3:
                 vTab1.setVisibility(View.GONE);
                 vTab2.setVisibility(View.GONE);
                 vTab3.setVisibility(View.VISIBLE);
-                vpPager.setCurrentItem(2);
+                vpPager.setCurrentItem(1);
                 break;
             default:
         }
@@ -353,8 +353,8 @@ public class OneFragment extends BaseTransFragment implements com.bibi.ui.main.M
         line_fabi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WonderfulToastUtils.showToast("暂未开放,敬请期待");
-//                startActivity(new Intent(getActivity(), FiatExchangeActivity.class));
+//                WonderfulToastUtils.showToast("暂未开放,敬请期待");
+                startActivity(new Intent(getActivity(), FiatExchangeActivity.class));
             }
         });
         line_invite.setOnClickListener(new View.OnClickListener() {
