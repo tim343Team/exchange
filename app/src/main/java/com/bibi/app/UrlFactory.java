@@ -124,7 +124,8 @@ public class UrlFactory {
      * 首页获取所有的币种
      */
     public static String getAllCurrencys() {
-        return host + "/market/spot-market/overview";
+        //return host + "/market/spot-market/overview";
+        return host + "/market/overview";
     }
 
     /**

@@ -142,7 +142,7 @@
     <string name="otc_coin">快捷买币</string>
     <string name="otc_coin_topic">支持ETH,BTC,USDT等</string>
     <string name="agreement_guide">合约指南</string>
-    <string name="market">行情</string>
+    <string name="market">期权</string>
     <string name="exchange">币币</string>
     <string name="margin">杠杆</string>
     <string name="fiat">法币</string>

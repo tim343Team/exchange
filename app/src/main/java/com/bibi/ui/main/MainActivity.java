@@ -149,7 +149,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 //    private TwoRootFragment twoFragment; //行情模块
 //    private ThreeFragment threeFragment;//交易模块
 //    private ManagementFragment managementFragment; //理财模块
-//    private MineFragment fiveFragment; //我的模块
+    private MineFragment fiveFragment; //我的模块
 
     private UserFragment userFragment;//侧边栏"我的"模块
     private Favorite2Fragment favoriteFragment2;
@@ -369,9 +369,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     private void getAllCurrencys() {
         //获取首页全部交易对 1，推荐 2.涨幅榜  3.新币榜  4.交易额榜
-        presenter.newTickerCurrency("nav1", "NEW"); //新币榜
-        presenter.newTickerCurrency("nav2", "INCREASE"); //涨幅榜
-        presenter.newTickerCurrency("nav3", "TRANSACTION_AMOUNT"); //交易额榜
+        //presenter.newTickerCurrency("nav1", "NEW"); //新币榜
+        presenter.newTickerCurrency("screen", "INCREASE"); //涨幅榜
+        //presenter.newTickerCurrency("nav3", "TRANSACTION_AMOUNT"); //交易额榜
     }
 
     private void getAllCurrency() {
@@ -507,7 +507,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             @Override
             public void onClick(View v) {
                 if (MyApplication.getApp().isLogin()) {
-                    selecte(v, 4);
+                    selecte(v, 2);
                 } else {
                     LoginActivity.actionStart(MainActivity.this);
                 }
@@ -547,7 +547,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         tab.setupWithViewPager(vpMenu);
         new OnePresenter(Injection.provideTasksRepository(getApplicationContext()), oneFragment);
 //        new TwoRootPresenter(Injection.provideTasksRepository(getApplicationContext()), twoFragment);
-//        new MinePresenter(Injection.provideTasksRepository(getApplicationContext()), fiveFragment);
+        new MinePresenter(Injection.provideTasksRepository(getApplicationContext()), fiveFragment);
         userFragment = new UserFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fl_drawer_user, userFragment, userFragment.getmTag()).show(userFragment).commit();
@@ -672,9 +672,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 //        if (managementFragment == null) {
 //            fragments.add(managementFragment = new ManagementFragment());
 //        }
-//        if (fiveFragment == null) {
-//            fragments.add(fiveFragment = new MineFragment());
-//        }
+        if (fiveFragment == null) {
+            fragments.add(fiveFragment = new MineFragment());
+        }
     }
 
     @Override
@@ -684,7 +684,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 //        managementFragment = (ManagementFragment) getSupportFragmentManager().findFragmentByTag(ManagementFragment.TAG);
 //        twoFragment = (TwoRootFragment) getSupportFragmentManager().findFragmentByTag(TwoRootFragment.TAG);
 //        threeFragment = (ThreeFragment) getSupportFragmentManager().findFragmentByTag(ThreeFragment.TAG);
-//        fiveFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag(MineFragment.TAG);
+        fiveFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag(MineFragment.TAG);
 
         if (oneFragment == null) {
             fragments.add(oneFragment = new OneFragment());
@@ -711,11 +711,11 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 //        } else {
 //            fragments.add(managementFragment);
 //        }
-//        if (fiveFragment == null) {
-//            fragments.add(fiveFragment = new MineFragment());
-//        } else {
-//            fragments.add(fiveFragment);
-//        }
+        if (fiveFragment == null) {
+            fragments.add(fiveFragment = new MineFragment());
+        } else {
+            fragments.add(fiveFragment);
+        }
     }
 
     @Override
@@ -1011,7 +1011,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 if (oneFragment != null) {
                     oneFragment.dataLoadedFour(currenciesFour);
                 }
-            } else if (nav.equals("nav2")) {
+            } else if (nav.equals("screen")) {
                 //涨幅榜
                 this.currenciesTwo.clear();
                 this.currenciesTwo.addAll(currency);
