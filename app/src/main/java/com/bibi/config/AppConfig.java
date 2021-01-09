@@ -15,7 +15,7 @@ public class AppConfig {
 //    static String BASE_IP = "159.138.55.44";
 //    static String SOCKET_IP = "159.138.58.54";
 
-    public static String BASE_URL = "http://"+BASE_IP+":80";
+    public static String BASE_URL = "http://"+BASE_IP+":8003";
 
     public static String C2C_URL = SOCKET_IP;
     public static String MARKET_URL = SOCKET_IP;

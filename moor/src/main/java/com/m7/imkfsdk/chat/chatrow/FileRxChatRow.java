@@ -68,7 +68,7 @@ public class FileRxChatRow extends BaseChatRow {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                                     intent.setAction(Intent.ACTION_VIEW);
-                                    Uri contentUri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", file);
+                                    Uri contentUri = FileProvider.getUriForFile(context, BuildConfig.LIBRARY_PACKAGE_NAME + ".fileprovider", file);
                                     intent.setDataAndType(contentUri,  MimeTypesTools.getMimeType(context, message.fileName));
                                 } else {
                                     intent.setDataAndType(Uri.fromFile(file),  MimeTypesTools.getMimeType(context, message.fileName));
