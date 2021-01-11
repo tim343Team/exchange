@@ -152,7 +152,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     private MineFragment fiveFragment; //我的模块
 
     private UserFragment userFragment;//侧边栏"我的"模块
-    private Favorite2Fragment favoriteFragment2;
+    //private Favorite2Fragment favoriteFragment2;
     private USDTMarket2Fragment usdtMarketFragment2;
     private BTCMarket2Fragment btcMarketFragment2;
     private ETHMarket2Fragment ethMarketFragment2;
@@ -201,7 +201,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         usdtMarketFragment2.tcpNotify();
 //        btcMarketFragment2.tcpNotify();
 //        ethMarketFragment2.tcpNotify();
-        favoriteFragment2.tcpNotify();
+//        favoriteFragment2.tcpNotify();
     }
 
     /**
@@ -567,8 +567,8 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     private void recoverMenuFragment() {
         try {
-            favoriteFragment2 = (Favorite2Fragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.makeFragmentName(vpMenu.getId(), 0));
-            menusFragments2.add(favoriteFragment2);
+//            favoriteFragment2 = (Favorite2Fragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.makeFragmentName(vpMenu.getId(), 0));
+//            menusFragments2.add(favoriteFragment2);
             usdtMarketFragment2 = (USDTMarket2Fragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.makeFragmentName(vpMenu.getId(), 1));
             menusFragments2.add(usdtMarketFragment2);
 //            ethMarketFragment2 = (ETHMarket2Fragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.makeFragmentName(vpMenu.getId(), 3));
@@ -581,9 +581,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     }
 
     private void addFragments() {
-        if (favoriteFragment2 == null) {
-            menusFragments2.add(favoriteFragment2 = Favorite2Fragment.getInstance());
-        }
+//        if (favoriteFragment2 == null) {
+//            menusFragments2.add(favoriteFragment2 = Favorite2Fragment.getInstance());
+//        }
         if (usdtMarketFragment2 == null) {
             menusFragments2.add(usdtMarketFragment2 = USDTMarket2Fragment.getInstance());
         }
@@ -747,7 +747,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 default:
             }
             vpMenu.getAdapter().notifyDataSetChanged();
-            favoriteFragment2.dataLoaded(baseFavorite);
+//            favoriteFragment2.dataLoaded(baseFavorite);
             usdtMarketFragment2.dataLoaded(baseUsdt);
 //            btcMarketFragment2.dataLoaded(baseBtc);
 //            ethMarketFragment2.dataLoaded(baseEth);
@@ -945,7 +945,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     private void setData() {
         oneFragment.dataLoaded(currencies);
 //        twoFragment.dataLoaded();
-        favoriteFragment2.dataLoaded(baseFavorite);
+//        favoriteFragment2.dataLoaded(baseFavorite);
         usdtMarketFragment2.dataLoaded(baseUsdt);
 //        btcMarketFragment2.dataLoaded(baseBtc);
 //        ethMarketFragment2.dataLoaded(baseEth);

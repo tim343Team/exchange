@@ -90,7 +90,8 @@ public class WonderfulOkhttpUtils {
             Log.e("callback is null", "!!!");
             callback = Callback.CALLBACK_DEFAULT;
         }
-        WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());
+        final String url = requestCall.getCall().request().url().toString();
+        WonderfulLogUtils.logi("URL", url);
 //        WonderfulLogUtils.logi("请求头", "233"+requestCall.getCall().request().headers().toString());
         name = requestCall.getCall().request().url().toString();
         final Callback finalCallback = callback;
@@ -121,7 +122,9 @@ public class WonderfulOkhttpUtils {
                         MyApplication.getApp().getCurrentUser().setToken(token);
                         MyApplication.getApp().saveCurrentUser();
                     }
-                    Object o = finalCallback.parseNetworkResponse(response);
+                    String result = response.body().string();
+                    WonderfulLogUtils.logi("URL="+url, result);
+                    Object o = result;///finalCallback.parseNetworkResponse(response);
                     sendSuccessResultCallback(o, finalCallback);
                 } catch (IOException e) {
                     sendFailResultCallback(response.request(), e, finalCallback);
