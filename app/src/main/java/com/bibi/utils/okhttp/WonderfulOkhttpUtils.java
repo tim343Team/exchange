@@ -123,7 +123,7 @@ public class WonderfulOkhttpUtils {
                         MyApplication.getApp().saveCurrentUser();
                     }
                     String result = response.body().string();
-                    WonderfulLogUtils.logi("URL="+url, result);
+                    WonderfulLogUtils.logi("URL = "+url, result);
                     Object o = result;///finalCallback.parseNetworkResponse(response);
                     sendSuccessResultCallback(o, finalCallback);
                 } catch (IOException e) {

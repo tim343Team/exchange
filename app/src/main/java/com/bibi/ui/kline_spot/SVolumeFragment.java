@@ -190,7 +190,7 @@ public class SVolumeFragment extends BaseFragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override

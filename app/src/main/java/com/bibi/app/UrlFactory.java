@@ -108,7 +108,8 @@ public class UrlFactory {
     }
 
     public static String getSpotKDataUrl() {
-        return host + "/market/spot-market/history";
+        //return host + "/market/spot-market/history";
+        return host + "/market/history";
     }
 
     public static String getAllCurrency() {
@@ -116,7 +117,8 @@ public class UrlFactory {
     }
 
     public static String getAllSpotCurrency() {
-        return host + "/market/spot-market/symbol-thumb";
+        //return host + "/market/spot-market/symbol-thumb";
+        return host + "/market/symbol-thumb";
     }
 
 
@@ -146,7 +148,8 @@ public class UrlFactory {
      * 得到币币信息，来设置输入小数点位数的限制
      */
     public static String getSpotSymbolInfo() {
-        return host + "/market/spot-market/symbol-info";
+        //return host + "/market/spot-market/symbol-info";
+        return host + "/market/symbol-info";
     }
 
 
@@ -352,7 +355,8 @@ public class UrlFactory {
     }
 
     public static String getSpotPlateUrl() {
-        return host + "/market/spot-market/exchange-plate-mini";
+        //return host + "/market/spot-market/exchange-plate-mini";
+        return host + "/market/exchange-plate-mini";
     }
 
     /**
@@ -645,7 +649,8 @@ public class UrlFactory {
     } // 获取深度图数据
 
     public static String getSpotDepth() {
-        return host + "/market/spot-market/exchange-plate-full";
+        return host + "/market/exchange-plate-full";
+        //return host + "/market/spot-market/exchange-plate-full";
     } // 获取Spot深度图数据
 
     public static String getCoinDetail() {
@@ -657,7 +662,8 @@ public class UrlFactory {
     } // 获取成交数据
 
     public static String getSpotVolume() {
-        return host + "/market/spot-market/latest-trade";
+        //return host + "/market/spot-market/latest-trade";
+        return host + "/market/latest-trade";
     } // 获取Spot成交数据
 
     public static String getLoginAuthType() {
@@ -769,7 +775,8 @@ public class UrlFactory {
     } // 获取合约首次进入默认的交易对
 
     public static String getDefaultCoinSymbol() {
-        return host + "/market/spot-market/default/symbol";
+        //return host + "/market/spot-market/default/symbol";
+        return host + "/market/default/symbol";
     } // 获取币币首次进入默认的交易对
 
 

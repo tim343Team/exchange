@@ -368,7 +368,7 @@ public class SKlineActivity extends BaseActivity implements SKlineContract.View,
      * 初始化深度图数据
      */
     private void initDepthData() {
-        fragments.add(SDepthFragment.getInstance(symbol));
+//        fragments.add(SDepthFragment.getInstance(symbol));
         fragments.add(SVolumeFragment.getInstance(symbol));
         fragments.add(SIntroduceFragment.getInstance(symbol));
         String[] tabArray = getResources().getStringArray(R.array.k_line_depth);
