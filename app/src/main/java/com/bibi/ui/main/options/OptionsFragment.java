@@ -1209,8 +1209,9 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         presentBalance += coinContract.getBalance();
                     }
                 }
-                tvPrice.setHint(getResources().getString(R.string.balances)+"：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT ;  "
-                        + getResources().getString(R.string.present_balance)+"：" + new DecimalFormat("#0.00").format(presentBalance) + "  USDT");
+                tvPrice.setHint(getResources().getString(R.string.balances)+"：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT");
+//                tvPrice.setHint(getResources().getString(R.string.balances)+"：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT ;  "
+//                        + getResources().getString(R.string.present_balance)+"：" + new DecimalFormat("#0.00").format(presentBalance) + "  USDT");
             }
 
             @Override
