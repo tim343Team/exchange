@@ -81,7 +81,7 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                         if (key.equals(item.getSymbol())) {
                             helper.setText(R.id.tvCurrentPrice, priceMap.get(key));
                             try {
-                                if (item.getDirection().equals("BUY")) {
+                                /*if (item.getDirection().equals("BUY")) {
                                     if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
                                         helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
                                         helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
@@ -96,6 +96,23 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                     } else{
                                         helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
                                         helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount());
+                                    }
+                                }*/
+                                if (item.getDirection().equals("BUY")) {
+                                    if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
+                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
+                                    } else {
+                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
+                                    }
+                                } else {
+                                    if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
+                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
+                                    } else{
+                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount()*(item.getLeverage()>0?item.getLeverage():1));
                                     }
                                 }
                             } catch (Exception e) {
@@ -139,9 +156,16 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         helper.setText(R.id.tvDirection, item.getDirection().equals("BUY") ? context.getResources().getString(R.string.bullish): context.getResources().getString(R.string.bearish));
         helper.setText(R.id.tvTime, fileName);
         helper.setText(R.id.tvPrice, item.getPrice() + "");
-        helper.setText(R.id.tvAmount, item.getAmount() + "");
-        helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
-
+        helper.setText(R.id.tvAmount, item.getAmount() * (item.getLeverage()>0?item.getLeverage():1) + "");
+        //helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
+        if (item.getLeverage() > 0) {
+            helper.setVisible(R.id.tvEarnings, true);
+            helper.setVisible(R.id.tvLeverageTitle,true);
+            helper.setText(R.id.tvEarnings, item.getLeverage() + "倍");
+        } else {
+            helper.setVisible(R.id.tvEarnings, false);
+            helper.setVisible(R.id.tvLeverageTitle,false);
+        }
     }
 
     public void cancelAllTimers() {

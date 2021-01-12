@@ -437,8 +437,8 @@
     <string name="close_time">平仓时间</string>
     <string name="order_type">订单类型</string>
     <string name="count_down">倒计时</string>
-    <string name="trade_volum">交易额</string>
-    <string name="earnings">收益</string>
+    <string name="trade_volum">持仓价值</string>
+    <string name="earnings">倍率</string>
     <string name="status">状态</string>
     <string name="LIMIT_PRICE">限价</string>
     <string name="MARKET_PRICE">市价</string>

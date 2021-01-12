@@ -1,5 +1,6 @@
 package com.bibi.ui.main.options;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -23,6 +24,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bibi.entity.RechargeSupportContract;
+import com.bibi.entity.SimpleListBean;
+import com.bibi.entity.SimpleListItem;
+import com.bibi.ui.dialog.ListDialogFragment;
+import com.bibi.ui.main.asset.AssetActivity;
+import com.bibi.ui.recharge.RechargeActivity;
 import com.github.tifezh.kchartlib.chart.BaseKChartView;
 import com.github.tifezh.kchartlib.chart.KChartView;
 import com.github.tifezh.kchartlib.chart.MinuteChartView;
@@ -148,6 +155,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
     WonderfulScrollView scrollView;
     @BindView(R.id.tvPrice)
     EditText tvPrice;
+    @BindView(R.id.tvLeverage)
+    TextView tvLeverage;
     @BindArray(R.array.k_line_tab)
     String[] mTitles;
 
@@ -367,26 +376,75 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
 //        if(currencies.size()>0){
 //            getCurrencyInfo();
 //        }else {
-            WonderfulOkhttpUtils.get().url(UrlFactory.getEryuanSymbolUrl()).build()
+            WonderfulOkhttpUtils.get().addParams("symbol",symbol).url(UrlFactory.getEryuanSymbolInfo()).build()
                     .execute(new StringCallback() {
                         @Override
                         public void onError(Request request, Exception e) {
+                            e.printStackTrace();
                         }
 
                         @Override
                         public void onResponse(String response) {
                             WonderfulLogUtils.logd("response:",response);
-                            List<Currency> obj = new Gson().fromJson(response, new TypeToken<List<Currency>>() {
+                            /*List<Currency> obj = new Gson().fromJson(response, new TypeToken<List<Currency>>() {
+                            }.getType());*/
+                            Currency obj = new Gson().fromJson(response, new TypeToken<Currency>() {
                             }.getType());
                             currencies.clear();
-                            currencies.addAll(obj);
+                            currencies.add(obj);
                             getCurrencyInfo();
                         }
                     });
 //        }
     }
 
+    private void setDrawableRightIconSize(Context context, TextView compoundButton, int drawableId, int resourceIdW, int resourceIdH){
+        int w = context.getResources().getDimensionPixelOffset(resourceIdW);
+        int h = context.getResources().getDimensionPixelOffset(resourceIdH);
+        Drawable fragmentBottomDrawable = context.getResources().getDrawable(drawableId);
+        fragmentBottomDrawable.setBounds(0, 0, w, h);
+        compoundButton.setCompoundDrawables(null, null, fragmentBottomDrawable, null);
+    }
+
+    private void setLeverageView(final List<Currency> currencyList){
+        WonderfulLogUtils.logd("currencyList:",currencyList.size()+"");
+        if(currencyList.size()>0){
+            if(currencyList.get(0).getUseLeverage()==1){//使用杠杆
+                tvLeverage.setVisibility(View.VISIBLE);
+            }else{
+                tvLeverage.setVisibility(View.GONE);
+            }
+            setDrawableRightIconSize(getActivity(),tvLeverage,R.drawable.icon_pull_down,R.dimen.dimen_20,R.dimen.dimen_20);
+            tvLeverage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currencyList.size() > 0) {
+                        String leverage = currencyList.get(0).getLeverage();
+                        String array[] = leverage.split(",");
+                        final SimpleListBean bean = new SimpleListBean();
+                        List<SimpleListItem> simpleListItems = new ArrayList<>();
+                        for (int i = 0; i < array.length; i++) {
+                            SimpleListItem item = new SimpleListItem();
+                            item.setContent(array[i] + "倍");
+                            simpleListItems.add(item);
+                        }
+                        bean.setNewsItems(simpleListItems);
+                        ListDialogFragment listDialogFragment = ListDialogFragment.getInstance(bean);
+                        listDialogFragment.show(getActivity().getSupportFragmentManager(), "bottom");
+                        listDialogFragment.setCallback(new ListDialogFragment.OperateCallback() {
+                            @Override
+                            public void ItemClick(int position) {
+                                tvLeverage.setText("倍率："+bean.getNewsItems().get(position).getContent());
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+
     public void getCurrencyInfo() {
+        setLeverageView(currencies);
         setCurrentcy(currencies);
         List<String> titles = Arrays.asList(mTitles);
         if (viewPager != null){
@@ -814,8 +872,21 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         WonderfulToastUtils.showToast("请填写购买数量");
                         return;
                     }
-                    OptionsAddOrder optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
-                            "SELL", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT");
+                    int leverageInt = -1;
+                    if (tvLeverage.getVisibility() == View.VISIBLE) {
+                        String leverage = tvLeverage.getText().toString();
+                        int fontIndex = leverage.lastIndexOf("：");
+                        int lastIndex = leverage.lastIndexOf("倍");
+                        leverageInt = Integer.parseInt(leverage.substring(fontIndex+1, lastIndex));
+                    }
+                    OptionsAddOrder optionsAddOrder;
+                    if (leverageInt >= 0) {
+                        optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
+                                "SELL", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT", leverageInt);
+                    } else {
+                        optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
+                                "SELL", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT");
+                    }
                     optionsAddOrder.setPeriod(type);
                     presenter.addOrder(optionsAddOrder);
                 }
@@ -826,8 +897,21 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         WonderfulToastUtils.showToast("请填写购买数量");
                         return;
                     }
-                    OptionsAddOrder optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
-                            "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT");
+                    int leverageInt = -1;
+                    if (tvLeverage.getVisibility() == View.VISIBLE) {
+                        String leverage = tvLeverage.getText().toString();
+                        int fontIndex = leverage.lastIndexOf("：");
+                        int lastIndex = leverage.lastIndexOf("倍");
+                        leverageInt = Integer.parseInt(leverage.substring(fontIndex+1, lastIndex));
+                    }
+                    OptionsAddOrder optionsAddOrder;
+                    if(leverageInt >= 0){
+                        optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
+                                "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT",leverageInt);
+                    }else{
+                        optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
+                                "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT");
+                    }
                     optionsAddOrder.setPeriod(type);
                     WonderfulLogUtils.logd("Coin2Coin:","Buy");
                     presenter.addOrder(optionsAddOrder);

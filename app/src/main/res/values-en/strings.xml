@@ -423,8 +423,8 @@
     <string name="close_time">Close Time</string>
     <string name="order_type">Type</string>
     <string name="count_down">Count Down</string>
-    <string name="trade_volum">Trade Volum</string>
-    <string name="earnings">Earnings</string>
+    <string name="trade_volum">Holding</string>
+    <string name="earnings">Magnification</string>
     <string name="status">Status</string>
     <string name="LIMIT_PRICE">LIMIT_PRICE</string>
     <string name="MARKET_PRICE">MARKET_PRICE</string>

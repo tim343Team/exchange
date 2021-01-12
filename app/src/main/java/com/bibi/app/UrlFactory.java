@@ -957,6 +957,7 @@ public class UrlFactory {
 
     public static String getEryuantddOrderUrl() {
         return host + "/market/eryuan-order/addOrder";
+        //return host + "/multi-coin-option/order/addOrder";
     }
 
     public static String getEryuantCurrentUrl() {

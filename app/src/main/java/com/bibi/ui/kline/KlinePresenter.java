@@ -1,6 +1,10 @@
 package com.bibi.ui.kline;
 
 
+import android.util.Log;
+
+import com.bibi.utils.WonderfulLogUtils;
+import com.bibi.utils.okhttp.post.PostFormBuilder;
 import com.google.gson.Gson;
 
 import com.bibi.app.GlobalConstant;
@@ -116,15 +120,19 @@ public class KlinePresenter implements KlineContract.Presenter {
             periodS = "1min";
         }
 
-        WonderfulOkhttpUtils.post().url(UrlFactory.getEryuantddOrderUrl())
+        PostFormBuilder pfb = WonderfulOkhttpUtils.post().url(UrlFactory.getEryuantddOrderUrl())
                 .addHeader("x-auth-token", params.getToken())
                 .addParams("direction", params.getDirection())
                 .addParams("amount", params.getAmount())
                 .addParams("symbol", params.getSymbol())
                 .addParams("price", params.getPrice())
                 .addParams("coinId", params.getCoinId())
-                .addParams("period", periodS)
-                .build().execute(new StringCallback() {
+                .addParams("period", periodS);
+        if(params.getLeverage()!=0){
+            WonderfulLogUtils.logd("leverage","添加杠杆");
+            pfb.addParams("leverage", String.valueOf(params.getLeverage()));
+        }
+        pfb.build().execute(new StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
                 view.hideLoadingPopup();

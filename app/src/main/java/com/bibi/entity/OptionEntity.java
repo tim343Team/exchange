@@ -39,6 +39,8 @@ public class OptionEntity {
 
     private double profitRate;
 
+    private int leverage;
+
     private double commission;
 
     private long settlementTime;
@@ -175,6 +177,14 @@ public class OptionEntity {
 
     public void setProfitRate(double profitRate) {
         this.profitRate = profitRate;
+    }
+
+    public int getLeverage() {
+        return leverage;
+    }
+
+    public void setLeverage(int leverage) {
+        this.leverage = leverage;
     }
 
     public double getCommission() {

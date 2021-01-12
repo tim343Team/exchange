@@ -33,6 +33,8 @@ public class Currency implements Serializable {
     private String cnyPrice;
     private String icon; //币种图片
     private int exchangeable = 1; //1.可交易 2：不可交易
+    private String leverage;//杠杆（倍数）
+    private int useLeverage = 0;//0:不使用杠杆,不显示杠杆倍数，1:使用杠杆，显示杠杆倍数
 
     private int coinScale;
 
@@ -311,5 +313,21 @@ public class Currency implements Serializable {
 
     public void setExchangeable(int exchangeable) {
         this.exchangeable = exchangeable;
+    }
+
+    public String getLeverage() {
+        return leverage;
+    }
+
+    public void setLeverage(String leverage) {
+        this.leverage = leverage;
+    }
+
+    public int getUseLeverage() {
+        return useLeverage;
+    }
+
+    public void setUseLeverage(int useLeverage) {
+        this.useLeverage = useLeverage;
     }
 }

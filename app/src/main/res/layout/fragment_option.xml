@@ -303,23 +303,45 @@
                     android:paddingBottom="@dimen/dimen_3"
                     android:overScrollMode="never" />
 
-                <EditText
-                    android:id="@+id/tvPrice"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_40"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_16"
-                    android:layout_marginStart="@dimen/dp10"
-                    android:layout_marginEnd="@dimen/dp10"
-                    android:paddingStart="@dimen/dimen_16"
-                    android:paddingEnd="@dimen/dimen_16"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/white_shape_radius"
-                    android:inputType="numberDecimal"
-                    android:hint="余额：1235 usdt"
-                    android:text=""
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/dimen_14"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/tvPrice"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.0"
+                        android:layout_height="@dimen/dimen_40"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        android:layout_marginBottom="@dimen/dimen_16"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:paddingStart="@dimen/dimen_16"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/white_shape_radius"
+                        android:inputType="numberDecimal"
+                        android:hint="余额：1235 usdt"
+                        android:text=""
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/dimen_14"/>
+
+                    <TextView
+                        android:id="@+id/tvLeverage"
+                        android:layout_width="0dp"
+                        android:background="@drawable/white_shape_radius"
+                        android:layout_height="@dimen/dimen_40"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        android:layout_marginBottom="@dimen/dimen_16"
+                        android:drawableRight="@drawable/icon_pull_down"
+                        android:text="倍率：10倍"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:paddingStart="@dimen/dimen_16"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.4" />
+                </LinearLayout>
 
 
 

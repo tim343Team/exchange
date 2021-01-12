@@ -20,6 +20,7 @@ public class OptionsAddOrder {
     private String price;
     private int period;
     private String coinId;
+    private int leverage;
 
     public OptionsAddOrder() {
     }
@@ -31,6 +32,16 @@ public class OptionsAddOrder {
         this.symbol = symbol;
         this.price = price;
         this.coinId = coinId;
+    }
+
+    public OptionsAddOrder(String token, String direction, String amount, String symbol, String price, String coinId,int leverage) {
+        this.token = token;
+        this.direction = direction;
+        this.amount = amount;
+        this.symbol = symbol;
+        this.price = price;
+        this.coinId = coinId;
+        this.leverage = leverage;
     }
 
     public String getToken() {
@@ -87,5 +98,13 @@ public class OptionsAddOrder {
 
     public void setCoinId(String coinId) {
         this.coinId = coinId;
+    }
+
+    public int getLeverage() {
+        return leverage;
+    }
+
+    public void setLeverage(int leverage) {
+        this.leverage = leverage;
     }
 }
