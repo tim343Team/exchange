@@ -186,13 +186,14 @@ public class UrlFactory {
     }//OTC资产
 
     public static String getContractWalletUrl() {
-        return host + "/uc/asset/wallet";
-    }//合约资产
+        return host + "/uc/otc/wallet/get";
+    }//OTC账户
 
     public static String getSpotWalletUrl() {
         //return host + "/uc/asset/spotWallet";
-        return host + "/uc/asset/eryuanWallet";
-    }//币币资产
+        //return host + "/uc/asset/eryuanWallet";
+        return host + "/uc/asset/memberWallet";
+    }//资金账户
 
     public static String getEryuanWalletUrl() {
         return host + "/uc/asset/eryuanWallet";
@@ -200,8 +201,9 @@ public class UrlFactory {
 
     public static String getFiatWalletUrl() {
         //return host + "/uc/otc/wallet/get";
-        return host + "/uc/asset/memberWallet";
-    }//法币资产
+        //return host + "/uc/asset/memberWallet";
+        return host + "/uc/asset/eryuanWallet";
+    }//期权账户
 
 
     public static String getFiatAssetUrl() {

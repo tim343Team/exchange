@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bibi.utils.WonderfulLogUtils;
 import com.bumptech.glide.Glide;
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -147,7 +148,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
 
     @Override
     protected void loadData() {
-        getOptionsAsset();
+        getFiatAsset();
     }
 
     private void initRv() {
@@ -175,19 +176,19 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         presentBalance = 0;
         switch (pagePosition) {
             case 0:
-                //合约账户
+                //OTC账户
                 tvAmount.setVisibility(View.VISIBLE);
                 tvCnyAmount.setVisibility(View.VISIBLE);
                 getContractAsset();
                 break;
             case 1:
-                //资金账户
+                //期权账户
                 tvAmount.setVisibility(View.VISIBLE);
                 tvCnyAmount.setVisibility(View.VISIBLE);
                 getFiatAsset();
                 break;
             case 2:
-                //币币账户
+                //资金账户
                 tvAmount.setVisibility(View.GONE);
                 tvCnyAmount.setVisibility(View.GONE);
                 getOptionsAsset();
@@ -221,6 +222,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         });
     }
 
+    //期权
     private void getFiatAsset() {
         RemoteDataSource.getInstance().myFiatWallet(getToken(), new DataSource.DataCallback() {
             @Override
@@ -236,8 +238,10 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
                     releaseBalance += coinContract.getBalance();
                 }
                 if (isShow) {
+                    WonderfulLogUtils.logi("text", "text = " + new DecimalFormat("#0.00").format(balanceUsd));
                     tvAmount.setText(new DecimalFormat("#0.00").format(balanceUsd));
-                    tvCnyAmount.setText("≈" + WonderfulMathUtils.getRundNumber(balanceCny, 2, null) + " CNY");
+                    String text = "≈" + WonderfulMathUtils.getRundNumber(balanceCny, 2, null) + " CNY";
+                    tvCnyAmount.setText(text);
 
                 } else if (SharedPreferenceInstance.getInstance().getMoneyShowType() == 2) {
                     tvAmount.setText("********");
@@ -255,6 +259,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         });
     }
 
+    //OTC
     private void getContractAsset() {
         RemoteDataSource.getInstance().myContractWallet(getToken(), new DataSource.DataCallback() {
             @Override
@@ -288,6 +293,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         });
     }
 
+    //资金账户
     private void getOptionsAsset() {
         RemoteDataSource.getInstance().getSpotWallet(getToken(), new DataSource.DataCallback() {
             @Override
@@ -353,7 +359,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         tabOptions.setTextColor(getResources().getColor(R.color.primaryTextGray));
         tabContract.setTextColor(getResources().getColor(R.color.primaryTextGray));
         type = FIAT;
-        getData(1);
+        getData(2);
     }
 
     @OnClick(R.id.tabOptions)
@@ -362,7 +368,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
         tabFiat.setTextColor(getResources().getColor(R.color.primaryTextGray));
         tabOptions.setTextColor(getResources().getColor(R.color.white));
         type = OPTIONS;
-        getData(2);
+        getData(1);
     }
 
     @OnClick(R.id.ivSetting)
@@ -374,11 +380,14 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
     public void onResume() {
         super.onResume();
         if (type.equals(CONTRACT)) {
+            tabContract.setTextColor(getResources().getColor(R.color.white));
             getData(0);
         } else if (type.equals(OPTIONS)) {
-            getData(2);
-        } else if (type.equals(FIAT)) {
+            tabOptions.setTextColor(getResources().getColor(R.color.white));
             getData(1);
+        } else if (type.equals(FIAT)) {
+            tabFiat.setTextColor(getResources().getColor(R.color.white));
+            getData(2);
         }
         if (MyApplication.getApp().isLogin()) {
             loginingViewText();

@@ -83,10 +83,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/account_fiat"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:visibility="gone"/>
+                    android:text="@string/account_contract"
+                    android:textColor="@color/primaryTextGray"
+                    android:textSize="16dp"/>
 
                 <TextView
                     android:id="@+id/tabOptions"
@@ -95,7 +94,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/exchange_asset"
-                    android:textColor="@color/white"
+                    android:textColor="@color/primaryTextGray"
                     android:textSize="16dp"/>
 
 
