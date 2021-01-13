@@ -22,7 +22,7 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:src="@drawable/icon_side_open"
+            android:src="@drawable/icon_side_open_night"
             android:visibility="visible" />
 
         <View
