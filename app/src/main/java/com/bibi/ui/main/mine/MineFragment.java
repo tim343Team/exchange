@@ -373,19 +373,19 @@ public class MineFragment extends BaseTransFragment implements MainContract.Mine
                     ivMemberGrade.setBackgroundResource(R.drawable.icon_member_grade_1);
                     tvMemberGrade.setText(getResources().getString(R.string.agent));
                 }else if(safeSetting.getMemberGradeId()==2){
-                    llMemberGrade.setVisibility(View.GONE);
+                    llMemberGrade.setVisibility(View.VISIBLE);
                     ivMemberGrade.setBackgroundResource(R.drawable.icon_member_grade_2);
                     tvMemberGrade.setText("IB");
                 }else if(safeSetting.getMemberGradeId()==3){
-                    llMemberGrade.setVisibility(View.GONE);
+                    llMemberGrade.setVisibility(View.VISIBLE);
                     ivMemberGrade.setBackgroundResource(R.drawable.icon_member_grade_3);
                     tvMemberGrade.setText("MIB");
                 }else if(safeSetting.getMemberGradeId()==4){
-                    llMemberGrade.setVisibility(View.GONE);
+                    llMemberGrade.setVisibility(View.VISIBLE);
                     ivMemberGrade.setBackgroundResource(R.drawable.icon_member_grade_4);
                     tvMemberGrade.setText("PIB");
                 }else {
-                    llMemberGrade.setVisibility(View.GONE);
+                    llMemberGrade.setVisibility(View.VISIBLE);
                 }
             }
 
