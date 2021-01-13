@@ -59,8 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="101dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/circle_conner_rect_white_line"
         android:orientation="vertical">
 
@@ -75,10 +75,10 @@
             android:textColor="?attr/color_999999" />
 
         <LinearLayout
-            android:layout_toLeftOf="@+id/iv_switch"
             android:id="@+id/ll_transfer_from"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_toLeftOf="@+id/iv_switch"
             android:layout_toRightOf="@+id/tv_from"
             android:orientation="horizontal">
 
@@ -88,7 +88,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/account_fiat"
+                android:text="@string/exchange_asset"
                 android:textColor="?attr/color_333333" />
 
         </LinearLayout>
@@ -111,11 +111,11 @@
             android:textColor="?attr/color_999999" />
 
         <LinearLayout
-            android:layout_toLeftOf="@+id/iv_switch"
             android:id="@+id/ll_transfer_to"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/iv_switch"
             android:layout_toRightOf="@+id/tv_from"
             android:orientation="horizontal">
 
@@ -125,21 +125,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/exchange_asset"
+                android:text="@string/account_fiat"
                 android:textColor="?attr/color_333333" />
-
 
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_switch"
+            android:layout_width="80dp"
+            android:layout_height="101dp"
+            android:layout_alignParentRight="true"
             android:paddingLeft="26dp"
             android:paddingRight="26dp"
-            android:src="@drawable/icon_switch"
-            android:layout_alignParentRight="true"
-            android:layout_width="80dp"
-            android:layout_height="101dp" />
+            android:src="@drawable/icon_switch" />
 
     </RelativeLayout>
 
@@ -154,21 +153,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="@dimen/dimen_16"
-            android:paddingBottom="10dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="@dimen/dimen_16"
+            android:layout_weight="1"
             android:background="@drawable/circle_conner_rect_white_line"
-            android:paddingTop="10dp">
+            android:paddingLeft="4dp"
+            android:paddingTop="10dp"
+            android:paddingRight="@dimen/dimen_16"
+            android:paddingBottom="10dp">
 
             <EditText
                 android:id="@+id/et_transfer_amount"
@@ -176,9 +175,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-                android:inputType="number"
                 android:gravity="center_vertical"
                 android:hint="@string/transfer_amount_input"
+                android:inputType="number"
                 android:textColor="?attr/color_333333"
                 android:textColorHint="?attr/primary_text_gray"
                 android:textSize="16dp" />
@@ -197,12 +196,12 @@
             android:layout_width="@dimen/dimen_64"
             android:layout_height="@dimen/dimen_32"
             android:layout_gravity="center"
-            android:gravity="center"
             android:background="@drawable/circle_conner_rect_primay"
+            android:gravity="center"
             android:text="@string/all"
             android:textColor="?attr/title_layout_bg"
             android:textSize="14dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -223,14 +222,14 @@
 
     <TextView
         android:id="@+id/tv_commit"
-        android:gravity="center"
-        android:textColor="?attr/color_text_white"
-        android:text="@string/dialog_confirm"
-        android:textSize="16dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/shape_c2c_tv_buy_yuan" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/shape_c2c_tv_buy_yuan"
+        android:gravity="center"
+        android:text="@string/dialog_confirm"
+        android:textColor="?attr/color_text_white"
+        android:textSize="16dp" />
 </LinearLayout>

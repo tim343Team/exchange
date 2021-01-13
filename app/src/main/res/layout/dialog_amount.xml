@@ -62,10 +62,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
             android:gravity="center"
-            android:text="@string/account_fiat"
+            android:text="@string/account_options"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/dimen_17" />
 

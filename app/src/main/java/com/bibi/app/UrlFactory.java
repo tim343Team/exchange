@@ -709,11 +709,13 @@ public class UrlFactory {
     } // 获取支持划转币种
 
     public static String transferFiat() {
-        return host + "/uc/asset/transferContract";
+//        return host + "/uc/asset/transferContract";
+        return host + "/uc/asset/wallet/transfer";
     } // 合约 和 币币互转
 
     public static String transferOptions() {
-        return host + "/uc/otc/wallet/transfer";
+        //return host + "/uc/otc/wallet/transfer";
+        return host + "/uc/asset/wallet/transferFromEryuan";
     } // 币币和otc互转
 
     public static String transferIntoMargin() {
