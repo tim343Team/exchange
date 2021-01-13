@@ -374,12 +374,12 @@ public class AssetTransferActivity extends BaseActivity {
         dialog.setCallback(new AmountDialog.OperateCallback() {
             @Override
             public void ItemClick(int type) {
-                if (type == 0) {
+                if (type == 0) {//OTC
                     accountType = GlobalConstant.ACCOUNT_TYPE_FIAT;
                     tvFrom.setText(R.string.account_contract);
-                } else if (type == 1) {
+                } else if (type == 1) {//期权
                     accountType = GlobalConstant.ACCOUNT_TYPE_OPTIONS;
-                    tvFrom.setText(R.string.account_fiat);
+                    tvFrom.setText(R.string.account_options);
                 }
                 tv_available_coin.setText(getAvailableCoin(coinName));
             }
