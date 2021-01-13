@@ -101,18 +101,18 @@ public class AssetTransferActivity extends BaseActivity {
 
     @OnClick(R.id.ll_transfer_from)
     public void transFrom() {
-//        if (isSwitch) {
-//            return;
-//        }
-//        showAmountDialog();
+        if (isSwitch) {
+            return;
+        }
+        showAmountDialog();
     }
 
     @OnClick(R.id.ll_transfer_to)
     public void transTo() {
-//        if (!isSwitch) {
-//            return;
-//        }
-//        showAmountDialog();
+        if (!isSwitch) {
+            return;
+        }
+        showAmountDialog();
     }
 
     private String getAvailableCoin(String coinName) {
