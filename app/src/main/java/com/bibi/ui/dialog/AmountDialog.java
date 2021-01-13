@@ -1,6 +1,7 @@
 package com.bibi.ui.dialog;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 
@@ -63,8 +64,9 @@ public class AmountDialog extends BaseDialogFragment {
                 int height = 0;
                 if (ImmersionBar.hasNavigationBar(getActivity()))
                     height = WonderfulCommonUtils.getStatusBarHeight(getActivity());
-                window.setLayout(llContent.getWidth(), llContent.getHeight() + WonderfulDpPxUtils.dip2px(getActivity(), height / 2));
-
+                Log.i("弹出框height：", "height = " + height);
+                //window.setLayout(llContent.getWidth(), llContent.getHeight() + WonderfulDpPxUtils.dip2px(getActivity(), height/2));
+                window.setLayout(llContent.getWidth(), llContent.getHeight() + WonderfulDpPxUtils.dip2px(getActivity(), height));
             }
         });
     }

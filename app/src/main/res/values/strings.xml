@@ -1145,7 +1145,7 @@ bcrex国际数字加密资产交易平台海外运营中心分别设立在新加
     <string name="account_fiat">资金账户</string>
     <string name="account_options">期权账户</string>
     <string name="account_margin">杠杆账户</string>
-    <string name="account_contract">合约账户</string>
+    <string name="account_contract">OTC账户</string>
     <string name="estimated">折合(CNY)</string>
     <string name="choose_coin">选择币种</string>
     <string name="not_support">不支持</string>

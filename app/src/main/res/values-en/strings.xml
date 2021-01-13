@@ -1143,7 +1143,7 @@ Make sure your computer and browser are secure to prevent information from being
     <string name="account_fiat">Fund</string>
     <string name="account_options">Options</string>
     <string name="account_margin">Margin</string>
-    <string name="account_contract">Contract</string>
+    <string name="account_contract">OTC account</string>
     <string name="estimated">Estimated(CNY)</string>
     <string name="choose_coin">Select coin</string>
     <string name="not_support">not support</string>
