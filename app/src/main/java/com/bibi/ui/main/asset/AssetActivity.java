@@ -44,6 +44,7 @@ import com.bibi.utils.SharedPreferenceInstance;
 import com.bibi.utils.WonderfulMathUtils;
 import com.bibi.utils.WonderfulStringUtils;
 import com.bibi.utils.WonderfulToastUtils;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -140,6 +141,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
     @Override
     protected void obtainData() {
 //        getExchangeAsset();
+        getRate();
     }
 
     @Override
@@ -148,7 +150,7 @@ public class AssetActivity extends BaseActivity implements AssetContract.View {
 
     @Override
     protected void loadData() {
-        getFiatAsset();
+
     }
 
     private void initRv() {

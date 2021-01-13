@@ -57,13 +57,13 @@ public class AssetTransferActivity extends BaseActivity {
     TextView tvFrom;
 
     private String symbol;
-    private List<FiatAssetBean> fiatCoins = new ArrayList<>();//资金
-    private List<Coin> exchangeCoins = new ArrayList<>(); //合约
-    private List<CoinContract> coinContracts = new ArrayList<>();//币币
+    private List<CoinContract> fiatCoins = new ArrayList<>();//期权
+    private List<CoinContract> exchangeCoins = new ArrayList<>(); //合约
+    private List<CoinContract> coinContracts = new ArrayList<>();//资金
     private String coinName = "USDT";
     String balance = "0";
     //启动划转页面的类型：币币，杠杆，法币
-    public static final String START_TRANSFER_TYPE_EXCHANGE = "START_TRANSFER_TYPE_EXCHANGE";
+    public static final String START_TRANSFER_TYPE_EXCHANGE = "START_TRANSFER_TYPE_EXCHANGE";//tab1
     public static final String START_TRANSFER_TYPE_OPTIONS = "START_TRANSFER_TYPE_OPTIONS";
     public static final String START_TRANSFER_TYPE_FIAT = "START_TRANSFER_TYPE_FIAT";
     private String symbolOrCoin;
@@ -120,7 +120,7 @@ public class AssetTransferActivity extends BaseActivity {
         if (!isSwitch) {//未切换，显示合约/资金账户对应币种的余额
             switch (accountType) {
                 case GlobalConstant.ACCOUNT_TYPE_FIAT:
-                    for (Coin coin : exchangeCoins) {
+                    for (CoinContract coin : exchangeCoins) {
                         String coinUnit = coin.getCoin().getUnit();
                         if (coinName.equals(coinUnit)) {
 
@@ -130,7 +130,7 @@ public class AssetTransferActivity extends BaseActivity {
                     }
                     break;
                 case GlobalConstant.ACCOUNT_TYPE_OPTIONS:
-                    for (FiatAssetBean coin : fiatCoins) {
+                    for (CoinContract coin : fiatCoins) {
                         if (coinName.equals(coin.getCoin().getUnit())) {
                             text = getResources().getString(R.string.availableCoin) + new DecimalFormat("#0.00").format(coin.getBalance()) + coinName;
                             balance = new DecimalFormat("#0.00").format(coin.getBalance()) + "";
@@ -152,12 +152,12 @@ public class AssetTransferActivity extends BaseActivity {
         switch (accountType) {
             case GlobalConstant.ACCOUNT_TYPE_FIAT:
                 if (!isSwitch) {//合约和币币互转时，未切换，显示币币的币种
-                    for (Coin coin : exchangeCoins) {
+                    for (CoinContract coin : exchangeCoins) {
                         beans.add(coin.getCoin().getUnit());
                     }
                 } else {
                     //币币和法币互转时，已切换，接口获取法币支持的币种
-                    for (FiatAssetBean fiatAssetBean : fiatCoins) {
+                    for (CoinContract fiatAssetBean : fiatCoins) {
                         beans.add(fiatAssetBean.getCoin().getUnit());
                     }
                 }
@@ -215,14 +215,15 @@ public class AssetTransferActivity extends BaseActivity {
     }
 
     private void getAllAsset() {
-        RemoteDataSource.getInstance().getFiatAsset(getToken(), new DataSource.DataCallback() {
+        //otc
+        RemoteDataSource.getInstance().myContractWallet(getToken(), new DataSource.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 try {
-                    fiatCoins.clear();
-                    fiatCoins.addAll((List<FiatAssetBean>) obj);
+                    exchangeCoins.clear();
+                    exchangeCoins.addAll((List<CoinContract>) obj);
                     if (START_TRANSFER_TYPE_FIAT.equals(startType)) {
-                        for (FiatAssetBean coin : fiatCoins) {
+                        for (CoinContract coin : exchangeCoins) {
                             if (coinName.equals(coin.getCoin().getUnit())) {
                                 String text = getResources().getString(R.string.availableCoin) + new DecimalFormat("#0.00").format(coin.getBalance()) + coinName;
                                 balance = new DecimalFormat("#0.00").format(coin.getBalance()) + "";
@@ -242,14 +243,15 @@ public class AssetTransferActivity extends BaseActivity {
             }
         });
 
-        RemoteDataSource.getInstance().myWallet(getToken(), new DataSource.DataCallback() {
+        //期权钱包
+        RemoteDataSource.getInstance().myFiatWallet(getToken(), new DataSource.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 try {
-                    exchangeCoins.clear();
-                    exchangeCoins.addAll((List<Coin>) obj);
+                    fiatCoins.clear();
+                    fiatCoins.addAll((List<CoinContract>) obj);
                     if (START_TRANSFER_TYPE_EXCHANGE.equals(startType)) {
-                        for (Coin coin : exchangeCoins) {
+                        for (CoinContract coin : fiatCoins) {
                             String coinUnit = coin.getCoin().getUnit();
                             if (coinName.equals(coinUnit)) {
                                 String text = getResources().getString(R.string.availableCoin) + new DecimalFormat("#0.00").format(coin.getBalance()) + coinName;
@@ -270,6 +272,7 @@ public class AssetTransferActivity extends BaseActivity {
             }
         });
 
+        //获取资金钱包
         RemoteDataSource.getInstance().getSpotWallet(getToken(), new DataSource.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
