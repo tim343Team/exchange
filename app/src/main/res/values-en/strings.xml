@@ -1002,7 +1002,7 @@ Make sure your computer and browser are secure to prevent information from being
     <!--划转-->
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="exchange_asset">Exchange account</string>
+    <string name="exchange_asset">Options account</string>
     <string name="margin_asset">Margin account</string>
     <string name="fiat_asset">Fiat account</string>
     <string name="transfer_amount">Quantity transferred</string>
@@ -1140,7 +1140,7 @@ Make sure your computer and browser are secure to prevent information from being
     <string name="balance_margin">Margin Estimated Value(USDT)</string>
 
     <string name="account_exchange">Exchange</string>
-    <string name="account_fiat">Fiat</string>
+    <string name="account_fiat">Fund</string>
     <string name="account_options">Options</string>
     <string name="account_margin">Margin</string>
     <string name="account_contract">Contract</string>

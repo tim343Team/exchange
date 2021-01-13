@@ -1006,7 +1006,7 @@ bcrex国际数字加密资产交易平台海外运营中心分别设立在新加
     <!--划转-->
     <string name="from">从</string>
     <string name="to">到</string>
-    <string name="exchange_asset">币币账户</string>
+    <string name="exchange_asset">期权账户</string>
     <string name="margin_asset">杠杆账户</string>
     <string name="fiat_asset">资金账户</string>
     <string name="transfer_amount">划转数量</string>
@@ -1142,7 +1142,7 @@ bcrex国际数字加密资产交易平台海外运营中心分别设立在新加
     <string name="balance_margin">杠杆总资产折合(USDT)</string>
 
     <string name="account_exchange">币币账户</string>
-    <string name="account_fiat">OTC账户</string>
+    <string name="account_fiat">资金账户</string>
     <string name="account_options">期权账户</string>
     <string name="account_margin">杠杆账户</string>
     <string name="account_contract">合约账户</string>

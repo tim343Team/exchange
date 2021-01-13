@@ -13,6 +13,9 @@ import com.bibi.entity.Currency;
 import com.bibi.entity.Order;
 import com.bibi.ui.kline.KlineActivity;
 import com.bibi.ui.kline_spot.SKlineActivity;
+import com.bibi.ui.main.MainActivity;
+import com.bibi.ui.main.MarketBaseFragment;
+import com.bibi.ui.main.drawer.USDTMarket2Fragment;
 import com.bibi.ui.my_order.OrderContract;
 import com.bibi.ui.my_order.OrderFragment;
 import com.bibi.utils.WonderfulToastUtils;
@@ -96,7 +99,8 @@ public class HomeFragment extends BaseLazyFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mHomeAdapter.getData().get(position).getExchangeable() == 1) {
-                    SKlineActivity.actionStart(getActivity(), mHomeAdapter.getData().get(position).getSymbol());
+                    //SKlineActivity.actionStart(getActivity(), mHomeAdapter.getData().get(position).getSymbol());
+                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(mHomeAdapter.getData().get(position),0);
                 } else {
                     WonderfulToastUtils.showToast("暂未开放");
                 }

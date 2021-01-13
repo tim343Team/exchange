@@ -546,6 +546,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         vpMenu.setAdapter(new PagerAdapter(getSupportFragmentManager(), menusFragments2, titles));
         tab.setupWithViewPager(vpMenu);
         new OnePresenter(Injection.provideTasksRepository(getApplicationContext()), oneFragment);
+//        optionsFragment.setPresenter(new KlinePresenter(Injection.provideTasksRepository(getApplicationContext()), optionsFragment));
 //        new TwoRootPresenter(Injection.provideTasksRepository(getApplicationContext()), twoFragment);
         new MinePresenter(Injection.provideTasksRepository(getApplicationContext()), fiveFragment);
         userFragment = new UserFragment();
@@ -1042,6 +1043,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     public void itemClick(Currency currency, int type) {
+        selecte(llOption,1);
         dlRoot.closeDrawers();
 //        threeFragment.resetSymbol(currency, currentMenuType);
         optionsFragment.resetSymbol(currency);

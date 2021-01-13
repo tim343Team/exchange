@@ -127,6 +127,9 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+        if (presenter == null) {
+            return;
+        }
         presenter.getCurrentOrder(SharedPreferenceInstance.getInstance().getTOKEN(), 1, symbol);
     }
 }
