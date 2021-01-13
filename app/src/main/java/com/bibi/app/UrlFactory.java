@@ -190,7 +190,8 @@ public class UrlFactory {
     }//合约资产
 
     public static String getSpotWalletUrl() {
-        return host + "/uc/asset/spotWallet";
+        //return host + "/uc/asset/spotWallet";
+        return host + "/uc/asset/eryuanWallet";
     }//币币资产
 
     public static String getEryuanWalletUrl() {
@@ -198,7 +199,8 @@ public class UrlFactory {
     }//期权资产
 
     public static String getFiatWalletUrl() {
-        return host + "/uc/otc/wallet/get";
+        //return host + "/uc/otc/wallet/get";
+        return host + "/uc/asset/memberWallet";
     }//法币资产
 
 
