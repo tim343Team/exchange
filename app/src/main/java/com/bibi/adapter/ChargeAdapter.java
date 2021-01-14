@@ -160,6 +160,30 @@ public class ChargeAdapter extends LinAdapter<ChargeHisBean> {
             case "41":
                 tvName.setText("期货人工充值");
                 break;
+            case "42":
+                tvName.setText("合约冻结保证金");
+                break;
+            case "43":
+                tvName.setText("合约退回保证金");
+                break;
+            case "44":
+                tvName.setText("合约保证金爆仓");
+                break;
+            case "45":
+                tvName.setText("期权冻结保证金");
+                break;
+            case "46":
+                tvName.setText("期权退回保证金");
+                break;
+            case "47":
+                tvName.setText("合约开仓");
+                break;
+            case "48":
+                tvName.setText("期货转入资金");
+                break;
+            case "49":
+                tvName.setText("资金转入期货");
+                break;
             default:
                 break;
         }
