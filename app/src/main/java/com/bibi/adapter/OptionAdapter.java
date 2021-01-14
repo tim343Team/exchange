@@ -81,40 +81,55 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                         if (key.equals(item.getSymbol())) {
                             helper.setText(R.id.tvCurrentPrice, priceMap.get(key));
                             try {
-                                /*if (item.getDirection().equals("BUY")) {
-                                    if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
+                                if (item.getLeverage() > 0) {
+                                    //有倍率的计算方式
+                                    double currentPrice = 0;
+                                    try {
+                                        currentPrice = Double.parseDouble(priceMap.get(key));
+                                    } catch (Exception e) {
+                                        currentPrice = 0;
+                                    }
+                                    if (item.getDirection().equals("BUY")) {
+                                        if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                            //持仓价/最新价 ：item.getAmount()/priceMap.get(key)
+                                            //当前价 ：priceMap.get(key)
+                                            //开仓价 ：item.getPrice()
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + (item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage());
+                                        } else {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + (item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage());
+                                        }
                                     } else {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount());
+                                        if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + (item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage());
+                                        } else {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + (item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage());
+                                        }
                                     }
                                 } else {
-                                    if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
-                                    } else{
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount());
-                                    }
-                                }*/
-                                if (item.getDirection().equals("BUY")) {
-                                    if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
+                                    //无倍率的计算方式
+                                    if (item.getDirection().equals("BUY")) {
+                                        if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                        } else {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                        }
                                     } else {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
-                                    }
-                                } else {
-                                    if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getLeverage()>0?item.getLeverage():1));
-                                    } else{
-                                        helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                        helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-"+item.getAmount()*(item.getLeverage()>0?item.getLeverage():1));
+                                        if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                        } else {
+                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                        }
                                     }
                                 }
+
                             } catch (Exception e) {
 
                             }
@@ -153,16 +168,16 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
             helper.setTextColor(R.id.tvDirection, ContextCompat.getColor(MyApplication.getApp(),
                     R.color.typeRed));
         }
-        helper.setText(R.id.tvDirection, item.getDirection().equals("BUY") ? context.getResources().getString(R.string.bullish): context.getResources().getString(R.string.bearish));
+        helper.setText(R.id.tvDirection, item.getDirection().equals("BUY") ? context.getResources().getString(R.string.bullish) : context.getResources().getString(R.string.bearish));
         helper.setText(R.id.tvTime, fileName);
         helper.setText(R.id.tvPrice, item.getPrice() + "");
-        helper.setText(R.id.tvAmount, item.getAmount() * (item.getLeverage()>0?item.getLeverage():1) + "");
+        helper.setText(R.id.tvAmount, item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1) + "");
         //helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
         if (item.getLeverage() > 0) {
-            helper.setText(R.id.tvLeverageTitle,"倍率");
+            helper.setText(R.id.tvLeverageTitle, "倍率");
             helper.setText(R.id.tvEarnings, item.getLeverage() + "倍");
         } else {
-            helper.setText(R.id.tvLeverageTitle,"盈利率");
+            helper.setText(R.id.tvLeverageTitle, "盈利率");
             helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
         }
     }
