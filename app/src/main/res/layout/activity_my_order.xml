@@ -39,7 +39,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
             android:text="@string/my_order"
-            android:textColor="@color/white"
+            android:textColor="?attr/text_balck_161616"
             android:textSize="18dp"/>
 
         <View

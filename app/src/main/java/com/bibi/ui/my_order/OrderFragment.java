@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
 import com.bibi.app.Injection;
 
 /**
@@ -28,7 +29,7 @@ import com.bibi.app.Injection;
  */
 
 public class OrderFragment extends BaseLazyFragment implements OrderContract.View {
-    
+
     @BindView(R.id.rvIngOrder)
     RecyclerView rvIngOrder;
     @BindView(R.id.refreshLayout)
@@ -37,7 +38,7 @@ public class OrderFragment extends BaseLazyFragment implements OrderContract.Vie
     private OrderAdapter adapter;
     private Status status;
     private OrderContract.Presenter presenter;
-    private int pageNo = 1;
+    private int pageNo = 0;
     private int pageSize = 20;
 
     public static OrderFragment getInstance(Status status) {
@@ -83,7 +84,7 @@ public class OrderFragment extends BaseLazyFragment implements OrderContract.Vie
     private void initRv() {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvIngOrder.setLayoutManager(manager);
-        adapter = new OrderAdapter(getActivity(),R.layout.adapter_order, orders,status.getStatus());
+        adapter = new OrderAdapter(getActivity(), R.layout.adapter_order, orders, status.getStatus());
         adapter.bindToRecyclerView(rvIngOrder);
         adapter.setEmptyView(R.layout.empty_no_order);
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -137,7 +138,7 @@ public class OrderFragment extends BaseLazyFragment implements OrderContract.Vie
             refreshLayout.setEnabled(true);
             refreshLayout.setRefreshing(false);
             WonderfulCodeUtils.checkedErrorCode(getmActivity(), code, toastMessage);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -150,12 +151,12 @@ public class OrderFragment extends BaseLazyFragment implements OrderContract.Vie
             refreshLayout.setEnabled(true);
             refreshLayout.setRefreshing(false);
             if (obj == null) return;
-            if (pageNo == 1) this.orders.clear();
+            if (pageNo == 0) this.orders.clear();
             else if (obj.size() == 0) adapter.loadMoreEnd();
             this.orders.addAll(obj);
             adapter.notifyDataSetChanged();
             adapter.disableLoadMoreIfNotFullPage();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
