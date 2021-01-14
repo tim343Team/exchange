@@ -950,7 +950,8 @@ public class UrlFactory {
      * 得到信息，来设置输入小数点位数的限制
      */
     public static String getEryuanSymbolInfo() {
-        return host + "/market/eryuan-symbol-info";
+//        return host + "/market/eryuan-symbol-info";
+        return host + "/market/symbol-coinThumb";
     }
 
     public static String getEryuanSymbolUrl() {

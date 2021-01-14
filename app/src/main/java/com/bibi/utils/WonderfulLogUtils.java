@@ -11,7 +11,7 @@ import com.bibi.app.MyApplication;
 
 public class WonderfulLogUtils {
     public static void logi(String TAG, String content) {
-        if (!MyApplication.getApp().isReleased()) {
+        if (!MyApplication.getApp().isReleased() && content!=null && !content.equals("")) {
             Log.i(TAG, content);
         }
     }

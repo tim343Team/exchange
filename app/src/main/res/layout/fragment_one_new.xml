@@ -38,6 +38,7 @@
             android:paddingTop="@dimen/dimen_4"
             android:paddingBottom="@dimen/dimen_4"
             android:layout_gravity="center_vertical"
+            android:visibility="invisible"
             android:gravity="center_vertical">
 
             <ImageButton
