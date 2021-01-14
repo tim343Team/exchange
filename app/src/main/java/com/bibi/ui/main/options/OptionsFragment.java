@@ -1201,7 +1201,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 balanceUsd = 0.0;
                 presentBalance = 0.0;
                 for (CoinContract coinContract : coinContracts) {
-                    balanceUsd += coinContract.getBalance() + coinContract.getFrozenBalance();
+                    balanceUsd += coinContract.getBalance() ;//+ coinContract.getFrozenBalance();
                     if(coinContract.getCoin().getName().equals("USDT")){
                         releaseBalance += coinContract.getBalance();
                     }
