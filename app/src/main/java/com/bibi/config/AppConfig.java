@@ -10,7 +10,7 @@ public class AppConfig {
     //测试
 //    static String BASE_IP="bx11api.smartdatachain.com";
     static String BASE_IP="42.192.184.221";
-    static String SOCKET_IP="111.229.92.174";
+    static String SOCKET_IP="42.192.184.221";
     //生产
 //    static String BASE_IP = "159.138.55.44";
 //    static String SOCKET_IP = "159.138.58.54";

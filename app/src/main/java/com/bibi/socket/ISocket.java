@@ -26,23 +26,23 @@ public interface ISocket extends Runnable {
         SOCKET_LOGIN((short) 11002),
         HEART_BEAT((short) 11004),
         SUBSCRIBE_SYMBOL_THUMB((short) 20001), UNSUBSCRIBE_SYMBOL_THUMB((short) 20002),
-        PUSH_SYMBOL_THUMB((short) 30003), //1MIN
+        PUSH_SYMBOL_THUMB((short) 20003), //1MIN
         //合约
-//        PUSH_SYMBOL_5_THUMB((short) 20004), //5MIN
-//        PUSH_SYMBOL_15_THUMB((short) 20005), //15MIN
-//        PUSH_SYMBOL_30_THUMB((short) 20006), //30MIN
-//        PUSH_SYMBOL_1_HOUR_THUMB((short) 20007), //1HOUR
-//        PUSH_SYMBOL_4_HOUR_THUMB((short) 20008), //4HOUR
-//        PUSH_SYMBOL_1_DAY_THUMB((short) 20009), //1DAY
-//        PUSH_SYMBOL_1_THUMB((short) 20010), //1MIN
+        PUSH_SYMBOL_5_THUMB((short) 20004), //5MIN
+        PUSH_SYMBOL_15_THUMB((short) 20005), //15MIN
+        PUSH_SYMBOL_30_THUMB((short) 20006), //30MIN
+        PUSH_SYMBOL_1_HOUR_THUMB((short) 20007), //1HOUR
+        PUSH_SYMBOL_4_HOUR_THUMB((short) 20008), //4HOUR
+        PUSH_SYMBOL_1_DAY_THUMB((short) 20009), //1DAY
+        PUSH_SYMBOL_1_THUMB((short) 20010), //1MIN
         //币币
-        PUSH_SYMBOL_5_THUMB((short) 30051), //5MIN
-        PUSH_SYMBOL_15_THUMB((short) 30053), //15MIN
-        PUSH_SYMBOL_30_THUMB((short) 30055), //30MIN
-        PUSH_SYMBOL_1_HOUR_THUMB((short) 30057), //1HOUR
-        PUSH_SYMBOL_4_HOUR_THUMB((short) 30059), //4HOUR
-        PUSH_SYMBOL_1_DAY_THUMB((short) 30061), //1DAY
-        PUSH_SYMBOL_1_THUMB((short) 30010), //1MIN
+//        PUSH_SYMBOL_5_THUMB((short) 30051), //5MIN
+//        PUSH_SYMBOL_15_THUMB((short) 30053), //15MIN
+//        PUSH_SYMBOL_30_THUMB((short) 30055), //30MIN
+//        PUSH_SYMBOL_1_HOUR_THUMB((short) 30057), //1HOUR
+//        PUSH_SYMBOL_4_HOUR_THUMB((short) 30059), //4HOUR
+//        PUSH_SYMBOL_1_DAY_THUMB((short) 30061), //1DAY
+//        PUSH_SYMBOL_1_THUMB((short) 30010), //1MIN
 
         SUBSCRIBE_SYMBOL_KLINE((short) 20011), UNSUBSCRIBE_SYMBOL_KLINE((short) 20012),
         PUSH_SYMBOL_KLINE((short) 20013),
