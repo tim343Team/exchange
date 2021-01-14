@@ -74,7 +74,7 @@ public class AssetDialog extends BaseDialogFragment {
         int canWithdraw = getArguments().getInt("canWithdraw");
         int canTransfer = getArguments().getInt("canTransfer");
         String type = getArguments().getString("type");
-//        if (type.equals("OPTIONS")) {
+        if (type.equals("FIAT")) {
             if (canRecharge == 0) {
                 tvChargeMoney.setEnabled(false);
                 tvChargeMoney.setTextColor(getResources().getColor(R.color.primaryTextGray));
@@ -97,9 +97,9 @@ public class AssetDialog extends BaseDialogFragment {
                 tvTran.setTextColor(getResources().getColor(R.color.primaryText));
             }
             llTab.setVisibility(View.VISIBLE);
-//        }else{
-//            llTab.setVisibility(View.GONE);
-//        }
+        } else {
+            llTab.setVisibility(View.GONE);
+        }
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.bottomDialog);
         rootView.post(new Runnable() {
