@@ -95,18 +95,18 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                             //持仓价/最新价 ：item.getAmount()/priceMap.get(key)
                                             //当前价 ：priceMap.get(key)
                                             //开仓价 ：item.getPrice()
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + (item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage());
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
                                         } else {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + (item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage());
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
                                         }
                                     } else {
                                         if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + (item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage());
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
                                         } else {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + (item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage());
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
                                         }
                                     }
                                 } else {
@@ -114,18 +114,18 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                     if (item.getDirection().equals("BUY")) {
                                         if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format(item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1)));
                                         } else {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format(item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1)));
                                         }
                                     } else {
                                         if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format(item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1)));
                                         } else {
                                             helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1));
+                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format(item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1)));
                                         }
                                     }
                                 }
