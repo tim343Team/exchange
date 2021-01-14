@@ -870,6 +870,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 if (mCurrency != null && !mDataOne.getText().toString().equals("")) {
                     if(balanceUsd<=0){
                         WonderfulToastUtils.showToast("余额不足");
+                        return;
                     }
                     if (tvPrice.getText().toString().equals("")) {
                         WonderfulToastUtils.showToast("请填写购买数量");
@@ -898,6 +899,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 if (mCurrency != null && !mDataOne.getText().toString().equals("")) {
                     if(balanceUsd<=0){
                         WonderfulToastUtils.showToast("余额不足");
+                        return;
                     }
                     if (tvPrice.getText().toString().equals("")) {
                         WonderfulToastUtils.showToast("请填写购买数量");

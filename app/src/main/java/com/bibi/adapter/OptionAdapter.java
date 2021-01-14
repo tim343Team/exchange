@@ -3,16 +3,9 @@ package com.bibi.adapter;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -25,12 +18,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Timer;
 
 import com.bibi.R;
 import com.bibi.app.MyApplication;
 import com.bibi.entity.OptionEntity;
-import com.bibi.entity.Order;
 
 /**
  * ${description}
@@ -52,6 +43,45 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         this.type = type;
     }
 
+    private String timeFormat(int date) {
+        if (date < 60) {
+            if (date < 10) {
+                return "0" + date + "S";
+            } else {
+                return date + "S";
+            }
+        } else if (date > 60 && date < 3600) {
+            int m = date / 60;
+            int s = date % 60;
+            String mStr = String.valueOf(m);
+            if (m < 10) {
+                mStr = "0" + m;
+            }
+            String sStr = String.valueOf(s);
+            if (s < 10) {
+                sStr = "0" + s;
+            }
+            return mStr + ":" + sStr + "";
+        } else {
+            int h = date / 3600;
+            int m = (date % 3600) / 60;
+            int s = (date % 3600) % 60;
+            String hStr = String.valueOf(h);
+            if (h < 10) {
+                hStr = "0" + h;
+            }
+            String mStr = String.valueOf(m);
+            if (m < 10) {
+                mStr = "0" + m;
+            }
+            String sStr = String.valueOf(s);
+            if (s < 10) {
+                sStr = "0" + s;
+            }
+            return hStr + ":" + mStr + ":" + sStr + "";
+        }
+    }
+
     @Override
     protected void convert(final BaseViewHolder helper, final OptionEntity item) {
         if (type == 0) {
@@ -62,8 +92,10 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
             timer = new CountDownTimer(time, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    long endTime = millisUntilFinished / 1000;
-                    helper.setText(R.id.tvEndTime, endTime + "S");
+//                    long endTime = millisUntilFinished / 1000;
+//                    helper.setText(R.id.tvEndTime, endTime + "S");
+                    int endTime = (int)millisUntilFinished / 1000;
+                    helper.setText(R.id.tvEndTime, timeFormat(endTime));
                 }
 
                 @Override

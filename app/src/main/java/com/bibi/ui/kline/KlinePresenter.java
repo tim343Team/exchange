@@ -116,6 +116,8 @@ public class KlinePresenter implements KlineContract.Presenter {
             periodS = "30min";
         } else if (period == GlobalConstant.TAG_AN_HOUR) {
             periodS = "60min";
+        } else if(period == GlobalConstant.TAG_DAY){
+            periodS = "1day";
         } else {
             periodS = "1min";
         }
