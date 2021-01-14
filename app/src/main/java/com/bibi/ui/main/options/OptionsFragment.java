@@ -506,7 +506,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
             //涨跌幅
             Double douChg = mCurrency.getChg();
             String strRang = WonderfulMathUtils.getRundNumber(mCurrency.getChg() * 100, 2, "########0.") + "%";
-            String strDataText = "≈" + WonderfulMathUtils.getRundNumber(mCurrency.getClose() * MainActivity.rate * (mCurrency.getBaseUsdRate() == null ? 0 : mCurrency.getBaseUsdRate()),
+            String strDataText = "≈" + WonderfulMathUtils.getRundNumber(mCurrency.getClose() * MainActivity.rate * (mCurrency.getBaseUsdRate() == null ? 1 : mCurrency.getBaseUsdRate()),
                     2, null) + "CNY";
             String strDataOne = String.valueOf(mCurrency.getClose());
 
