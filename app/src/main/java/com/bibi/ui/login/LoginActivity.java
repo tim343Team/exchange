@@ -233,10 +233,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
 
         String strings[] = SharedPreferenceInstance.getInstance().getPhoneAndPass();
-//        etPassword.setText(strings[1]);
-//        etUsername.setText(strings[0]);
-        etPassword.setText("Test1234");
-        etUsername.setText("15111111116");
+        etPassword.setText(strings[1]);
+        etUsername.setText(strings[0]);
+//        etPassword.setText("Test1234");
+//        etUsername.setText("15111111115");
     }
 
     private void login() {
