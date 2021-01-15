@@ -439,6 +439,7 @@
     <string name="count_down">倒计时</string>
     <string name="trade_volum">持仓价值</string>
     <string name="earnings">倍率</string>
+    <string name="report">回报率</string>
     <string name="status">状态</string>
     <string name="LIMIT_PRICE">限价</string>
     <string name="MARKET_PRICE">市价</string>

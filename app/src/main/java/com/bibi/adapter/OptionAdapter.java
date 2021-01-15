@@ -206,10 +206,10 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         helper.setText(R.id.tvAmount, item.getAmount() * (item.getLeverage() > 0 ? item.getLeverage() : 1) + "");
         //helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
         if (item.getLeverage() > 0) {
-            helper.setText(R.id.tvLeverageTitle, "倍率");
+            helper.setText(R.id.tvLeverageTitle, context.getResources().getString(R.string.earnings));
             helper.setText(R.id.tvEarnings, item.getLeverage() + "倍");
         } else {
-            helper.setText(R.id.tvLeverageTitle, "盈利率");
+            helper.setText(R.id.tvLeverageTitle, context.getResources().getString(R.string.report));
             helper.setText(R.id.tvEarnings, item.getProfitRate() + "%");
         }
     }
