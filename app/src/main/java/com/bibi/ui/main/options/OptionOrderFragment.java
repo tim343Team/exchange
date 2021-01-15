@@ -83,6 +83,9 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
     private void intLv() {
         LinearLayoutManager manager = new LinearLayoutManager(getmActivity(), LinearLayoutManager.VERTICAL, false);
         manager.setStackFromEnd(false);
+        recyclerView.setFocusableInTouchMode(false);
+        recyclerView.setFocusable(false);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
         adapter = new OptionAdapter(getmActivity(), R.layout.item_option, data, 0);
         adapter.bindToRecyclerView(recyclerView);
@@ -113,8 +116,8 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
 
     @Override
     public void getCurrentSuccess(List<OptionEntity> message) {
-        data.clear();
         adapter.cancelAllTimers();
+        data.clear();
         data.addAll(message);
         adapter.notifyDataSetChanged();
     }

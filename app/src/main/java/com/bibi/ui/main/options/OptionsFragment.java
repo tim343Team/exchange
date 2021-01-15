@@ -98,6 +98,7 @@ import com.bibi.utils.WonderfulMathUtils;
 import com.bibi.utils.WonderfulToastUtils;
 import com.bibi.utils.okhttp.StringCallback;
 import com.bibi.utils.okhttp.WonderfulOkhttpUtils;
+
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -161,7 +162,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
     String[] mTitles;
 
     private Intent intentTcp;
-    private boolean isInitKChart=false;
+    private boolean isInitKChart = false;
     private KChartAdapter kChartAdapter;
     private ArrayList<TextView> textViews;
     private ArrayList<View> views; //k线图view
@@ -210,12 +211,12 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
             try {
                 //显示系统时间
                 long sysTime = System.currentTimeMillis();//获取系统时间
-                CharSequence sysTimeStr = DateFormat.format("hh:mm:ss", sysTime);//时间显示格式
+                CharSequence sysTimeStr = DateFormat.format("HH:mm:ss", sysTime);//时间显示格式
                 tvRecord.setText(sysTimeStr);
                 //在这里执行定时需要的操作
                 presenter.coinThumb(SharedPreferenceInstance.getInstance().getTOKEN(), symbol, type);
                 mHandler.postDelayed(this, 1000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 mHandler.postDelayed(this, 1000);
             }
         }
@@ -238,6 +239,12 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).getDlRoot(MainActivity.MENU_TYPE_EXCHANGE).openDrawer(Gravity.LEFT);
+            }
+        });
+        scrollView.setOnScrollChangedListener(new WonderfulScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChanged(int x, int y, int oldx, int oldy) {
+                tvPrice.clearFocus();
             }
         });
     }
@@ -376,29 +383,29 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
 //        if(currencies.size()>0){
 //            getCurrencyInfo();
 //        }else {
-            WonderfulOkhttpUtils.get().addParams("symbol",symbol).url(UrlFactory.getEryuanSymbolInfo()).build()
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onError(Request request, Exception e) {
-                            e.printStackTrace();
-                        }
+        WonderfulOkhttpUtils.get().addParams("symbol", symbol).url(UrlFactory.getEryuanSymbolInfo()).build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        e.printStackTrace();
+                    }
 
-                        @Override
-                        public void onResponse(String response) {
-                            WonderfulLogUtils.logd("response:",response);
+                    @Override
+                    public void onResponse(String response) {
+                        WonderfulLogUtils.logd("response:", response);
                             /*List<Currency> obj = new Gson().fromJson(response, new TypeToken<List<Currency>>() {
                             }.getType());*/
-                            Currency obj = new Gson().fromJson(response, new TypeToken<Currency>() {
-                            }.getType());
-                            currencies.clear();
-                            currencies.add(obj);
-                            getCurrencyInfo();
-                        }
-                    });
+                        Currency obj = new Gson().fromJson(response, new TypeToken<Currency>() {
+                        }.getType());
+                        currencies.clear();
+                        currencies.add(obj);
+                        getCurrencyInfo();
+                    }
+                });
 //        }
     }
 
-    private void setDrawableRightIconSize(Context context, TextView compoundButton, int drawableId, int resourceIdW, int resourceIdH){
+    private void setDrawableRightIconSize(Context context, TextView compoundButton, int drawableId, int resourceIdW, int resourceIdH) {
         int w = context.getResources().getDimensionPixelOffset(resourceIdW);
         int h = context.getResources().getDimensionPixelOffset(resourceIdH);
         Drawable fragmentBottomDrawable = context.getResources().getDrawable(drawableId);
@@ -406,15 +413,15 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
         compoundButton.setCompoundDrawables(null, null, fragmentBottomDrawable, null);
     }
 
-    private void setLeverageView(final List<Currency> currencyList){
-        WonderfulLogUtils.logd("currencyList:",currencyList.size()+"");
-        if(currencyList.size()>0){
-            if(currencyList.get(0).getUseLeverage()==1){//使用杠杆
+    private void setLeverageView(final List<Currency> currencyList) {
+        WonderfulLogUtils.logd("currencyList:", currencyList.size() + "");
+        if (currencyList.size() > 0) {
+            if (currencyList.get(0).getUseLeverage() == 1) {//使用杠杆
                 tvLeverage.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 tvLeverage.setVisibility(View.GONE);
             }
-            setDrawableRightIconSize(getActivity(),tvLeverage,R.drawable.icon_pull_down,R.dimen.dimen_20,R.dimen.dimen_20);
+            setDrawableRightIconSize(getActivity(), tvLeverage, R.drawable.icon_pull_down, R.dimen.dimen_20, R.dimen.dimen_20);
             tvLeverage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -434,7 +441,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         listDialogFragment.setCallback(new ListDialogFragment.OperateCallback() {
                             @Override
                             public void ItemClick(int position) {
-                                tvLeverage.setText("倍率："+bean.getNewsItems().get(position).getContent());
+                                tvLeverage.setText("倍率：" + bean.getNewsItems().get(position).getContent());
                             }
                         });
                     }
@@ -447,13 +454,13 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
         setLeverageView(currencies);
         setCurrentcy(currencies);
         List<String> titles = Arrays.asList(mTitles);
-        if (viewPager != null){
-            if(!isInitKChart){
+        if (viewPager != null) {
+            if (!isInitKChart) {
                 initViewpager(titles);
                 initTextView(5);
                 initPopWindow(5);
-                isInitKChart=true;
-            }else {
+                isInitKChart = true;
+            } else {
                 initViewpager(titles);
             }
         }
@@ -539,7 +546,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 kDataImg.setBackgroundResource(R.drawable.icon_rise);
             }
             //是否休息
-            if(mCurrency.isClosed()){
+            if (mCurrency.isClosed()) {
                 tvBuy.setBackgroundResource(R.color.grey);
                 tvSell.setBackgroundResource(R.color.grey);
                 tvBuy.setEnabled(false);
@@ -868,7 +875,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
         switch (view.getId()) {
             case R.id.tvSell:
                 if (mCurrency != null && !mDataOne.getText().toString().equals("")) {
-                    if(balanceUsd<=0){
+                    if (balanceUsd <= 0) {
                         WonderfulToastUtils.showToast("余额不足");
                         return;
                     }
@@ -881,7 +888,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         String leverage = tvLeverage.getText().toString();
                         int fontIndex = leverage.lastIndexOf("：");
                         int lastIndex = leverage.lastIndexOf("倍");
-                        leverageInt = Integer.parseInt(leverage.substring(fontIndex+1, lastIndex));
+                        leverageInt = Integer.parseInt(leverage.substring(fontIndex + 1, lastIndex));
                     }
                     OptionsAddOrder optionsAddOrder;
                     if (leverageInt >= 0) {
@@ -897,7 +904,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 return;
             case R.id.tvBuy:
                 if (mCurrency != null && !mDataOne.getText().toString().equals("")) {
-                    if(balanceUsd<=0){
+                    if (balanceUsd <= 0) {
                         WonderfulToastUtils.showToast("余额不足");
                         return;
                     }
@@ -910,18 +917,18 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         String leverage = tvLeverage.getText().toString();
                         int fontIndex = leverage.lastIndexOf("：");
                         int lastIndex = leverage.lastIndexOf("倍");
-                        leverageInt = Integer.parseInt(leverage.substring(fontIndex+1, lastIndex));
+                        leverageInt = Integer.parseInt(leverage.substring(fontIndex + 1, lastIndex));
                     }
                     OptionsAddOrder optionsAddOrder;
-                    if(leverageInt >= 0){
+                    if (leverageInt >= 0) {
                         optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
-                                "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT",leverageInt);
-                    }else{
+                                "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT", leverageInt);
+                    } else {
                         optionsAddOrder = new OptionsAddOrder(SharedPreferenceInstance.getInstance().getTOKEN(),
                                 "BUY", tvPrice.getText().toString(), mCurrency.getSymbol(), mDataOne.getText().toString(), "USDT");
                     }
                     optionsAddOrder.setPeriod(type);
-                    WonderfulLogUtils.logd("Coin2Coin:","Buy");
+                    WonderfulLogUtils.logd("Coin2Coin:", "Buy");
                     presenter.addOrder(optionsAddOrder);
                 }
                 return;
@@ -949,7 +956,6 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
 //    public void onSocketMessage(SocketResponse response) {
 //
 //    }
-
     @Override
     public void KDataFail(Integer code, String toastMessage) {
 
@@ -1044,10 +1050,12 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
 
     @Override
     public void addOrderSuccess(String message) {
-        WonderfulLogUtils.logd("Coin2Coin:","交易成功");
+        WonderfulLogUtils.logd("Coin2Coin:", "交易成功");
         WonderfulToastUtils.showToast("交易成功");
         tvPrice.setText("");
+        tvPrice.clearFocus();
         getOptionsAsset();
+//        initRvData();
         fragment.refresh();
     }
 
@@ -1135,8 +1143,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         kLineEntities.add(lineEntity);
                         if (count > 0) {
                             long time = kChartAdapter.getDatas().get(count - 1).getTime();
-                            WonderfulLogUtils.logd("KTime:",time+"");
-                            WonderfulLogUtils.logd("KTime:","2 "+kBean.getTime()+"");
+                            WonderfulLogUtils.logd("KTime:", time + "");
+                            WonderfulLogUtils.logd("KTime:", "2 " + kBean.getTime() + "");
                             if (kBean.getTime() > time) {
                                 kChartAdapter.addFooterData(DataHelper.getALL(getmActivity(), kLineEntities));
                             } else {
@@ -1209,15 +1217,15 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 balanceUsd = 0.0;
                 presentBalance = 0.0;
                 for (CoinContract coinContract : coinContracts) {
-                    balanceUsd += coinContract.getBalance() ;//+ coinContract.getFrozenBalance();
-                    if(coinContract.getCoin().getName().equals("USDT")){
+                    balanceUsd += coinContract.getBalance();//+ coinContract.getFrozenBalance();
+                    if (coinContract.getCoin().getName().equals("USDT")) {
                         releaseBalance += coinContract.getBalance();
                     }
-                    if(coinContract.getCoin().getName().equals("USDT(赠)")){
+                    if (coinContract.getCoin().getName().equals("USDT(赠)")) {
                         presentBalance += coinContract.getBalance();
                     }
                 }
-                tvPrice.setHint(getResources().getString(R.string.balances)+"：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT");
+                tvPrice.setHint(getResources().getString(R.string.balances) + "：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT");
 //                tvPrice.setHint(getResources().getString(R.string.balances)+"：" + new DecimalFormat("#0.00").format(balanceUsd) + "  USDT ;  "
 //                        + getResources().getString(R.string.present_balance)+"：" + new DecimalFormat("#0.00").format(presentBalance) + "  USDT");
             }
