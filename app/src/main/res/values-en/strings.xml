@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">COINUP</string>
+    <string name="app_name">CCB</string>
     <string name="cancle">Cancle</string>
     <string name="confirm">Confirm</string>
     <string name="back">Back</string>
@@ -83,7 +83,7 @@
     <string name="edit">edit</string>
     <string name="change_phone_num">Change Phone Num</string>
     <string name="changeBindPhoneNum">Change Bind Phone Num</string>
-    <string name="changeBindPhoneNumTip">You are modifying the mobile phone number of the COINUP account. Please authenticate</string>
+    <string name="changeBindPhoneNumTip">You are modifying the mobile phone number of the CCB account. Please authenticate</string>
     <string name="receivePhoneCode">The original phone can accept verification code</string>
     <string name="unReceivePhoneCode">The original phone cannot accept verification code</string>
     <string name="unReceivePhoneCodeTip">The original phone number cannot receive the verification code, please contact customer service for modification binding</string>
@@ -92,7 +92,7 @@
 
     <!--修改登录密码-->
     <string name="changeLoginPassword">Change Login Password</string>
-    <string name="changeLoginPasswordTip">You are modifying the login password of the COINUP</string>
+    <string name="changeLoginPasswordTip">You are modifying the login password of the CCB</string>
     <string name="changeLoginPasswordTip1">You have bound the phone number</string>
     <string name="changeLoginPasswordTip2">Please log in again</string>
     <string name="oldLoginPassword">oldLoginPassword</string>
@@ -107,9 +107,9 @@
 
     <!--设置 修改资金密码-->
     <string name="setMoneyPassword">Set Fund Password</string>
-    <string name="setMoneyPasswordTip">You are setting the fund password for the COINUP</string>
+    <string name="setMoneyPasswordTip">You are setting the fund password for the CCB</string>
     <string name="changeMoneyPassword">Change Fund Password</string>
-    <string name="changeMoneyPasswordTip">You are resetting COINUP\'s transaction password.</string>
+    <string name="changeMoneyPasswordTip">You are resetting CCB\'s transaction password.</string>
     <string name="oldMoneyPassword">oldFundPassword</string>
     <string name="newMoneyPassword">newFundPassword</string>
     <string name="certainMoneyPassword">confirmFundPassword</string>
@@ -241,7 +241,7 @@
     <string name="spread">Spread</string>
     <string name="customer_service">Customer Service</string>
     <string name="not_logged_in">Not Logged In</string>
-    <string name="welcome_to">Welcome to COINUP</string>
+    <string name="welcome_to">Welcome to CCB</string>
     <string name="my_order">Order manage</string>
     <string name="my_ads">Advertisement</string>
     <string name="my_message">Message</string>
@@ -295,7 +295,7 @@
     <string name="currency">Currency</string>
     <string name="remarks">Remarks</string>
     <string name="no_remarks">No remarks</string>
-    <string name="invite">Invite your friend to join COINUP.</string>
+    <string name="invite">Invite your friend to join CCB.</string>
     <string name="invite_friends">Invite friends</string>
     <string name="inviteTip">Invite friends to earn commission\nMake money with friends\n</string>
     <string name="inviteTip1">Invite friends to earn commission</string>
@@ -817,8 +817,8 @@ Make sure your computer and browser are secure to prevent information from being
     <string name="forgot_password">Forgot Password</string>
     <string name="goto_regist">Now Sign Up</string>
     <string name="goto_login">Log in immediately</string>
-    <string name="no_zhanghao">No COINUP account</string>
-    <string name="yes_zhanghao">Already COINUP account</string>
+    <string name="no_zhanghao">No CCB account</string>
+    <string name="yes_zhanghao">Already CCB account</string>
     <string name="keep_password">Keep password</string>
     <string name="login_account_input">Please enter your phone number or email</string>
     <!--注册-->
@@ -848,9 +848,9 @@ Make sure your computer and browser are secure to prevent information from being
     <string name="email_diff">The mailbox format is incorrect</string>
 
     <!--关于我们-->
-    <string name="about_1">\u3000\u3000 COINUP  International digital encrypt asset trading platform is a comprehensive digital asset trading platform. We have a leading technical strength, high quality customer service and good user experience, providing a free online exchange platform for the majority of digital money lovers. COINUP international digital encrypt asset trading platform also provides digital money white paper planning, encryption algorithm adjustment, digital currency research and development, the trading platform on the shelf of the block chain service.</string>
-    <string name="about_2">\u3000\u3000 COINUP  International Digital Encryption asset trading platform overseas operation center is set up in Singapore, Kampuchea and Marshall. China\'s three major offices are Beijing, Zhengzhou and Shenzhen. China\'s headquarters are set up in Hainan Lingshui Clear Water Bay International Information Industrial Park.</string>
-    <string name="about_3">\u3000\u3000 COINUP  International digital encrypt asset trading platform has been cooperating with the National University of Singapore, the Nanyang Technology University in Singapore, the Edison block chain laboratory, the China exhibition area Chain Research Institute, the salary information technology and other institutions. Based on the construction of the "coin fire ecosystem", we should create a chain chain of ecological development, experiment, promotion and transformation.</string>
+    <string name="about_1">\u3000\u3000 CCB  International digital encrypt asset trading platform is a comprehensive digital asset trading platform. We have a leading technical strength, high quality customer service and good user experience, providing a free online exchange platform for the majority of digital money lovers. CCB international digital encrypt asset trading platform also provides digital money white paper planning, encryption algorithm adjustment, digital currency research and development, the trading platform on the shelf of the block chain service.</string>
+    <string name="about_2">\u3000\u3000 CCB  International Digital Encryption asset trading platform overseas operation center is set up in Singapore, Kampuchea and Marshall. China\'s three major offices are Beijing, Zhengzhou and Shenzhen. China\'s headquarters are set up in Hainan Lingshui Clear Water Bay International Information Industrial Park.</string>
+    <string name="about_3">\u3000\u3000 CCB  International digital encrypt asset trading platform has been cooperating with the National University of Singapore, the Nanyang Technology University in Singapore, the Edison block chain laboratory, the China exhibition area Chain Research Institute, the salary information technology and other institutions. Based on the construction of the "coin fire ecosystem", we should create a chain chain of ecological development, experiment, promotion and transformation.</string>
 
 
 

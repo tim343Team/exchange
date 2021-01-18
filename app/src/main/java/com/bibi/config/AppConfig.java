@@ -12,10 +12,11 @@ public class AppConfig {
     static String BASE_IP="42.192.184.221";
     static String SOCKET_IP="42.192.184.221";
     //生产
-//    static String BASE_IP = "159.138.55.44";
-//    static String SOCKET_IP = "159.138.58.54";
+//    static String BASE_IP = "152.32.185.198";
+//    static String SOCKET_IP = "152.32.187.116";
 
     public static String BASE_URL = "http://"+BASE_IP+":8003";
+//    public static String BASE_URL = "http://"+BASE_IP;
 
     public static String C2C_URL = SOCKET_IP;
     public static String MARKET_URL = SOCKET_IP;

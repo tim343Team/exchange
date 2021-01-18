@@ -212,18 +212,18 @@ public class CreditActivity extends BaseActivity implements CreditContract.View,
     }
 
     private void save() {
-        if (WonderfulStringUtils.isEmpty(idCardFront, idCardBack, handHeldIdCard)) {
-            WonderfulToastUtils.showToast(getResources().getString(R.string.confirm_upload_all));
-            return;
-        }
-//        if(WonderfulStringUtils.isEmpty(idCardFront,idCardBack)){
+//        if (WonderfulStringUtils.isEmpty(idCardFront, idCardBack, handHeldIdCard)) {
 //            WonderfulToastUtils.showToast(getResources().getString(R.string.confirm_upload_all));
 //            return;
 //        }
+        if(WonderfulStringUtils.isEmpty(idCardFront,idCardBack)){
+            WonderfulToastUtils.showToast(getResources().getString(R.string.confirm_upload_all));
+            return;
+        }
         Intent intent = new Intent();
         intent.putExtra("idCardFront", idCardFront);
         intent.putExtra("idCardBack", idCardBack);
-        intent.putExtra("handHeldIdCard", handHeldIdCard);
+//        intent.putExtra("handHeldIdCard", handHeldIdCard);
         setResult(CreditInfoActivity.REQUEST_CODE_UPLOAD_PHOTO, intent);
         finish();
     }
