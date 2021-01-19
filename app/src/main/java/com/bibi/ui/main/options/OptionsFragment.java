@@ -214,7 +214,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 CharSequence sysTimeStr = DateFormat.format("HH:mm:ss", sysTime);//时间显示格式
                 tvRecord.setText(sysTimeStr);
                 //在这里执行定时需要的操作
-                presenter.coinThumb(SharedPreferenceInstance.getInstance().getTOKEN(), symbol, type);
+//                presenter.coinThumb(SharedPreferenceInstance.getInstance().getTOKEN(), symbol, type);
                 mHandler.postDelayed(this, 1000);
             } catch (Exception e) {
                 mHandler.postDelayed(this, 1000);
@@ -465,15 +465,17 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
             }
         }
 
-        //默认选择第三个tab
-        selectedTextView = textViews.get(2);
+        //默认选择第二个tab
+        selectedTextView = textViews.get(1);
         //画线
         Drawable home_zhang_no = getResources().getDrawable(
                 R.drawable.tag);
         selectedTextView.setCompoundDrawablesWithIntrinsicBounds(null,
                 null, null, home_zhang_no);
         type = (int) selectedTextView.getTag();
-        viewPager.setCurrentItem(2);
+        viewPager.setCurrentItem(1);
+        //注册对应的socket
+        submitKlineSocket();
     }
 
     /**
@@ -646,6 +648,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                             tvBuy.setEnabled(true);
                             tvSell.setEnabled(true);
                         }
+                        //注册对应的socket
+                        submitKlineSocket();
                     }
                 });
                 textViews.add(textView);
@@ -677,6 +681,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                     type = selectedTag;
                     viewPager.setCurrentItem(selectedTag);
                     popupWindow.dismiss();
+                    //注册对应的socket
+                    submitKlineSocket();
                 }
             });
             moreTabLayout.addView(textView);
@@ -1235,6 +1241,36 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                 WonderfulToastUtils.showToast(toastMessage);
             }
         });
+    }
+
+    private void submitKlineSocket(){
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if (type == GlobalConstant.TAG_ONE_MINUTE) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k,symbol);
+        }else if(type == GlobalConstant.TAG_FIVE_MINUTE){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_5_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_5_k,symbol);
+        }else if(type == GlobalConstant.TAG_FIFTEEN_MINUTE){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_15_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_15_k,symbol);
+        }else if(type == GlobalConstant.TAG_THIRTY_MINUTE){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_30_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_30_k,symbol);
+        }else if(type == GlobalConstant.TAG_AN_HOUR){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_60_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_60_k,symbol);
+        }else if(type == GlobalConstant.TAG_DAY){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1d_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1d_k,symbol);
+        }else if(type == GlobalConstant.TAG_DIVIDE_TIME){
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k,symbol);
+        }
+//        else if (type == GlobalConstant.TAG_FIVE_MINUTE) {
+//            periodS = "5min";
+//        } else if (type == GlobalConstant.TAG_FIFTEEN_MINUTE) {
+//            periodS = "15min";
+//        } else if (type == GlobalConstant.TAG_THIRTY_MINUTE) {
+//            periodS = "30min";
+//        } else if (type == GlobalConstant.TAG_AN_HOUR) {
+//            periodS = "1hour";
+//        } else {
+//            periodS = "1min";
+//        }
     }
 
 }

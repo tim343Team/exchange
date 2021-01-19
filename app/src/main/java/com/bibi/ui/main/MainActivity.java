@@ -146,7 +146,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     private OneFragment oneFragment; //首页
     private OptionsFragment optionsFragment;//合约模块
-//    private TwoRootFragment twoFragment; //行情模块
+    //    private TwoRootFragment twoFragment; //行情模块
 //    private ThreeFragment threeFragment;//交易模块
 //    private ManagementFragment managementFragment; //理财模块
     private MineFragment fiveFragment; //我的模块
@@ -210,9 +210,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSocketMessage(SocketResponse response) {
         Log.i("推送过来的信息： MainActivity", response.getCmd().toString());
-        if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_THUMB) {
-            // 如果是盘口返回的信息
-            try {
+        try {
+            if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_THUMB) {
+                // 如果是盘口返回的信息
                 Currency temp = gson.fromJson(response.getResponse(), Currency.class);
                 if (temp == null) {
                     return;
@@ -260,10 +260,40 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                     }
                 }
                 tcpNotify(temp);
-            } catch (Exception e) {
-                e.printStackTrace();
 
+            } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_1_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
+            } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_5_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
+            } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_15_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
+            } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_30_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
+            } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_60_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
+            } else if (response.getCmd() == ISocket.CMD.SUBSCRIBE_SYMBOL_1d_k) {
+                if (optionsFragment == null) {
+                    return;
+                }
+                optionsFragment.getCoinThumbSuccess(response.getResponse());
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -434,7 +464,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             return;
         }
         WonderfulOkhttpUtils.post().url(UrlFactory.getCollectionUrl())
-                .addParams("memberId", user.getId()+"")
+                .addParams("memberId", user.getId() + "")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -761,6 +791,29 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     public void subscribeThumb() {
         EventBus.getDefault().post(new SocketMessage(0, ISocket.CMD.SUBSCRIBE_SYMBOL_THUMB, null));
+        if (lastCmd != null && lastSymbol != null) {
+            subKlineThumb(lastCmd, lastUnCmd, lastSymbol);
+        }
+    }
+
+    ISocket.CMD lastCmd = null;
+    ISocket.CMD lastUnCmd = null;
+    String lastSymbol = null;
+
+    public void subKlineThumb(ISocket.CMD cmd, ISocket.CMD uncmd, String symbol) {
+        if (cmd != null) {
+            unSubKlineThumb(lastUnCmd);
+        }
+        lastCmd = cmd;
+        lastUnCmd = uncmd;
+        lastSymbol = symbol;
+        EventBus.getDefault().post(new SocketMessage(0, cmd,
+                buildGetBodyJson(symbol).toString().getBytes()));
+    }
+
+    public void unSubKlineThumb(ISocket.CMD cmd) {
+        EventBus.getDefault().post(new SocketMessage(0, cmd,
+                null));
     }
 
     @Override
@@ -841,15 +894,15 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         super.onStop();
         // 取消订阅
         EventBus.getDefault().post(new SocketMessage(0, ISocket.CMD.UNSUBSCRIBE_SYMBOL_THUMB, null));
+        unSubKlineThumb(lastUnCmd);
         EventBus.getDefault().unregister(this);
     }
 
-    private JSONObject buildGetBodyJson(String content) {
+    private JSONObject buildGetBodyJson(String symbol) {
         JSONObject obj = new JSONObject();
         try {
             //obj.put("orderId", orderDetial.getOrderSn());
-            //obj.put("uid", orderDetial.getMyId());
-            obj.put("uid", MyApplication.getApp().getCurrentUser().getId());
+            obj.put("symbol", symbol);
             return obj;
         } catch (Exception ex) {
             return null;
@@ -1043,7 +1096,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     public void itemClick(Currency currency, int type) {
-        selecte(llOption,1);
+        selecte(llOption, 1);
         dlRoot.closeDrawers();
 //        threeFragment.resetSymbol(currency, currentMenuType);
         optionsFragment.resetSymbol(currency);

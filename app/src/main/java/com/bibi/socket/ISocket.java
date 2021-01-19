@@ -28,12 +28,12 @@ public interface ISocket extends Runnable {
         SUBSCRIBE_SYMBOL_THUMB((short) 20001), UNSUBSCRIBE_SYMBOL_THUMB((short) 20002),
         PUSH_SYMBOL_THUMB((short) 20003), //1MIN
         //合约
-        PUSH_SYMBOL_5_THUMB((short) 20004), //5MIN
-        PUSH_SYMBOL_15_THUMB((short) 20005), //15MIN
-        PUSH_SYMBOL_30_THUMB((short) 20006), //30MIN
-        PUSH_SYMBOL_1_HOUR_THUMB((short) 20007), //1HOUR
-        PUSH_SYMBOL_4_HOUR_THUMB((short) 20008), //4HOUR
-        PUSH_SYMBOL_1_DAY_THUMB((short) 20009), //1DAY
+        PUSH_SYMBOL_5_THUMB((short) 200040), //5MIN
+        PUSH_SYMBOL_15_THUMB((short) 200050), //15MIN
+        PUSH_SYMBOL_30_THUMB((short) 200060), //30MIN
+        PUSH_SYMBOL_1_HOUR_THUMB((short) 200070), //1HOUR
+        PUSH_SYMBOL_4_HOUR_THUMB((short) 200080), //4HOUR
+        PUSH_SYMBOL_1_DAY_THUMB((short) 200090), //1DAY
         PUSH_SYMBOL_1_THUMB((short) 20010), //1MIN
         //币币
 //        PUSH_SYMBOL_5_THUMB((short) 30051), //5MIN
@@ -43,6 +43,35 @@ public interface ISocket extends Runnable {
 //        PUSH_SYMBOL_4_HOUR_THUMB((short) 30059), //4HOUR
 //        PUSH_SYMBOL_1_DAY_THUMB((short) 30061), //1DAY
 //        PUSH_SYMBOL_1_THUMB((short) 30010), //1MIN
+        //订阅1分钟k线
+        SUBSCRIBE_SYMBOL_1_k((short) 20010), //订阅
+        UNSUBSCRIBE_SYMBOL_1_k((short) 20011), //取消
+        PUSH_SYMBOL_1_k((short) 20012), //推送
+        //订阅5分钟k线
+        SUBSCRIBE_SYMBOL_5_k((short) 20051), //订阅
+        UNSUBSCRIBE_SYMBOL_5_k((short) 20052), //取消
+        PUSH_SYMBOL_5_k((short) 20004), //推送
+        //订阅15分钟k线
+        SUBSCRIBE_SYMBOL_15_k((short) 20053), //订阅
+        UNSUBSCRIBE_SYMBOL_15_k((short) 20054), //取消
+        PUSH_SYMBOL_15_k((short) 20005), //推送
+        //订阅30分钟k线
+        SUBSCRIBE_SYMBOL_30_k((short) 20055), //订阅
+        UNSUBSCRIBE_SYMBOL_30_k((short) 20056), //取消
+        PUSH_SYMBOL_30_k((short) 20006), //推送
+        //订阅1小时k线
+        SUBSCRIBE_SYMBOL_60_k((short) 20057), //订阅
+        UNSUBSCRIBE_SYMBOL_60_k((short) 20058), //取消
+        PUSH_SYMBOL_60_k((short) 20007), //推送
+        //订阅4小时k线
+        SUBSCRIBE_SYMBOL_4h_k((short) 20059), //订阅
+        UNSUBSCRIBE_SYMBOL_4h_k((short) 20060), //取消
+        PUSH_SYMBOL_4h_k((short) 20008), //推送
+        //订阅1天k线
+        SUBSCRIBE_SYMBOL_1d_k((short) 20061), //订阅
+        UNSUBSCRIBE_SYMBOL_1d_k((short) 20062), //取消
+        PUSH_SYMBOL_1d_k((short) 20009), //推送
+
 
         SUBSCRIBE_SYMBOL_KLINE((short) 20011), UNSUBSCRIBE_SYMBOL_KLINE((short) 20012),
         PUSH_SYMBOL_KLINE((short) 20013),
