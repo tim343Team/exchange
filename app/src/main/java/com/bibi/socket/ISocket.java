@@ -34,13 +34,13 @@ public interface ISocket extends Runnable {
         PUSH_SYMBOL_1_HOUR_THUMB((short) 200070), //1HOUR
         PUSH_SYMBOL_4_HOUR_THUMB((short) 200080), //4HOUR
         PUSH_SYMBOL_1_DAY_THUMB((short) 200090), //1DAY
-        PUSH_SYMBOL_1_THUMB((short) 20010), //1MIN
+        PUSH_SYMBOL_1_THUMB((short) 200100), //1MIN
         //币币
 //        PUSH_SYMBOL_5_THUMB((short) 30051), //5MIN
 //        PUSH_SYMBOL_15_THUMB((short) 30053), //15MIN
 //        PUSH_SYMBOL_30_THUMB((short) 30055), //30MIN
 //        PUSH_SYMBOL_1_HOUR_THUMB((short) 30057), //1HOUR
-//        PUSH_SYMBOL_4_HOUR_THUMB((short) 30059), //4HOUR
+//        PUSH_SYMBOL_4_HOUR_THUMB((short) 30059), //4HOURf
 //        PUSH_SYMBOL_1_DAY_THUMB((short) 30061), //1DAY
 //        PUSH_SYMBOL_1_THUMB((short) 30010), //1MIN
         //订阅1分钟k线

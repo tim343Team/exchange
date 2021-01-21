@@ -72,6 +72,7 @@ public class MainDraw implements IChartDraw<ICandle> {
             if (lastPoint.getMA30Price() != 0) {
                 view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price());
             }
+
         } else if (isBOll) {
             if (lastPoint.getMb() != 0) {
                 view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb());

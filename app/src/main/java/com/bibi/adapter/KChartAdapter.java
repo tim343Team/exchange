@@ -59,6 +59,19 @@ public class KChartAdapter extends BaseKChartAdapter {
         return null;
     }
 
+
+
+    /**
+     * 向尾部添加数据
+     */
+    public void addData(List<KLineEntity> data) {
+        if (data != null && !data.isEmpty()) {
+            datas.clear();
+            datas.addAll( data);
+            notifyDataSetChanged();
+        }
+    }
+
     /**
      * 向头部添加数据
      */

@@ -109,7 +109,8 @@
                 android:layout_marginRight="30dp"
                 android:text="KDJ"
                 android:textColor="@color/font_index_pop_selector"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tvRSI"

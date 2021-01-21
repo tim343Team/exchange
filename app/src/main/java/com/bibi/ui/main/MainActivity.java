@@ -175,7 +175,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     private Intent intentTcp;
 
     private Handler mHandler = new Handler();
-
+    private boolean restart = false;
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -185,9 +185,13 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 intentTcp = new Intent(getApplicationContext(), MyTextService.class);
                 startService(intentTcp); // 开启服务
                 mHandler.postDelayed(this, 10000);
+                if (restart) {
+                    subscribeThumb();
+                }
             } catch (Exception e) {
                 Log.e("MainActivity", "服务重启失败");
                 mHandler.postDelayed(this, 10000);
+                restart = true;
             }
         }
     };
@@ -210,6 +214,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSocketMessage(SocketResponse response) {
         Log.i("推送过来的信息： MainActivity", response.getCmd().toString());
+        restart = false;
         try {
             if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_THUMB) {
                 // 如果是盘口返回的信息
@@ -265,32 +270,32 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_ONE_MINUTE);
             } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_5_k) {
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_FIVE_MINUTE);
             } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_15_k) {
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_FIFTEEN_MINUTE);
             } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_30_k) {
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_THIRTY_MINUTE);
             } else if (response.getCmd() == ISocket.CMD.PUSH_SYMBOL_60_k) {
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_AN_HOUR);
             } else if (response.getCmd() == ISocket.CMD.SUBSCRIBE_SYMBOL_1d_k) {
                 if (optionsFragment == null) {
                     return;
                 }
-                optionsFragment.getCoinThumbSuccess(response.getResponse());
+                optionsFragment.getCoinThumbSuccess(response.getResponse(), GlobalConstant.TAG_DAY);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -801,7 +806,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     String lastSymbol = null;
 
     public void subKlineThumb(ISocket.CMD cmd, ISocket.CMD uncmd, String symbol) {
-        if (cmd != null) {
+        if (cmd != null && cmd != lastCmd) {
             unSubKlineThumb(lastUnCmd);
         }
         lastCmd = cmd;

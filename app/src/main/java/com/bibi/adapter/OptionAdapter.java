@@ -111,7 +111,14 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                 public void onTick(long millisUntilFinished) {
                     for (String key : priceMap.keySet()) {
                         if (key.equals(item.getSymbol())) {
-                            helper.setText(R.id.tvCurrentPrice, priceMap.get(key));
+                            String price = priceMap.get(key);
+//                            String[] prices = price.split(",");
+//                            if (prices.length > 1) {
+//                                price=prices[1].length()>5?prices[1].substring(0,3):;
+//                            } else {
+//                                price = price + ".0000";
+//                            }
+                            helper.setText(R.id.tvCurrentPrice, price);
                             try {
                                 if (item.getLeverage() > 0) {
                                     //有倍率的计算方式
@@ -173,7 +180,9 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                 public void onFinish() {
 
                 }
-            };
+            }
+
+            ;
             timerPrice.start();
             timerPriceArray.add(timerPrice);
         } else {
@@ -185,7 +194,7 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
             } else {
                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
             }
-            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getProfitLost());
+            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + new DecimalFormat("#0.0000").format(item.getProfitLost()));
         }
 
         Glide.with(mContext).load(item.getCoinIcon()).placeholder(R.drawable.icon_bite)

@@ -551,7 +551,7 @@ public class KDataFragment extends BaseLazyFragment implements KlineContract.Vie
     }
 
     @Override
-    public void getCoinThumbSuccess(String response) {
+    public void getCoinThumbSuccess(String response,int cmd) {
 
     }
 

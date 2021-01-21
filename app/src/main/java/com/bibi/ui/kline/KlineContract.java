@@ -6,6 +6,7 @@ import com.bibi.entity.AssetEntity;
 import com.bibi.entity.Currency;
 import com.bibi.entity.CurrencyK;
 import com.bibi.entity_remote.OptionsAddOrder;
+import com.bibi.socket.ISocket;
 
 import org.json.JSONArray;
 
@@ -33,7 +34,7 @@ public interface KlineContract {
 
         void addOrderFail(String message);
 
-        void getCoinThumbSuccess(String response);
+        void getCoinThumbSuccess(String response, int cmd);
 
         void allEryuanCurrencySuccess(List<Currency> obj);
     }

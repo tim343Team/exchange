@@ -176,8 +176,8 @@ public abstract class BaseKChartView extends ScrollAndScaleView {
         });
         //TODO
 //        mTextClosePaint.setColor(Color.WHITE);
-        mTextCloseDahPaint.setStyle(Paint.Style.STROKE );
-        mTextCloseDahPaint.setPathEffect(new DashPathEffect ( new float [ ] { 10, 10 }, 0 ));
+        mTextCloseDahPaint.setStyle(Paint.Style.STROKE);
+        mTextCloseDahPaint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
 //        mTextCloseDahPaint.setColor(Color.WHITE);
     }
 
@@ -306,8 +306,11 @@ public abstract class BaseKChartView extends ScrollAndScaleView {
         canvas.save();
         canvas.translate(mTranslateX * mScaleX, 0);
         canvas.scale(mScaleX, 1);
-        Log.e("drawCandle: ","mStartIndex:"+mStartIndex+"mStopIndex:"+mStopIndex);
+        Log.e("drawCandle: ", "mStartIndex:" + mStartIndex + "mStopIndex:" + mStopIndex);
         for (int i = mStartIndex; i <= mStopIndex; i++) {
+            if (i == mStopIndex) {
+                Object currentPointTem =getItem(i);
+            }
             Object currentPoint = getItem(i);
             float currentPointX = getX(i);
             Object lastPoint = i == 0 ? currentPoint : getItem(i - 1);
@@ -372,7 +375,7 @@ public abstract class BaseKChartView extends ScrollAndScaleView {
             if (mCloseValue < mMainMaxValue && mCloseValue > mMainMinValue) {
                 String text = formatValue(mCloseValue);
                 float i = (mGridRows - (mCloseValue - mMainMinValue) / ((mMainMaxValue - mMainMinValue) / mGridRows));
-                canvas.drawLine(0, fixTextY((float) (rowSpace * i + mMainRect.top-10)), 5000, fixTextY((float) (rowSpace * i + mMainRect.top-10)), mTextCloseDahPaint);
+                canvas.drawLine(0, fixTextY((float) (rowSpace * i + mMainRect.top - 10)), 5000, fixTextY((float) (rowSpace * i + mMainRect.top - 10)), mTextCloseDahPaint);
                 canvas.drawText(text, mWidth - mTextClosePaint.measureText(text), fixTextY((float) (rowSpace * i + mMainRect.top)), mTextClosePaint);
             }
         }

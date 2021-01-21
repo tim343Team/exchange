@@ -135,6 +135,7 @@ public class UrlFactory {
      */
     public static String getNewTickersCurrencys() {
         return host + "/market/newTickers/page-query";
+//        return host + "/market/symbol";
     }
 
     /**

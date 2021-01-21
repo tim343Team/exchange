@@ -1096,7 +1096,7 @@ public class KlineActivity extends BaseActivity implements KlineContract.View, V
     }
 
     @Override
-    public void getCoinThumbSuccess(String response) {
+    public void getCoinThumbSuccess(String response, int cmd) {
 
     }
 

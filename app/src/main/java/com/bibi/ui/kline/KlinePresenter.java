@@ -3,6 +3,7 @@ package com.bibi.ui.kline;
 
 import android.util.Log;
 
+import com.bibi.socket.ISocket;
 import com.bibi.utils.WonderfulLogUtils;
 import com.bibi.utils.okhttp.post.PostFormBuilder;
 import com.google.gson.Gson;
@@ -192,7 +193,7 @@ public class KlinePresenter implements KlineContract.Presenter {
                 if (view == null) return;
 
                 try {
-                    view.getCoinThumbSuccess(response);
+                    view.getCoinThumbSuccess(response,1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

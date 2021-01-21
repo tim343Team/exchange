@@ -13,6 +13,35 @@ import com.bibi.entity.MinuteLineEntity;
  */
 
 public class DataHelper {
+    private static List<KLineEntity> allData = new ArrayList<>();
+
+    public static List<KLineEntity> getDatas() {
+        return allData;
+    }
+
+    public static void setDatas(List<KLineEntity> datas) {
+        allData = datas;
+    }
+
+    public static void addAllDatas(List<KLineEntity> datas) {
+        allData.clear();
+        allData.addAll(datas);
+    }
+
+    public static void addDatas(List<KLineEntity> datas) {
+        allData.addAll(datas);
+    }
+
+    public static void updateDatas(List<KLineEntity> datas) {
+        if (allData.size() == 0) {
+            return;
+        }
+        if (datas != null && !datas.isEmpty()) {
+            allData.remove(allData.size() - 1);
+            allData.addAll(datas);
+        }
+    }
+
     public static List<KLineEntity> getALL(Context context, ArrayList<KLineEntity> datas) {
         if (datas != null) {
             DataHelper.calculate(datas);
@@ -79,7 +108,6 @@ public class DataHelper {
     static void calculateKDJ(List<KLineEntity> datas) {
         float k = 0;
         float d = 0;
-
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
             final float closePrice = point.getClosePrice();
@@ -152,13 +180,42 @@ public class DataHelper {
      * @param datas
      */
     static void calculateBOLL(List<KLineEntity> datas) {
+        float tmd = 0;
+        float tup = 0;
+        float tdown = 0;
+
+        if (datas.size() == 1) {
+            int n = 20;
+            int i = allData.size() - 1;
+            if (allData.size() < 20) {
+                n = i + 1;
+            }
+            float md = 0;
+            for (int j = i - n + 1; j <= i; j++) {
+                float c = allData.get(j).getClosePrice();
+                float m = allData.get(i).getMA30Price();
+                float value = c - m;
+                md += value * value;
+            }
+            md = md / (n - 1);
+            md = (float) Math.sqrt(md);
+            tmd = allData.get(i).getMA30Price();
+            tup = tmd + 2f * md;
+            tdown = tmd - 2f * md;
+        }
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
             final float closePrice = point.getClosePrice();
             if (i == 0) {
-                point.setMb(closePrice);
-                point.setUp(Float.NaN);
-                point.setDn(Float.NaN);
+                if (datas.size() == 1) {
+                    point.setMb(tmd);
+                    point.setUp(tup);
+                    point.setDn(tdown);
+                } else {
+                    point.setMb(closePrice);
+                    point.setUp(Float.NaN);
+                    point.setDn(Float.NaN);
+                }
             } else {
                 int n = 20;
                 if (i < 20) {
@@ -225,6 +282,29 @@ public class DataHelper {
         float ma10 = 0;
         float ma30 = 0;
 
+        float tma5 = 0;
+        float tma10 = 0;
+        float tma30 = 0;
+
+        if (datas.size() == 1) {
+            if (allData.size() > 30) {
+                tma5 = 0;
+                tma10 = 0;
+                tma30 = 0;
+                for (int d = 5; d > 0; d--) {
+                    tma5 += allData.get(allData.size() - d).getClosePrice();
+                }
+                tma5 = tma5 / 5f;
+                for (int d = 10; d > 0; d--) {
+                    tma10 += allData.get(allData.size() - d).getClosePrice();
+                }
+                tma10 = tma10 / 10f;
+                for (int d = 30; d > 0; d--) {
+                    tma30 += allData.get(allData.size() - d).getClosePrice();
+                }
+                tma30 = tma30 / 30f;
+            }
+        }
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
             final float closePrice = point.getClosePrice();
@@ -236,21 +316,25 @@ public class DataHelper {
                 ma5 -= datas.get(i - 5).getClosePrice();
                 point.setMA5Price(ma5 / 5f);
             } else {
-                point.setMA5Price(ma5 / (i + 1f));
+//                point.setMA5Price(ma5 / (i + 1f));
+                point.setMA5Price(tma5);
             }
             if (i >= 10) {
                 ma10 -= datas.get(i - 10).getClosePrice();
                 point.setMA10Price(ma10 / 10f);
             } else {
-                point.setMA10Price(ma10 / (i + 1f));
+//                point.setMA10Price(ma10 / (i + 1f));
+                point.setMA10Price(tma10);
             }
             if (i >= 30) {
                 ma30 -= datas.get(i - 30).getClosePrice();
                 point.setMA30Price(ma30 / 30f);
             } else {
-                point.setMA30Price(ma30 / (i + 1f));
+//                point.setMA30Price(ma30 / (i + 1f));
+                point.setMA30Price(tma30);
             }
         }
+
     }
 
     /**
@@ -270,7 +354,6 @@ public class DataHelper {
     private static void calculateVolumeMA(List<KLineEntity> entries) {
         float volumeMa5 = 0;
         float volumeMa10 = 0;
-
         for (int i = 0; i < entries.size(); i++) {
             KLineEntity entry = entries.get(i);
 

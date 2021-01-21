@@ -178,6 +178,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
     private Date endDate;
     private String resolution;
     private boolean isFirstLoad = true;
+    private boolean isResume = false;
     private ArrayList<KLineBean> kLineDatas;     // K线图数据
     //加载菊花
     private ProgressBar mProgressBar;
@@ -273,15 +274,24 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
     @Override
     public void onStart() {
         super.onStart();
-//        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        EventBus.getDefault().post(new SocketMessage(0, ISocket.CMD.UNSUBSCRIBE_SYMBOL_THUMB, null)); //  取消订阅
-//        EventBus.getDefault().unregister(this);
+        isResume = true;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //刷新历史数据，以免出现k线图断层
+        if (isResume) {
+            loadData2();
+            isResume = false;
+        }
+    }
+
 
     @Override
     protected void initImmersionBar() {
@@ -774,6 +784,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                     kChartAdapter = (KChartAdapter) kChartView.getAdapter();
                     if (kChartAdapter.getDatas() == null || kChartAdapter.getDatas().size() == 0) {
                         loadData2();
+                    } else {
+                        DataHelper.addAllDatas(kChartAdapter.getDatas());
                     }
                 } else {
                     minuteChartView.setMAandBOLL(maView.isSelected(), bollView.isSelected());
@@ -1026,8 +1038,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                         }
                         WonderfulLogUtils.logi("miao", kLineDatas.get(0).getClose() + "--" + kLineDatas.get(0).getHigh() + "--" + kLineDatas.get(0).getLow() + "--" + kLineDatas.get(0).getOpen() + "--" + kLineDatas.get(0).getVol());
                         WonderfulLogUtils.logi("miao", kLineEntities.size() + "--");
-
-                        kChartAdapter.addFooterData(DataHelper.getALL(getmActivity(), kLineEntities));
+                        DataHelper.addAllDatas(kLineEntities);
+                        kChartAdapter.addData(DataHelper.getALL(getmActivity(), kLineEntities));
                         kChartView.refreshEnd();
                         kChartView.setScrollX(-200);
                     } else {
@@ -1071,7 +1083,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
     }
 
     @Override
-    public void getCoinThumbSuccess(String response) {
+    public void getCoinThumbSuccess(String response, int cmd) {
         if (type == GlobalConstant.TAG_DIVIDE_TIME) {
             //分时
             try {
@@ -1103,7 +1115,7 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
             } catch (Exception e) {
 
             }
-        } else {
+        } else if (type == cmd) {
             try {
                 //k线图数据
                 Currency temp = new Gson().fromJson(response, Currency.class);
@@ -1152,8 +1164,10 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
                             WonderfulLogUtils.logd("KTime:", time + "");
                             WonderfulLogUtils.logd("KTime:", "2 " + kBean.getTime() + "");
                             if (kBean.getTime() > time) {
+                                DataHelper.addDatas(kLineEntities);
                                 kChartAdapter.addFooterData(DataHelper.getALL(getmActivity(), kLineEntities));
                             } else {
+                                DataHelper.updateDatas(kLineEntities);
                                 kChartAdapter.updateFooterData(DataHelper.getALL(getmActivity(), kLineEntities));
                             }
                         }
@@ -1243,22 +1257,22 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
         });
     }
 
-    private void submitKlineSocket(){
+    private void submitKlineSocket() {
         MainActivity mainActivity = (MainActivity) getActivity();
         if (type == GlobalConstant.TAG_ONE_MINUTE) {
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k,symbol);
-        }else if(type == GlobalConstant.TAG_FIVE_MINUTE){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_5_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_5_k,symbol);
-        }else if(type == GlobalConstant.TAG_FIFTEEN_MINUTE){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_15_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_15_k,symbol);
-        }else if(type == GlobalConstant.TAG_THIRTY_MINUTE){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_30_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_30_k,symbol);
-        }else if(type == GlobalConstant.TAG_AN_HOUR){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_60_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_60_k,symbol);
-        }else if(type == GlobalConstant.TAG_DAY){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1d_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1d_k,symbol);
-        }else if(type == GlobalConstant.TAG_DIVIDE_TIME){
-            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k,ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k,symbol);
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k, symbol);
+        } else if (type == GlobalConstant.TAG_FIVE_MINUTE) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_5_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_5_k, symbol);
+        } else if (type == GlobalConstant.TAG_FIFTEEN_MINUTE) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_15_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_15_k, symbol);
+        } else if (type == GlobalConstant.TAG_THIRTY_MINUTE) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_30_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_30_k, symbol);
+        } else if (type == GlobalConstant.TAG_AN_HOUR) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_60_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_60_k, symbol);
+        } else if (type == GlobalConstant.TAG_DAY) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1d_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_1d_k, symbol);
+        } else if (type == GlobalConstant.TAG_DIVIDE_TIME) {
+            mainActivity.subKlineThumb(ISocket.CMD.SUBSCRIBE_SYMBOL_1_k, ISocket.CMD.UNSUBSCRIBE_SYMBOL_1_k, symbol);
         }
 //        else if (type == GlobalConstant.TAG_FIVE_MINUTE) {
 //            periodS = "5min";
