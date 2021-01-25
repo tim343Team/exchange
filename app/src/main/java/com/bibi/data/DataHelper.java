@@ -1,6 +1,7 @@
 package com.bibi.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import com.bibi.entity.MinuteLineEntity;
 
 public class DataHelper {
     private static List<KLineEntity> allData = new ArrayList<>();
+    private static int dataSize = 0;
+    private static int RSIdataSize = 0;
 
     public static List<KLineEntity> getDatas() {
         return allData;
@@ -59,25 +62,75 @@ public class DataHelper {
         float rsi1 = 0;
         float rsi2 = 0;
         float rsi3 = 0;
+        float trsi1 = 0;
+        float trsi2 = 0;
+        float trsi3 = 0;
         float rsi1ABSEma = 0;
         float rsi2ABSEma = 0;
         float rsi3ABSEma = 0;
         float rsi1MaxEma = 0;
         float rsi2MaxEma = 0;
         float rsi3MaxEma = 0;
+        float trsi1ABSEma = 0;
+        float trsi2ABSEma = 0;
+        float trsi3ABSEma = 0;
+        float trsi1MaxEma = 0;
+        float trsi2MaxEma = 0;
+        float trsi3MaxEma = 0;
+
+        if (datas.size() == 1) {
+            if (allData.size() > RSIdataSize) {
+                for (int i = allData.size() - RSIdataSize; i < allData.size(); i++) {
+                    KLineEntity point = allData.get(i);
+                    final float closePrice = point.getClosePrice();
+                    if (i == allData.size() - RSIdataSize) {
+                        trsi1 = 0;
+                        trsi2 = 0;
+                        trsi3 = 0;
+                        trsi1ABSEma = 0;
+                        trsi2ABSEma = 0;
+                        trsi3ABSEma = 0;
+                        trsi1MaxEma = 0;
+                        trsi2MaxEma = 0;
+                        trsi3MaxEma = 0;
+                    } else {
+                        float Rmax = Math.max(0, closePrice - allData.get(i - 1).getClosePrice());
+                        float RAbs = Math.abs(closePrice - allData.get(i - 1).getClosePrice());
+                        trsi1MaxEma = (Rmax + (6f - 1) * trsi1MaxEma) / 6f;
+                        trsi1ABSEma = (RAbs + (6f - 1) * trsi1ABSEma) / 6f;
+
+                        trsi2MaxEma = (Rmax + (12f - 1) * trsi2MaxEma) / 12f;
+                        trsi2ABSEma = (RAbs + (12f - 1) * trsi2ABSEma) / 12f;
+
+                        trsi3MaxEma = (Rmax + (24f - 1) * trsi3MaxEma) / 24f;
+                        trsi3ABSEma = (RAbs + (24f - 1) * trsi3ABSEma) / 24f;
+
+                        trsi1 = (trsi1MaxEma / trsi1ABSEma) * 100;
+                        trsi2 = (trsi2MaxEma / trsi2ABSEma) * 100;
+                        trsi3 = (trsi3MaxEma / trsi3ABSEma) * 100;
+                    }
+                }
+            }
+        }
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
             final float closePrice = point.getClosePrice();
             if (i == 0) {
-                rsi1 = 0;
-                rsi2 = 0;
-                rsi3 = 0;
-                rsi1ABSEma = 0;
-                rsi2ABSEma = 0;
-                rsi3ABSEma = 0;
-                rsi1MaxEma = 0;
-                rsi2MaxEma = 0;
-                rsi3MaxEma = 0;
+                if (datas.size() == 1) {
+                    rsi1 = trsi1;
+                    rsi2 = trsi2;
+                    rsi3 = trsi3;
+                } else {
+                    rsi1 = 0;
+                    rsi2 = 0;
+                    rsi3 = 0;
+                    rsi1ABSEma = 0;
+                    rsi2ABSEma = 0;
+                    rsi3ABSEma = 0;
+                    rsi1MaxEma = 0;
+                    rsi2MaxEma = 0;
+                    rsi3MaxEma = 0;
+                }
             } else {
                 float Rmax = Math.max(0, closePrice - datas.get(i - 1).getClosePrice());
                 float RAbs = Math.abs(closePrice - datas.get(i - 1).getClosePrice());
@@ -93,6 +146,9 @@ public class DataHelper {
                 rsi1 = (rsi1MaxEma / rsi1ABSEma) * 100;
                 rsi2 = (rsi2MaxEma / rsi2ABSEma) * 100;
                 rsi3 = (rsi3MaxEma / rsi3ABSEma) * 100;
+                if (i == datas.size() - 1) {
+                    RSIdataSize = i;
+                }
             }
             point.setRsi1(rsi1);
             point.setRsi2(rsi2);
@@ -145,31 +201,68 @@ public class DataHelper {
     static void calculateMACD(List<KLineEntity> datas) {
         float ema12 = 0;
         float ema26 = 0;
+        float tEma12 = 0;
+        float tEma26 = 0;
+        float tClosePrice = 0;
         float dif = 0;
         float dea = 0;
         float macd = 0;
-
+        float tdif = 0;
+        float tdea = 0;
+        float tmacd = 0;
+        //更新
+        if (datas.size() == 1) {
+            if (allData.size() > dataSize) {
+                for (int i = allData.size() - dataSize; i < allData.size(); i++) {
+                    KLineEntity point = allData.get(i);
+                    tClosePrice = point.getClosePrice();
+                    if (i == allData.size() - dataSize) {
+                        tEma12 = tClosePrice;
+                        tEma26 = tClosePrice;
+                    } else {
+//                          EMA（12） = 前一日EMA（12） X 11/13 + 今日收盘价 X 2/13
+//                          EMA（26） = 前一日EMA（26） X 25/27 + 今日收盘价 X 2/27
+                        tEma12 = tEma12 * 11f / 13f + tClosePrice * 2f / 13f;
+                        tEma26 = tEma26 * 25f / 27f + tClosePrice * 2f / 27f;
+                    }
+                    tdif = tEma12 - tEma26;
+                    tdea = tdea * 8f / 10f + tdif * 2f / 10f;
+                    tmacd = (tdif - tdea) * 2f;
+                }
+            }
+        }
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
             final float closePrice = point.getClosePrice();
             if (i == 0) {
-                ema12 = closePrice;
-                ema26 = closePrice;
+                if (datas.size() == 1) {
+                    ema12 = tEma12;
+                    ema26 = tEma26;
+                    point.setDif(tdif);
+                    point.setDea(tdea);
+                    point.setMacd(tmacd);
+                } else {
+                    ema12 = closePrice;
+                    ema26 = closePrice;
+                }
             } else {
 //                EMA（12） = 前一日EMA（12） X 11/13 + 今日收盘价 X 2/13
 //                EMA（26） = 前一日EMA（26） X 25/27 + 今日收盘价 X 2/27
                 ema12 = ema12 * 11f / 13f + closePrice * 2f / 13f;
                 ema26 = ema26 * 25f / 27f + closePrice * 2f / 27f;
+                if (i == datas.size() - 1) {
+                    dataSize = i;
+                }
+//              DIF = EMA（12） - EMA（26） 。
+//              今日DEA = （前一日DEA X 8/10 + 今日DIF X 2/10）
+//              用（DIF-DEA）*2即为MACD柱状图。
+                dif = ema12 - ema26;
+                dea = dea * 8f / 10f + dif * 2f / 10f;
+                macd = (dif - dea) * 2f;
+                point.setDif(dif);
+                point.setDea(dea);
+                point.setMacd(macd);
             }
-//            DIF = EMA（12） - EMA（26） 。
-//            今日DEA = （前一日DEA X 8/10 + 今日DIF X 2/10）
-//            用（DIF-DEA）*2即为MACD柱状图。
-            dif = ema12 - ema26;
-            dea = dea * 8f / 10f + dif * 2f / 10f;
-            macd = (dif - dea) * 2f;
-            point.setDif(dif);
-            point.setDea(dea);
-            point.setMacd(macd);
         }
 
     }
@@ -285,9 +378,11 @@ public class DataHelper {
         float tma5 = 0;
         float tma10 = 0;
         float tma30 = 0;
+        boolean isUpdate = false;
 
         if (datas.size() == 1) {
             if (allData.size() > 30) {
+                isUpdate = true;
                 tma5 = 0;
                 tma10 = 0;
                 tma30 = 0;
@@ -304,6 +399,8 @@ public class DataHelper {
                 }
                 tma30 = tma30 / 30f;
             }
+        } else {
+            isUpdate = false;
         }
         for (int i = 0; i < datas.size(); i++) {
             KLineEntity point = datas.get(i);
@@ -316,22 +413,32 @@ public class DataHelper {
                 ma5 -= datas.get(i - 5).getClosePrice();
                 point.setMA5Price(ma5 / 5f);
             } else {
-//                point.setMA5Price(ma5 / (i + 1f));
-                point.setMA5Price(tma5);
+                if (isUpdate) {
+                    point.setMA5Price(tma5);
+                } else {
+                    point.setMA5Price(ma5 / (i + 1f));
+                }
             }
             if (i >= 10) {
                 ma10 -= datas.get(i - 10).getClosePrice();
                 point.setMA10Price(ma10 / 10f);
             } else {
-//                point.setMA10Price(ma10 / (i + 1f));
-                point.setMA10Price(tma10);
+                if (isUpdate) {
+                    point.setMA10Price(tma10);
+                } else {
+                    point.setMA10Price(ma10 / (i + 1f));
+                }
             }
             if (i >= 30) {
                 ma30 -= datas.get(i - 30).getClosePrice();
                 point.setMA30Price(ma30 / 30f);
             } else {
-//                point.setMA30Price(ma30 / (i + 1f));
-                point.setMA30Price(tma30);
+                if (isUpdate) {
+                    point.setMA30Price(tma30);
+                } else {
+                    point.setMA30Price(ma30 / (i + 1f));
+                }
+                Log.e("MA30:", "MA30:" + tma30);
             }
         }
 

@@ -209,7 +209,7 @@ public class OneFragment extends BaseTransFragment implements com.bibi.ui.main.M
             if (currencies.size() > 0) {
                 if (currencies.get(0).getExchangeable() == 1) {
                     //SKlineActivity.actionStart(getActivity(), currencies.get(0).getSymbol());
-                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(0),0);
+                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(0), 0);
                 } else {
                     WonderfulToastUtils.showToast("暂未开放");
                 }
@@ -234,7 +234,7 @@ public class OneFragment extends BaseTransFragment implements com.bibi.ui.main.M
             if (currencies.size() > 1) {
                 if (currencies.get(1).getExchangeable() == 1) {
                     //SKlineActivity.actionStart(getActivity(), currencies.get(1).getSymbol());
-                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(1),0);
+                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(1), 0);
                 } else {
                     WonderfulToastUtils.showToast("暂未开放");
                 }
@@ -250,7 +250,7 @@ public class OneFragment extends BaseTransFragment implements com.bibi.ui.main.M
             if (currencies.size() > 2) {
                 if (currencies.get(2).getExchangeable() == 1) {
                     //SKlineActivity.actionStart(getActivity(), currencies.get(2).getSymbol());
-                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(2),0);
+                    ((MarketBaseFragment.MarketOperateCallback) getActivity()).itemClick(currencies.get(2), 0);
                 } else {
                     WonderfulToastUtils.showToast("暂未开放");
                 }

@@ -1,6 +1,7 @@
 package com.bibi.ui.main.options;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -92,10 +93,15 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
         adapter.setEmptyView(R.layout.empty_no_order);
         adapter.setCallBackLister(new OptionAdapter.CallBackLister() {
             @Override
-            public void onCallback(OptionEntity item,int position) {
-                data.remove(item);
-                adapter.cancelPostionTimers(position);
-                adapter.notifyItemRemoved(position);
+            public void onCallback(final OptionEntity item, final int position) {
+                recyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        data.remove(item);
+                        adapter.cancelPostionTimers(position);
+                        adapter.notifyItemRemoved(position);
+                    }
+                });
             }
         });
     }

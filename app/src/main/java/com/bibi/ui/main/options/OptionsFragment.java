@@ -288,6 +288,8 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
         //刷新历史数据，以免出现k线图断层
         if (isResume) {
             loadData2();
+            //注册对应的socket
+            submitKlineSocket();
             isResume = false;
         }
     }
@@ -886,10 +888,10 @@ public class OptionsFragment extends BaseTransFragment implements KlineContract.
 
     @OnClick({R.id.tvSell, R.id.tvBuy, R.id.tvMore, R.id.tvIndex})
     void setListener(View view) {
-        if (!MyApplication.getApp().isLogin()) {
-            WonderfulToastUtils.showToast(getResources().getString(R.string.text_xian_login));
-            return;
-        }
+//        if (!MyApplication.getApp().isLogin()) {
+//            WonderfulToastUtils.showToast(getResources().getString(R.string.text_xian_login));
+//            return;
+//        }
         switch (view.getId()) {
             case R.id.tvSell:
                 if (mCurrency != null && !mDataOne.getText().toString().equals("")) {

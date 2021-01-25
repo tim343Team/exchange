@@ -557,7 +557,7 @@
             android:paddingEnd="@dimen/dimen_30"
             android:paddingStart="@dimen/dimen_8"
             android:paddingTop="@dimen/dimen_6"
-            android:text="盈亏 -922.01"
+            android:text="盈亏 --"
             android:textColor="@color/white"
             android:textSize="15dp" />
 

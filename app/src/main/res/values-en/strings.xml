@@ -874,11 +874,9 @@ Make sure your computer and browser are secure to prevent information from being
         <item>Line</item>
         <item>1min</item>
         <item>5min</item>
-        <item>1hour</item>
-        <!--<item>1day</item>-->
+        <item>15min</item>
         <item>30min</item>
-        <!--<item>1week</item>-->
-        <!--<item>1month</item>-->
+        <item>1hour</item>
     </string-array>
 
 

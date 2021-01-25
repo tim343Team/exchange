@@ -72,6 +72,7 @@ import com.bibi.utils.WonderfulToastUtils;
 import com.bibi.utils.okhttp.StringCallback;
 import com.bibi.utils.okhttp.WonderfulOkhttpUtils;
 
+import com.umeng.commonsdk.UMConfigure;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -176,6 +177,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     private Handler mHandler = new Handler();
     private boolean restart = false;
+    private boolean isBack = false;
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -185,13 +187,15 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 intentTcp = new Intent(getApplicationContext(), MyTextService.class);
                 startService(intentTcp); // 开启服务
                 mHandler.postDelayed(this, 10000);
-                if (restart) {
-                    subscribeThumb();
-                }
+//                if (restart) {
+//                    subscribeThumb();
+//                }
+                subscribeThumb();
             } catch (Exception e) {
                 Log.e("MainActivity", "服务重启失败");
                 mHandler.postDelayed(this, 10000);
                 restart = true;
+                finish();
             }
         }
     };
@@ -504,6 +508,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        //初始化友盟
+        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        UMConfigure.setLogEnabled(true);
         // 获取当前版本号
         versionName = getAppVersionName(this);
         // 请求版本更新
@@ -684,6 +691,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     protected void loadData() {
+        EventBus.getDefault().register(this);
         getAllCurrencys();
         presenter.allCurrency();
         getAllCurrency();
@@ -809,6 +817,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         if (cmd != null && cmd != lastCmd) {
             unSubKlineThumb(lastUnCmd);
         }
+        if (lastSymbol != null && !lastSymbol.equals(symbol)) {
+            unSubKlineThumb(lastUnCmd);
+        }
         lastCmd = cmd;
         lastUnCmd = uncmd;
         lastSymbol = symbol;
@@ -874,6 +885,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void onRestart() {
         super.onRestart();
+        isBack = false;
         /*hasNew = SharedPreferenceInstance.getInstance().getHasNew();
         oneFragment.setChatTip(hasNew);*/
     }
@@ -881,17 +893,18 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+//        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         hideDialog();
         // MainActivity销毁则停止
         WonderfulLogUtils.logi("mysocket", "MainActivity 服务关闭了！！！！！！");
         stopService(new Intent(MainActivity.this, MyTextService.class));
+        EventBus.getDefault().unregister(this);
+        isBack = true;
     }
 
     @Override
@@ -900,7 +913,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         // 取消订阅
         EventBus.getDefault().post(new SocketMessage(0, ISocket.CMD.UNSUBSCRIBE_SYMBOL_THUMB, null));
         unSubKlineThumb(lastUnCmd);
-        EventBus.getDefault().unregister(this);
+//        EventBus.getDefault().unregister(this);
     }
 
     private JSONObject buildGetBodyJson(String symbol) {
