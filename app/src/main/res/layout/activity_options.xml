@@ -70,9 +70,19 @@
         app:tabTextColor="@color/primaryText" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_fiat_list"
+        android:id="@+id/option_detail_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="1px"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+<!--    <com.bibi.customview.CustomViewPager-->
+<!--        android:id="@+id/option_detail_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="1px"-->
+<!--        android:background="@color/red_back"-->
+<!--        android:overScrollMode="never"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
 </LinearLayout>

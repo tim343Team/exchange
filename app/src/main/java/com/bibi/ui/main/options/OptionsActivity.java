@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bibi.customview.CustomViewPager;
 import com.gyf.barlibrary.ImmersionBar;
 
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class OptionsActivity extends BaseActivity implements ICommonView {
     LinearLayout llTitle;
     @BindView(R.id.tab_name)
     TabLayout tab_name;
-    @BindView(R.id.vp_fiat_list)
-    ViewPager vp_fiat_list;
+    @BindView(R.id.option_detail_list)
+    ViewPager viewPager;
 
     private ArrayList<String> tabs = new ArrayList<>();
     private List<BaseFragment> fragments = new ArrayList<>();
@@ -79,7 +80,7 @@ public class OptionsActivity extends BaseActivity implements ICommonView {
 
     @Override
     protected void obtainData() {
-
+        setData();
     }
 
     @Override
@@ -89,7 +90,6 @@ public class OptionsActivity extends BaseActivity implements ICommonView {
 
     @Override
     protected void loadData() {
-        setData();
         mHandler.postDelayed(runnable, 500);
     }
 
@@ -114,9 +114,10 @@ public class OptionsActivity extends BaseActivity implements ICommonView {
 
         if (adapter == null) {
             adapter = new PagerAdapter(getSupportFragmentManager(), fragments, tabs);
-            vp_fiat_list.setAdapter(adapter);
-            tab_name.setupWithViewPager(vp_fiat_list);
-            vp_fiat_list.setOffscreenPageLimit(fragments.size() - 1);
+            viewPager.setAdapter(adapter);
+            tab_name.setupWithViewPager(viewPager);
+            viewPager.setOffscreenPageLimit(fragments.size() - 1);
+            viewPager.setCurrentItem(0);
         } else {
             adapter.notifyDataSetChanged();
         }

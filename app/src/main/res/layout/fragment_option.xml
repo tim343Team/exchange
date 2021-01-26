@@ -346,8 +346,6 @@
                         android:layout_weight="0.65" />
                 </LinearLayout>
 
-
-
                 <LinearLayout
                     android:id="@+id/llVertical"
                     android:layout_width="match_parent"

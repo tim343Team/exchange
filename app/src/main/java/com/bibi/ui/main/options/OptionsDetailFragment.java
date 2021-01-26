@@ -25,6 +25,7 @@ import com.bibi.entity.OptionEntity;
 import com.bibi.ui.order.OrdersPresenter;
 import com.bibi.ui.share.ShareActivity;
 import com.bibi.utils.SharedPreferenceInstance;
+
 import butterknife.BindView;
 
 /**
@@ -68,7 +69,11 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refresh();
+                if (type.equals(HOLD)) {
+                    refreshLayout.setRefreshing(false);
+                } else {
+                    refresh();
+                }
             }
         });
     }
@@ -89,7 +94,7 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
 
     @Override
     protected void loadData() {
-        load(type);
+//        load(type);
     }
 
     private void initRvAds() {
@@ -101,7 +106,6 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
             adapter = new OptionAdapter(getmActivity(), R.layout.item_option_history, data, 1);
         }
         adapter.bindToRecyclerView(rvAds);
-        adapter.isFirstOnly(true);
         if (type.equals(HISTORY)) {
             adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
                 @Override
@@ -114,9 +118,17 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
         adapter.setEmptyView(R.layout.empty_rv_ad);
         adapter.setCallBackLister(new OptionAdapter.CallBackLister() {
             @Override
-            public void onCallback(OptionEntity item,int position) {
+            public void onCallback(final OptionEntity item, final int position,String orderId) {
+//                rvAds.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        data.remove(item);
+//                        adapter.cancelPostionTimers(position);
+//                        adapter.notifyItemRemoved(position);
+//                    }
+//                });
                 data.remove(item);
-                adapter.cancelPostionTimers(position);
+                adapter.cancelPostionTimers(orderId);
                 adapter.notifyItemRemoved(position);
             }
         });
@@ -136,9 +148,10 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
     }
 
     private void load(String type) {
-        if (type.equals(HOLD)) {
-            presenter.getHold(SharedPreferenceInstance.getInstance().getTOKEN(), pageNo);
-        } else if (type.equals(HISTORY)) {
+//        if (type.equals(HOLD)) {
+//            presenter.getHold(SharedPreferenceInstance.getInstance().getTOKEN(), pageNo);
+//        } else
+        if (type.equals(HISTORY)) {
             presenter.getHistory(SharedPreferenceInstance.getInstance().getTOKEN(), pageNo, "");
         }
     }
@@ -205,9 +218,9 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
     }
 
     public void dataLoaded(List<Currency> currencie) {
-        Map<String ,String> priceMap=new HashMap<>();
+        Map<String, String> priceMap = new HashMap<>();
         for (Currency currency : currencie) {
-            priceMap.put(currency.getSymbol(),new DecimalFormat("#0.00").format(currency.getClose()));
+            priceMap.put(currency.getSymbol(), new DecimalFormat("#0.00").format(currency.getClose()));
         }
         adapter.setPriceMap(priceMap);
     }

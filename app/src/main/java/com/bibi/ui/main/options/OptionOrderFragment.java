@@ -93,12 +93,12 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
         adapter.setEmptyView(R.layout.empty_no_order);
         adapter.setCallBackLister(new OptionAdapter.CallBackLister() {
             @Override
-            public void onCallback(final OptionEntity item, final int position) {
+            public void onCallback(final OptionEntity item, final int position, final String orderId) {
                 recyclerView.post(new Runnable() {
                     @Override
                     public void run() {
                         data.remove(item);
-                        adapter.cancelPostionTimers(position);
+                        adapter.cancelPostionTimers(orderId);
                         adapter.notifyItemRemoved(position);
                     }
                 });

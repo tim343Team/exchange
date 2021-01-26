@@ -3,8 +3,10 @@ package com.bibi.adapter;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -34,8 +36,10 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
     private int type;
     //    private String price;
     private Map<String, String> priceMap = new HashMap<>();
-    private List<CountDownTimer> timerArray = new ArrayList<>();
-    private List<CountDownTimer> timerPriceArray = new ArrayList<>();
+    //    private List<CountDownTimer> timerArray = new ArrayList<>();
+    private Map<String, CountDownTimer> timerArray = new HashMap<String, CountDownTimer>();
+    //    private List<CountDownTimer> timerPriceArray = new ArrayList<>();
+    private Map<String, CountDownTimer> timerPriceArray = new HashMap<String, CountDownTimer>();
 
     public OptionAdapter(Context context, @LayoutRes int layoutResId, @Nullable List<OptionEntity> data, int type) {
         super(layoutResId, data);
@@ -83,108 +87,125 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull BaseViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        Log.e("remove_position:", holder.getLayoutPosition() + "");
+    }
+
+    @Override
     protected void convert(final BaseViewHolder helper, final OptionEntity item) {
         if (type == 0) {
             helper.setText(R.id.tvCurrentPriceType, context.getResources().getString(R.string.hold_new_price));
-            CountDownTimer timer = null;
-            CountDownTimer timerPrice = null;
-            long time = item.getSettlementTime() - System.currentTimeMillis();
-            timer = new CountDownTimer(time, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-//                    long endTime = millisUntilFinished / 1000;
-//                    helper.setText(R.id.tvEndTime, endTime + "S");
-                    int endTime = (int) millisUntilFinished / 1000;
-                    helper.setText(R.id.tvEndTime, timeFormat(endTime));
-                }
+            final long time = item.getSettlementTime() - System.currentTimeMillis();
+            CountDownTimer timer = timerArray.get(item.getOrderId());
+//            if (timer != null) {
+//                timer.cancel();
+//            }
+            if (timer == null) {
+                timer = new CountDownTimer(time, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        int endTime = (int) millisUntilFinished / 1000;
+                        helper.setText(R.id.tvEndTime, timeFormat(endTime));
+                    }
 
-                @Override
-                public void onFinish() {
-                    helper.setText(R.id.tvEndTime, R.string.complete);
-                    callback.onCallback(item, helper.getAdapterPosition());
-                }
-            };
-            timer.start();
-            timerArray.add(timer);
-            timerPrice = new CountDownTimer(1000 * 60 * 60 * 24 * 360, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    for (String key : priceMap.keySet()) {
-                        if (key.equals(item.getSymbol())) {
-                            String price = priceMap.get(key);
+                    @Override
+                    public void onFinish() {
+                        helper.setText(R.id.tvEndTime, R.string.complete);
+                        if (time > 0) {
+                            callback.onCallback(item, helper.getLayoutPosition(), item.getOrderId());
+                        }
+                    }
+                };
+                timerArray.put(item.getOrderId(), timer);
+                timer.start();
+            }
+
+            CountDownTimer timerPrice = timerPriceArray.get(item.getOrderId());
+//            if (timerPrice != null) {
+//                timerPrice.cancel();
+//                timerPriceArray.remove(item.getOrderId());
+//            }
+            if (timerPrice == null) {
+                timerPrice = new CountDownTimer(1000 * 60 * 60 * 24 * 360, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        for (String key : priceMap.keySet()) {
+                            if (key.equals(item.getSymbol())) {
+                                String price = priceMap.get(key);
 //                            String[] prices = price.split(",");
 //                            if (prices.length > 1) {
 //                                price=prices[1].length()>5?prices[1].substring(0,3):;
 //                            } else {
 //                                price = price + ".0000";
 //                            }
-                            helper.setText(R.id.tvCurrentPrice, price);
-                            try {
-                                if (item.getLeverage() > 0) {
-                                    //有倍率的计算方式
-                                    double currentPrice = 0;
-                                    try {
-                                        currentPrice = Double.parseDouble(priceMap.get(key));
-                                    } catch (Exception e) {
-                                        currentPrice = 0;
-                                    }
-                                    if (item.getDirection().equals("BUY")) {
-                                        if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            //持仓价/最新价 ：item.getAmount()/priceMap.get(key)
-                                            //当前价 ：priceMap.get(key)
-                                            //开仓价 ：item.getPrice()
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                helper.setText(R.id.tvCurrentPrice, price);
+                                try {
+                                    if (item.getLeverage() > 0) {
+                                        //有倍率的计算方式
+                                        double currentPrice = 0;
+                                        try {
+                                            currentPrice = Double.parseDouble(priceMap.get(key));
+                                        } catch (Exception e) {
+                                            currentPrice = 0;
+                                        }
+                                        if (item.getDirection().equals("BUY")) {
+                                            if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                                //持仓价/最新价 ：item.getAmount()/priceMap.get(key)
+                                                //当前价 ：priceMap.get(key)
+                                                //开仓价 ：item.getPrice()
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                            } else {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                            }
                                         } else {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                            if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                            } else {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                            }
                                         }
                                     } else {
-                                        if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                        //无倍率的计算方式
+                                        if (item.getDirection().equals("BUY")) {
+                                            if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
+                                            } else {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
+                                            }
                                         } else {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                            if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
+                                            } else {
+                                                helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
+                                            }
                                         }
                                     }
-                                } else {
-                                    //无倍率的计算方式
-                                    if (item.getDirection().equals("BUY")) {
-                                        if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
-                                        } else {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
-                                        }
-                                    } else {
-                                        if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
-                                        } else {
-                                            helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                            helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
-                                        }
-                                    }
+
+                                } catch (Exception e) {
+
                                 }
-
-                            } catch (Exception e) {
-
                             }
                         }
                     }
-                }
 
-                @Override
-                public void onFinish() {
+                    @Override
+                    public void onFinish() {
 
-                }
+                    }
+                };
+                timerPriceArray.put(item.getOrderId(), timerPrice);
+                timerPrice.start();
             }
 
-            ;
-            timerPrice.start();
-            timerPriceArray.add(timerPrice);
         } else {
             helper.setText(R.id.tvEndTime, item.getPeriod());
             helper.setText(R.id.tvCurrentPrice, item.getSettlementPrice() + "");
@@ -230,12 +251,24 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         if (timerPriceArray == null) {
             return;
         }
-        for (CountDownTimer cdt : timerArray) {
+//        for (CountDownTimer cdt : timerArray) {
+//            if (cdt != null) {
+//                cdt.cancel();
+//            }
+//        }
+        for (Map.Entry<String, CountDownTimer> entry : timerArray.entrySet()) {
+            CountDownTimer cdt = entry.getValue();
             if (cdt != null) {
                 cdt.cancel();
             }
         }
-        for (CountDownTimer cdt : timerPriceArray) {
+//        for (CountDownTimer cdt : timerPriceArray) {
+//            if (cdt != null) {
+//                cdt.cancel();
+//            }
+//        }
+        for (Map.Entry<String, CountDownTimer> entry : timerPriceArray.entrySet()) {
+            CountDownTimer cdt = entry.getValue();
             if (cdt != null) {
                 cdt.cancel();
             }
@@ -244,27 +277,25 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         timerPriceArray.clear();
     }
 
-    public void cancelPostionTimers(int position) {
+    public void cancelPostionTimers(String orderId) {
         if (timerArray == null) {
             return;
         }
         if (timerPriceArray == null) {
             return;
         }
-        if (timerArray.size() - 1 > position) {
-            CountDownTimer cdt = timerArray.get(position);
-            if (cdt != null) {
-                cdt.cancel();
-                timerArray.remove(cdt);
-            }
+        CountDownTimer cdt = timerArray.get(orderId);
+        if (cdt != null) {
+            cdt.cancel();
+            timerArray.remove(orderId);
         }
-        if (timerPriceArray.size() - 1 > position) {
-            CountDownTimer cdt = timerPriceArray.get(position);
-            if (cdt != null) {
-                cdt.cancel();
-                timerPriceArray.remove(cdt);
-            }
+
+        CountDownTimer cdt2 = timerPriceArray.get(orderId);
+        if (cdt2 != null) {
+            cdt2.cancel();
+            timerPriceArray.remove(orderId);
         }
+
     }
 
     public void setPriceMap(Map<String, String> priceMap) {
@@ -279,6 +310,6 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
 
     public interface CallBackLister {
 
-        void onCallback(OptionEntity item, int position);
+        void onCallback(OptionEntity item, int position, String orderId);
     }
 }

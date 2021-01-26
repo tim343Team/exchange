@@ -22,8 +22,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
         this.tabls = tabls;
     }
 
-
-
     @Override
     public Fragment getItem(int position) {
         return fragments.get(position);

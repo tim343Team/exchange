@@ -509,7 +509,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void initViews(Bundle savedInstanceState) {
         //初始化友盟
-        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
 //        UMConfigure.setLogEnabled(true);
         // 获取当前版本号
         versionName = getAppVersionName(this);
@@ -673,7 +673,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         llThree.setSelected(false);
         llOption.setSelected(false);
         llFive.setSelected(false);
-        ThreeFragment fragment = (ThreeFragment) fragments.get(2);
+        OptionsFragment fragment = (OptionsFragment) fragments.get(position);
         showFragment(fragment);
         dlRoot.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 //        fragment.showTargetFragment(position);
@@ -867,7 +867,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             return;//默认值 或是 不需要跳转 就返回
         }
         Currency currency = (Currency) getIntent().getSerializableExtra("currency");
-        showCoin2Coin(0);
+//        showCoin2Coin(0);
         //当type=1 就显示交易fragment就显示买入，对应的page就是0 （即type -1），当type=2，同理！
 //        if (threeFragment != null) {
 //            threeFragment.showPageFragment(currency, type - 1);
