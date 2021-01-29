@@ -5,7 +5,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.bibi.adapter.OptionOrderAdapter;
+import com.bibi.adapter.inter.OnRecyclerViewScrollListener;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.text.DecimalFormat;
@@ -44,8 +47,9 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
 
     private String type;
     private int pageNo = 1;
-    private int pageSize = 40;
-    private OptionAdapter adapter;
+    private int pageSize = 30;
+    private boolean isLoading = false;
+    private OptionOrderAdapter adapter;
     private List<OptionEntity> data = new ArrayList<>();
     private OptionsContract.DetailPresenter presenter;
 
@@ -101,49 +105,43 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvAds.setLayoutManager(manager);
         if (type.equals(HOLD)) {
-            adapter = new OptionAdapter(getmActivity(), R.layout.item_option, data, 0);
+            adapter = new OptionOrderAdapter(getmActivity(), data, 0);
         } else if (type.equals(HISTORY)) {
-            adapter = new OptionAdapter(getmActivity(), R.layout.item_option_history, data, 1);
+            adapter = new OptionOrderAdapter(getmActivity(), data, 1);
         }
-        adapter.bindToRecyclerView(rvAds);
-        if (type.equals(HISTORY)) {
-            adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-                @Override
-                public void onLoadMoreRequested() {
-                    pageNo++;
-                    loadMore();
-                }
-            }, rvAds);
-        }
-        adapter.setEmptyView(R.layout.empty_rv_ad);
-        adapter.setCallBackLister(new OptionAdapter.CallBackLister() {
+        rvAds.setAdapter(adapter);
+        adapter.setCallBackLister(new OptionOrderAdapter.CallBackLister() {
             @Override
-            public void onCallback(final OptionEntity item, final int position,String orderId) {
-//                rvAds.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        data.remove(item);
-//                        adapter.cancelPostionTimers(position);
-//                        adapter.notifyItemRemoved(position);
-//                    }
-//                });
+            public void onCallback(OptionEntity item, int position, String orderId) {
                 data.remove(item);
                 adapter.cancelPostionTimers(orderId);
                 adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, data.size() - position);
             }
         });
+        if (type.equals(HISTORY)) {
+            rvAds.addOnScrollListener(new OnRecyclerViewScrollListener() {
+                @Override
+                public void onBottom() {
+                    if (!isLoading) {
+                        loadMore();
+                    }
+                }
+            });
+        }
     }
 
     private void loadMore() {
+        isLoading = true;
+        pageNo = 1 + pageNo;
         refreshLayout.setEnabled(false);
         load(type);
     }
 
     private void refresh() {
+        isLoading = true;
         pageNo = 1;
         load(type);
-        adapter.setEnableLoadMore(true);
-        adapter.loadMoreEnd(false);
         adapter.notifyDataSetChanged();
     }
 
@@ -163,7 +161,7 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
 
     @Override
     public void getHistorySuccess(List<OptionEntity> data) {
-        adapter.loadMoreComplete();
+//        adapter.loadMoreComplete();
         if (refreshLayout == null) {
             return;
         }
@@ -180,18 +178,21 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
         if (pageNo == 1) {
             this.data.clear();
             this.data.addAll(data);
+            isLoading = false;
         } else {
             this.data.addAll(data);
+            isLoading = false;
         }
         if (data.size() < pageSize) {
-            adapter.loadMoreEnd();
+            isLoading = true;
+//            adapter.loadMoreEnd();
         }
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void getHoldSuccess(List<OptionEntity> data) {
-        adapter.loadMoreComplete();
+//        adapter.loadMoreComplete();
         if (refreshLayout == null) {
             return;
         }
@@ -212,7 +213,7 @@ public class OptionsDetailFragment extends BaseFragment implements OptionsContra
             this.data.addAll(data);
         }
         if (data.size() < pageSize) {
-            adapter.loadMoreEnd();
+//            adapter.loadMoreEnd();
         }
         adapter.notifyDataSetChanged();
     }

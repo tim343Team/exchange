@@ -12,10 +12,12 @@ import java.util.Map;
 
 import com.bibi.R;
 import com.bibi.adapter.OptionAdapter;
+import com.bibi.adapter.OptionOrderAdapter;
 import com.bibi.app.Injection;
 import com.bibi.base.BaseFragment;
 import com.bibi.entity.OptionEntity;
 import com.bibi.utils.SharedPreferenceInstance;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -94,14 +96,20 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
         adapter.setCallBackLister(new OptionAdapter.CallBackLister() {
             @Override
             public void onCallback(final OptionEntity item, final int position, final String orderId) {
-                recyclerView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        data.remove(item);
-                        adapter.cancelPostionTimers(orderId);
-                        adapter.notifyItemRemoved(position);
-                    }
-                });
+                if (recyclerView != null) {
+                    recyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            data.remove(item);
+                            adapter.cancelPostionTimers(orderId);
+                            adapter.notifyItemRemoved(position);
+                        }
+                    });
+                } else {
+                    data.remove(item);
+                    adapter.cancelPostionTimers(orderId);
+                    adapter.notifyItemRemoved(position);
+                }
             }
         });
     }
@@ -109,8 +117,8 @@ public class OptionOrderFragment extends BaseFragment implements OptionsContract
     public void setCurrentPrice(String price) {
         if (adapter != null) {
 //            adapter.setPrice(price);
-            Map<String ,String> priceMap=new HashMap<>();
-            priceMap.put(symbol,price);
+            Map<String, String> priceMap = new HashMap<>();
+            priceMap.put(symbol, price);
             adapter.setPriceMap(priceMap);
         }
     }

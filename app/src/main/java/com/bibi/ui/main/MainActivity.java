@@ -187,10 +187,10 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 intentTcp = new Intent(getApplicationContext(), MyTextService.class);
                 startService(intentTcp); // 开启服务
                 mHandler.postDelayed(this, 10000);
-//                if (restart) {
-//                    subscribeThumb();
-//                }
-                subscribeThumb();
+                if (restart) {
+                    subscribeThumb();
+                }
+//                subscribeThumb();
             } catch (Exception e) {
                 Log.e("MainActivity", "服务重启失败");
                 mHandler.postDelayed(this, 10000);
@@ -509,7 +509,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void initViews(Bundle savedInstanceState) {
         //初始化友盟
-//        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
 //        UMConfigure.setLogEnabled(true);
         // 获取当前版本号
         versionName = getAppVersionName(this);

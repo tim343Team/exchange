@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_1A212A"
+    android:background="?attr/title_layout_bg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -297,7 +297,7 @@
                 <com.bibi.customview.MyViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="340dp"
+                    android:layout_height="260dp"
                     android:paddingStart="@dimen/dimen_6"
                     android:paddingEnd="@dimen/dimen_6"
                     android:paddingBottom="@dimen/dimen_3"
@@ -324,7 +324,7 @@
                         android:gravity="center_vertical"
                         android:background="@drawable/white_shape_radius"
                         android:inputType="numberDecimal"
-                        android:hint="余额：1235 usdt"
+                        android:hint="余额：-- usdt"
                         android:text=""
                         android:textColor="@color/primaryText"
                         android:textSize="@dimen/dimen_14"/>

@@ -211,9 +211,9 @@ public abstract class BaseKChartView extends ScrollAndScaleView {
 //        int mMainChildSpace = mKChartTabView.getMeasuredHeight();
         int displayHeight = h - mTopPadding - mBottomPadding;
         if (type != -1) { // 有副图
-            int mMainHeight = (int) (displayHeight * 0.6f);
-            int mChildHeight = (int) (displayHeight * 0.2f);
-            int mChildChildHeight = (int) (displayHeight * 0.2f);
+            int mMainHeight = (int) (displayHeight * 0.75f);
+            int mChildHeight = (int) (displayHeight * 0.0f);//成交量的高度
+            int mChildChildHeight = (int) (displayHeight * 0.25f);//MACD的高度
             mMainRect = new Rect(0, mTopPadding, mWidth, mTopPadding + mMainHeight);
 //            mTabRect = new Rect(0, mMainRect.bottom, mWidth, mMainRect.bottom + mMainChildSpace);
             mChildRect = new Rect(0, mMainRect.bottom + mChildTopPadding, mWidth, mMainRect.bottom + mChildHeight);
@@ -379,16 +379,16 @@ public abstract class BaseKChartView extends ScrollAndScaleView {
                 canvas.drawText(text, mWidth - mTextClosePaint.measureText(text), fixTextY((float) (rowSpace * i + mMainRect.top)), mTextClosePaint);
             }
         }
-        //--------------画下方子图的值-------------
-        if (mChildDraw != null) {
-            String text = mChildDraw.getValueFormatter().format(mChildMaxValue);
-            canvas.drawText(text, mWidth - mTextPaint.measureText(text), mChildRect.top + baseLine, mTextPaint);
-        }
+        //--------------画下方子图成交量的值-------------
+//        if (mChildDraw != null) {
+//            String text = mChildDraw.getValueFormatter().format(mChildMaxValue);
+//            canvas.drawText(text, mWidth - mTextPaint.measureText(text), mChildRect.top + baseLine, mTextPaint);
+//        }
 
-        // 画下方副图的值
+        // 画下方副图MACA的值
         if (mChildChildDraw != null && type != -1) {
-            String text1 = mChildDraw.getValueFormatter().format(mChildMinValue);
-            canvas.drawText(text1, mWidth - mTextPaint.measureText(text1), mChildRect.bottom, mTextPaint);
+//            String text1 = mChildDraw.getValueFormatter().format(mChildMinValue);
+//            canvas.drawText(text1, mWidth - mTextPaint.measureText(text1), mChildRect.bottom, mTextPaint);
             String text2 = mChildChildDraw.getValueFormatter().format(mChildChildMaxValue);
             canvas.drawText(text2, mWidth - mTextPaint.measureText(text2), mChildChildRect.top + baseLine, mTextPaint);
         }

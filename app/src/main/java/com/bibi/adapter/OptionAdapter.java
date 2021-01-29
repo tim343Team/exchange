@@ -6,6 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,15 +88,29 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
         }
     }
 
-    @Override
-    public void onViewDetachedFromWindow(@NonNull BaseViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
-        Log.e("remove_position:", holder.getLayoutPosition() + "");
-    }
+//    @Override
+//    public void onViewRecycled(@NonNull BaseViewHolder holder) {
+//        super.onViewRecycled(holder);
+//        Log.e("remove_position:", holder.getLayoutPosition() + "");
+//        if (holder.getLayoutPosition() < getData().size()) {
+//            String orderId = getData().get(holder.getLayoutPosition()).getOrderId();
+//            CountDownTimer timer = timerArray.get(orderId);
+//            CountDownTimer timerPrice = timerPriceArray.get(orderId);
+//            if (timer != null) {
+//                timer.cancel();
+//                timerArray.remove(orderId);
+//            }
+//            if (timerPrice != null) {
+//                timerPrice.cancel();
+//                timerPriceArray.remove(orderId);
+//            }
+//        }
+//    }
 
     @Override
     protected void convert(final BaseViewHolder helper, final OptionEntity item) {
         if (type == 0) {
+            Log.e("remove_position:", "convert"+helper.getLayoutPosition() + "");
             helper.setText(R.id.tvCurrentPriceType, context.getResources().getString(R.string.hold_new_price));
             final long time = item.getSettlementTime() - System.currentTimeMillis();
             CountDownTimer timer = timerArray.get(item.getOrderId());
@@ -155,18 +171,18 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                                 //持仓价/最新价 ：item.getAmount()/priceMap.get(key)
                                                 //当前价 ：priceMap.get(key)
                                                 //开仓价 ：item.getPrice()
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format(new BigDecimal ((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage())));
                                             } else {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage()));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format(new BigDecimal ((item.getAmount() / currentPrice) * (currentPrice - item.getPrice()) * item.getLeverage())));
                                             }
                                         } else {
                                             if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + new DecimalFormat("#0.0000").format(new BigDecimal ((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage())));
                                             } else {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage()));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + " " + "-" + new DecimalFormat("#0.0000").format(new BigDecimal ((item.getAmount() / currentPrice) * (item.getPrice() - currentPrice) * item.getLeverage())));
                                             }
                                         }
                                     } else {
@@ -174,7 +190,7 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                         if (item.getDirection().equals("BUY")) {
                                             if (Double.parseDouble(priceMap.get(key)) > item.getPrice()) {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + new BigDecimal(item.getAmount() * (item.getProfitRate() / 100)));
                                             } else {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
                                                 helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
@@ -182,7 +198,7 @@ public class OptionAdapter extends BaseQuickAdapter<OptionEntity, BaseViewHolder
                                         } else {
                                             if (Double.parseDouble(priceMap.get(key)) < item.getPrice()) {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_green_back);
-                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + item.getAmount() * (item.getProfitRate() / 100));
+                                                helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + new BigDecimal(item.getAmount() * (item.getProfitRate() / 100)));
                                             } else {
                                                 helper.getView(R.id.tvProfitLost).setBackgroundResource(R.drawable.circle_corner_red_back);
                                                 helper.setText(R.id.tvProfitLost, context.getResources().getString(R.string.Profit_loss) + "-" + item.getAmount());
