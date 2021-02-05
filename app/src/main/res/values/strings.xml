@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CCB</string>
+    <string name="app_name">Demo</string>
     <string name="cancle">取消</string>
     <string name="confirm">确定</string>
     <string name="back">返回</string>
@@ -86,7 +86,7 @@
     <string name="edit">修改</string>
     <string name="change_phone_num">修改手机号</string>
     <string name="changeBindPhoneNum">修改绑定手机号</string>
-    <string name="changeBindPhoneNumTip">您正在修改ccb账户绑定的手机号，请进行身份认证</string>
+    <string name="changeBindPhoneNumTip">您正在修改Demo账户绑定的手机号，请进行身份认证</string>
     <string name="receivePhoneCode">原手机能接受验证码</string>
     <string name="unReceivePhoneCode">原手机不能接受验证码</string>
     <string name="unReceivePhoneCodeTip">原手机号不能接收验证码，请联系客服进行修改绑定</string>
@@ -95,7 +95,7 @@
 
     <!--修改登录密码-->
     <string name="changeLoginPassword">更改登录密码</string>
-    <string name="changeLoginPasswordTip">您正在修改ccb的登录密码</string>
+    <string name="changeLoginPasswordTip">您正在修改Demo的登录密码</string>
     <string name="changeLoginPasswordTip1">您已经绑定手机号</string>
     <string name="changeLoginPasswordTip2">修改成功请重新登录</string>
     <string name="oldLoginPassword">旧登录密码</string>
@@ -112,9 +112,9 @@
 
     <!--设置 修改资金密码-->
     <string name="setMoneyPassword">设置资金密码</string>
-    <string name="setMoneyPasswordTip">您正在修改ccb的资金密码</string>
+    <string name="setMoneyPasswordTip">您正在修改Demo的资金密码</string>
     <string name="changeMoneyPassword">修改资金密码</string>
-    <string name="changeMoneyPasswordTip">您正在重置ccb的资金密码</string>
+    <string name="changeMoneyPasswordTip">您正在重置Demo的资金密码</string>
     <string name="oldMoneyPassword">旧资金密码</string>
     <string name="newMoneyPassword">新资金密码</string>
     <string name="certainMoneyPassword">确认资金密码</string>
@@ -247,7 +247,7 @@
     <string name="spread">我的推广</string>
     <string name="customer_service">联系客服</string>
     <string name="not_logged_in">未登录</string>
-    <string name="welcome_to">欢迎来到ccb</string>
+    <string name="welcome_to">欢迎来到Demo</string>
     <string name="my_order">订单管理</string>
     <string name="my_ads">我的广告</string>
     <string name="my_message">平台消息</string>
@@ -306,7 +306,7 @@
     <string name="currency">币种</string>
     <string name="remarks">备注</string>
     <string name="no_remarks">无备注</string>
-    <string name="invite">邀请朋友加入ccb</string>
+    <string name="invite">邀请朋友加入Demo</string>
     <string name="invite_friends">邀请好友</string>
     <string name="inviteTip">邀请好友，赚取佣金\n和朋友一起赚钱\n</string>
     <string name="inviteTip1">邀请好友，赚取佣金</string>
@@ -838,8 +838,8 @@
     <string name="forgot_password">忘记密码</string>
     <string name="goto_regist">注册</string>
     <string name="goto_login">立即登录</string>
-    <string name="no_zhanghao">还没有ccb帐号?</string>
-    <string name="yes_zhanghao">已有ccb帐号</string>
+    <string name="no_zhanghao">还没有Demo帐号?</string>
+    <string name="yes_zhanghao">已有Demo帐号</string>
     <string name="keep_password">记住密码</string>
     <string name="login_account_input">请输入手机号</string>
     <!--注册-->
@@ -847,6 +847,7 @@
     <string name="phone_sign_up">手机号注册</string>
     <string name="phone_number">手机号码</string>
     <string name="send_code">获取验证码</string>
+    <string name="send_code_hint">默认验证码</string>
     <string name="re_send">重新获取</string>
     <string name="phone_code">短信验证码</string>
     <string name="email_code">邮箱验证码</string>
@@ -870,11 +871,11 @@
 
     <!--关于我们-->
     <string name="about_1">
-ccb国际数字加密资产交易平台是一个综合数字资产交易平台,我们拥有领先的技术实力、优质的客户服务和良好的用户体验,为广大数字货币爱好者提供一个自由的网上交换的平台。\n\n
-ccb国际数字加密资产交易平台同时还提供数字货币白皮书规划、加密算法调整、数字货币研发、交易平台上架一条龙的区块链服务。\n\n
-ccb国际数字加密资产交易平台海外运营中心分别设立在新加坡、柬埔寨、马绍尔。国内北京、正州、深圳三大办事处；中国总部设立在海南陵水清水湾国际信息产业园。\n</string>
-    <string name="about_2">当下数字资产发展如火如荼，良莠不齐。ccb会筛选优质数字资产，重视项目的透明度和治理结构，在自有评级体系形成的筛选标准之上，参考市场投资者的决策，共同发掘优质数字资产价值。\n我们的理念是：与每一位自由汇集于此的成员共同塑造一方价值流通、合抱共耕的优质生态土壤。\n</string>
-    <string name="about_3">ccb的目标是建立一个相对去中心化的交易平台。平台的运营环境安全、公平而良性的发展，有创新、可迭代，符合社会进步和发展的趋势。</string>
+Demo国际数字加密资产交易平台是一个综合数字资产交易平台,我们拥有领先的技术实力、优质的客户服务和良好的用户体验,为广大数字货币爱好者提供一个自由的网上交换的平台。\n\n
+Demo国际数字加密资产交易平台同时还提供数字货币白皮书规划、加密算法调整、数字货币研发、交易平台上架一条龙的区块链服务。\n\n
+Demo国际数字加密资产交易平台海外运营中心分别设立在新加坡、柬埔寨、马绍尔。国内北京、正州、深圳三大办事处；中国总部设立在海南陵水清水湾国际信息产业园。\n</string>
+    <string name="about_2">当下数字资产发展如火如荼，良莠不齐。Demo会筛选优质数字资产，重视项目的透明度和治理结构，在自有评级体系形成的筛选标准之上，参考市场投资者的决策，共同发掘优质数字资产价值。\n我们的理念是：与每一位自由汇集于此的成员共同塑造一方价值流通、合抱共耕的优质生态土壤。\n</string>
+    <string name="about_3">Demo的目标是建立一个相对去中心化的交易平台。平台的运营环境安全、公平而良性的发展，有创新、可迭代，符合社会进步和发展的趋势。</string>
 
     <string-array name="home_two_top_tab">
         <item>自选</item>

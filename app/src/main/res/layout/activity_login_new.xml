@@ -21,8 +21,8 @@
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="@dimen/dimen_200"
-            android:layout_height="@dimen/dimen_42"
-            android:background="@drawable/img_logo_white"
+            android:layout_height="@dimen/dimen_47"
+            android:background="@drawable/img_logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_90"/>
 
@@ -286,6 +286,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="#0000"
                                 android:gravity="center_vertical"
+                                android:text="1234"
                                 android:hint="@string/code_shuru"
                                 android:paddingLeft="16dp"
                                 android:paddingRight="16dp"
@@ -301,7 +302,7 @@
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
-                                android:text="@string/send_code"
+                                android:text="@string/send_code_hint"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="13dp" />
 

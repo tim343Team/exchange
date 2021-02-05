@@ -188,7 +188,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         tvGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCode();
+//                getCode();
             }
         });
         yan.setOnClickListener(new View.OnClickListener() {
@@ -426,10 +426,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             WonderfulToastUtils.showToast(getResources().getString(R.string.Incomplete_information));
             return;
         }
-        if (WonderfulStringUtils.isEmpty((tuijianma))) {
-            WonderfulToastUtils.showToast(getResources().getString(R.string.tuijianma));
-            return;
-        }
+//        if (WonderfulStringUtils.isEmpty((tuijianma))) {
+//            WonderfulToastUtils.showToast(getResources().getString(R.string.tuijianma));
+//            return;
+//        }
         if (!checkbox.isChecked()) {
             WonderfulToastUtils.showToast(getResources().getString(R.string.xieyi));
             return;

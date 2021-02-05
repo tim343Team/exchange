@@ -72,7 +72,7 @@ import com.bibi.utils.WonderfulToastUtils;
 import com.bibi.utils.okhttp.StringCallback;
 import com.bibi.utils.okhttp.WonderfulOkhttpUtils;
 
-import com.umeng.commonsdk.UMConfigure;
+//import com.umeng.commonsdk.UMConfigure;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -509,7 +509,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void initViews(Bundle savedInstanceState) {
         //初始化友盟
-        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        UMConfigure.init(this, "600e2c41f1eb4f3f9b6de785", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
 //        UMConfigure.setLogEnabled(true);
         // 获取当前版本号
         versionName = getAppVersionName(this);
